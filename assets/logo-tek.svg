@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="TEK-BIURO BUDOWY">
+  <!-- Znak TEK-BIURO BUDOWY: sześciokąt + hala z pinezką uwagi na rzucie -->
+  <polygon points="50,5 88.97,27.5 88.97,72.5 50,95 11.03,72.5 11.03,27.5" fill="#23272A" stroke="#ED471D" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M26 68 V49 L50 35 L74 49 V68 Z" fill="none" stroke="#FFFFFF" stroke-width="4.5" stroke-linejoin="round"/>
+  <path d="M26 68 H74" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M36 68 V57 M64 68 V57" stroke="#9AA1A4" stroke-width="3" stroke-linecap="round"/>
+  <path d="M50 67 C50 67 40 57.5 40 50.5 A10 10 0 0 1 60 50.5 C60 57.5 50 67 50 67 Z" fill="#ED471D" stroke="#23272A" stroke-width="2"/>
+  <circle cx="50" cy="50.5" r="3.6" fill="#FFFFFF"/>
+</svg>

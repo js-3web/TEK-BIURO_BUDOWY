@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ED471D">
+<title>TEK-BIURO BUDOWY</title>
+<link rel="icon" href="assets/logo-tek.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="brand" id="brandBtn" title="Pulpit">
+    <img src="assets/logo-tek.svg" alt="">
+    <span class="word"><b>TEK</b>-BIURO <em>BUDOWY</em></span>
+  </button>
+  <span class="testbadge" title="Wersja testowa – uwagi zgłaszaj przyciskiem w pasku">TEST</span>
+  <nav class="crumbs" id="crumbs"></nav>
+  <div class="spacer"></div>
+  <div class="tb-proj" id="projSel"></div>
+  <div class="tb-user" id="userSel"></div>
+  <div id="pilotBadge"></div>
+  <button class="sync hidden" id="cloudBtn" title="Synchronizacja z chmurą"><span class="dot"></span><span>chmura</span></button>
+  <button class="sync" id="syncBtn" title="Zapis danych i kopie"><span class="dot"></span><span id="syncTxt">zapis lokalny</span></button>
+</header>
+<main class="main" id="view"></main>
+<nav class="bottomnav" id="bottomnav"></nav>
+<div class="toasts" id="toasts"></div>
+<div id="printArea" aria-hidden="true"></div>
+
+<!-- Biblioteki lokalne (działa bez internetu). pdf.js ładowany dopiero przy wgrywaniu PDF. -->
+<script src="js/lib/exceljs.min.js"></script>
+<!-- Rdzeń -->
+<script src="js/wersja.js"></script>
+<script src="js/util.js"></script>
+<script src="js/lib/supabase.js"></script>
+<script src="js/konfiguracja.js"></script>
+<script src="js/store.js"></script>
+<script src="js/sync.js"></script>
+<script src="js/perm.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/print.js"></script>
+<script src="js/pptx.js"></script>
+<script src="js/lib/pptx_sample.js"></script>
+<script src="js/mail.js"></script>
+<script src="js/demo.js"></script>
+<script src="js/licencja.js"></script>
+<script src="js/wzory.js"></script>
+<!-- Moduły (nowy moduł = nowy plik + jedna linia tutaj) -->
+<script src="js/modules/home.js"></script>
+<script src="js/modules/rzuty.js"></script>
+<script src="js/modules/uwagi.js"></script>
+<script src="js/modules/narady.js"></script>
+<script src="js/modules/raporty.js"></script>
+<script src="js/modules/raport_pptx.js"></script>
+<script src="js/modules/zanikowe.js"></script>
+<script src="js/modules/montaz.js"></script>
+<script src="js/modules/dziennik.js"></script>
+<script src="js/modules/harmonogram.js"></script>
+<script src="js/modules/breeam.js"></script>
+<script src="js/modules/terminy.js"></script>
+<script src="js/modules/asystent.js"></script>
+<script src="js/modules/wlasne.js"></script>
+<script src="js/modules/zgloszenia.js"></script>
+<script src="js/modules/ustawienia.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
