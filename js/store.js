@@ -15,7 +15,7 @@
 (function (M) {
   'use strict';
   const DB_NAME = 'biuro-budowy', KV = 'kv', BL = 'blobs', SCHEMA = 1;
-  const TABLES = ['projects', 'people', 'companies', 'plans', 'issues', 'meetings', 'reports', 'protocols', 'tasks', 'risks', 'breeam', 'evidence', 'monitoring', 'events', 'templates', 'custom', 'aiLog', 'pilotTimes', 'pilotNotes', 'elements', 'assembly', 'diary', 'feedback'];
+  const TABLES = ['projects', 'people', 'companies', 'plans', 'issues', 'meetings', 'reports', 'protocols', 'tasks', 'risks', 'breeam', 'evidence', 'monitoring', 'events', 'templates', 'custom', 'aiLog', 'pilotTimes', 'pilotNotes', 'elements', 'assembly', 'diary', 'feedback', 'scope', 'guard', 'imports'];
 
   const DEFAULT_SETTINGS = {
     currentProject: '', currentUser: '',

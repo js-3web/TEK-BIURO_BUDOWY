@@ -80,5 +80,7 @@
     await M.SYNC.init();
     if (M.FEEDBACK) M.FEEDBACK.badge();
     await M.FS.init();
+    // Strażnik Harmonogramu: okno z alarmami po otwarciu aplikacji (po pierwszej synchronizacji, jeśli jest włączona)
+    setTimeout(() => { if (M.STRAZNIK) M.STRAZNIK.popup(); }, M.SYNC && M.SYNC.enabled() ? 4000 : 800);
   })();
 })(window.M);

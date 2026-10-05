@@ -179,7 +179,7 @@ Zwróć:
 
   /**
    * Okno asystenta: krok 1 kopiuj prompt, krok 2 otwórz AI (+ zdjęcia), krok 3 wklej wynik, krok 4 zastosuj.
-   * opts: { key, title, prompt, photos, photoPrefix, parse:(txt)=>obj|null, preview:(obj)=>html, apply:(obj,txt)=>void, applyLabel }
+   * opts: { key, title, prompt, photos, photoPrefix, attach (opis pliku do dołączenia), parse:(txt)=>obj|null, preview:(obj)=>html, apply:(obj,txt)=>void, applyLabel }
    */
   AI.open = (opts) => {
     const prompt = opts.prompt;
@@ -190,7 +190,7 @@ Zwróć:
         <div class="col">
           <div class="steps">
             <div class="step"><span class="n">1</span><div>Skopiuj prompt (poniżej możesz go jeszcze poprawić).</div></div>
-            <div class="step"><span class="n">2</span><div>Otwórz swoje AI, wklej prompt${hasPh ? ` i <b>dołącz ${opts.photos.length} ${M.plural(opts.photos.length, 'zdjęcie', 'zdjęcia', 'zdjęć')}</b> (przycisk „Pobierz zdjęcia”)` : ''}.</div></div>
+            <div class="step"><span class="n">2</span><div>Otwórz swoje AI, wklej prompt${hasPh ? ` i <b>dołącz ${opts.photos.length} ${M.plural(opts.photos.length, 'zdjęcie', 'zdjęcia', 'zdjęć')}</b> (przycisk „Pobierz zdjęcia”)` : ''}${opts.attach ? ` i <b>dołącz ${e(opts.attach)}</b>` : ''}.</div></div>
             <div class="step"><span class="n">3</span><div>Skopiuj całą odpowiedź AI i wklej ją w pole po prawej.</div></div>
             <div class="step"><span class="n">4</span><div>Sprawdź podgląd i kliknij „${e(opts.applyLabel || 'Zastosuj')}”.</div></div>
           </div>

@@ -28,6 +28,7 @@
     dziennik: { view: [...STAFF, 'PROJ'], edit: STAFF },
     montaz: { view: ALL, edit: STAFF }, // podwykonawca: tylko firma wskazana jako wykonawca montażu (sprawdza moduł)
     harmonogram: { view: ALL, edit: STAFF },
+    straznik: { view: STAFF, edit: ['KP', 'KB'] }, // status czynności zmienia każdy z zespołu GW (sprawdza moduł)
     breeam: { view: [...STAFF, 'PROJ', 'PODW'], edit: STAFF },
     terminy: { view: ['KP', 'KB', 'IB'], edit: ['KP', 'KB'] },
     asystent: { view: [...STAFF, 'PROJ'], edit: [...STAFF, 'PROJ'] },

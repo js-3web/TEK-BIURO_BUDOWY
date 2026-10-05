@@ -54,7 +54,7 @@
         <div class="grid2"><label class="f">Adres<input type="text" data-f="address" value="${e(p.address || '')}"></label><label class="f">Inwestor<input type="text" data-f="investor" value="${e(p.investor || '')}"></label></div>
         <div class="grid4"><label class="f">Start<input type="date" data-f="start" value="${e(p.start || '')}"></label><label class="f">Termin umowny<input type="date" data-f="end" value="${e(p.end || '')}"></label><label class="f">Szer. geogr.<input type="text" data-f="lat" value="${e(p.lat ?? '')}" placeholder="51.25"></label><label class="f">Dł. geogr.<input type="text" data-f="lon" value="${e(p.lon ?? '')}" placeholder="22.57"></label></div>
         <label class="f">Nr dziennika budowy (EDB)<input type="text" data-f="edb" value="${e(p.edb || '')}"></label>
-        <div class="fieldset"><legend>Umowa i terminy (Strażnik terminów)</legend>
+        <div class="fieldset"><legend>Umowa i terminy (moduł Terminy umowne)</legend>
           <label class="f">Warunki umowy<select data-f="contract" id="ct">${M.UI.opts(Object.entries(M.FIDIC).map(([k, x]) => [k, x.label]), p.contract)}</select></label>
           <div class="grid4"><label class="f">Zawiadomienie [dni]<input type="number" data-dl="notice" value="${dl.notice}"></label><label class="f">Roszcz. szczeg. [dni]<input type="number" data-dl="detailed" value="${dl.detailed}"></label><label class="f">Inżynier – kwest. [dni]<input type="number" data-dl="engineer" value="${dl.engineer}"></label><label class="f">Odpowiedź/ustal. [dni]<input type="number" data-dl="determination" value="${dl.determination}"></label></div>
           <div class="xs muted">Wartości domyślne wg warunków ogólnych; zmień, jeśli warunki szczególne umowy stanowią inaczej.</div></div>
