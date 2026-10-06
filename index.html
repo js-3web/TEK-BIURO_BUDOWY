@@ -1,75 +1,1537 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#ED471D">
-<title>TEK-BIURO BUDOWY</title>
-<link rel="icon" href="assets/logo-tek.svg" type="image/svg+xml">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="assets/icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="robots" content="noindex,nofollow">
-<link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEKTORIA — LISP do ZWCAD, kalkulatory wg Eurokodów i aplikacje dla kierownika budowy</title>
+<meta name="description" content="TEKTORIA — oprogramowanie dla inżynierów budownictwa: skrypty LISP do ZWCAD (profile stalowe, zestawienia stali), programy obliczeniowe TEK-CALC i TEK-SKARPA wg Eurokodów oraz aplikacje dla wykonawstwa w pilotażu: TEK-BIURO BUDOWY (uwagi na rzutach, raporty, narady), TEK-BHP (dokumentacja BHP podwykonawców) i TEK-AUDYTOR (audyt dokumentacji wspomagany przez AI).">
+<meta name="keywords" content="TEKTORIA, TEK-CALC, LISP ZWCAD, skrypt LISP profile stalowe, zestawienie stali Excel LISP, AutoLISP konstrukcje stalowe, ZWCAD Standard dodatek, darmowe LISP ZWCAD, kalkulator płyt żelbetowych, kalkulator tarcz żelbetowych, wymiarowanie płyty Eurokod, połączenia stalowe EC3, zestawienie obciążeń Eurokod, dobór śrub PN-EN 1993-1-8, program dla konstruktora, TEK-SKARPA, stateczność skarpy program, stateczność zbocza obliczenia, metoda Bishopa, metoda Spencera, równowaga graniczna skarpa, Eurokod 7 stateczność, aplikacja dla kierownika budowy, uwagi na rzutach, rejestr usterek budowa, raport dzienny z budowy, protokół robót zanikowych, dokumentacja BHP podwykonawców, IBWR, plan BIOZ, audyt dokumentacji budowlanej, anonimizacja PDF, weryfikacja projektu AI">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tektoria.pl/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b1622">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="TEKTORIA — oprogramowanie dla inżynierów: CAD, obliczenia, biuro budowy">
+<meta property="og:description" content="Skrypty LISP do ZWCAD, programy obliczeniowe TEK-CALC i TEK-SKARPA oraz aplikacje dla wykonawstwa w pilotażu: TEK-BIURO BUDOWY, TEK-BHP i TEK-AUDYTOR. Pisane przez konstruktora z uprawnieniami.">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:url" content="https://tektoria.pl/">
+<meta property="og:site_name" content="TEKTORIA">
+<meta property="og:image" content="https://tektoria.pl/img/og-tektoria.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo TEKTORIA w sześciokącie — oprogramowanie dla inżynierów, CAD i aplikacje dla projektantów i kierowników">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "TEKTORIA",
+      "url": "https://tektoria.pl/",
+      "logo": "https://tektoria.pl/img/tektoria-znak.png",
+      "description": "Oprogramowanie dla inżynierów budownictwa: skrypty LISP do ZWCAD, programy obliczeniowe wg Eurokodów i aplikacje dla kierowników budów, tworzone przez inżyniera z uprawnieniami konstrukcyjno-budowlanymi bez ograniczeń.",
+      "areaServed": "PL"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "TEK-PROFIL — tek-profil.lsp",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "ZWCAD 2022+",
+      "description": "Skrypt LISP do ZWCAD automatycznie wstawiający przekroje profili stalowych (IPN, IPE, HEA/HEB/HEM, UPN, kątowniki, rury, SHS, RHS) wraz z tabelką parametrów.",
+      "offers": { "@type": "Offer", "price": "219", "priceCurrency": "PLN", "availability": "https://schema.org/PreOrder", "url": "https://tektoria.pl/#zamow" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "TEK-STAL — tek-stal.lsp",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "ZWCAD 2022+",
+      "description": "Skrypt LISP do ZWCAD tworzący zestawienie profili stalowych z rysunku z eksportem do Excela.",
+      "offers": { "@type": "Offer", "price": "219", "priceCurrency": "PLN", "availability": "https://schema.org/PreOrder", "url": "https://tektoria.pl/#zamow" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "TEK-CALC — kalkulatory konstrukcyjne",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Windows 10, Windows 11 (64-bit)",
+      "softwareVersion": "1.2",
+      "description": "Program na Windows z 10 modułami obliczeniowymi wg Eurokodów z załącznikami krajowymi: płyty żelbetowe (4 schematy statyczne, SGN i SGU), tarcze żelbetowe (strut-and-tie), połączenia stalowe wg PN-EN 1993-1-8, zestawienie obciążeń z eksportem do Excela, dobór śrub, kotew i krat pomostowych, temperatura krytyczna stali, katalogi materiałów, spis norm. Działa offline, licencja bezterminowa na jedno stanowisko.",
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "PLN",
+        "lowPrice": "59",
+        "highPrice": "999",
+        "offerCount": "11",
+        "availability": "https://schema.org/PreOrder",
+        "url": "https://tektoria.pl/#zamow"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "TEK-SKARPA — stateczność skarp i zboczy",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Windows 10, Windows 11 (64-bit)",
+      "softwareVersion": "1.0.0",
+      "description": "Program na Windows do analizy stateczności skarp, wykopów i nasypów metodami równowagi granicznej (LEM) w przekroju 2D. Metody Fellenius, Bishop uproszczona, Janbu skorygowana i Spencer, kołowe powierzchnie poślizgu, przeszukiwanie siatki środków obrotu, warunki wodne (zwierciadło swobodne, linia piezometryczna, r_u), wzmocnienia, obciążenie naziomu, siła pseudostatyczna, tryb współczynników częściowych wg PN-EN 1997-1. Raport PDF i Word, eksport JSON i CSV. Wbudowana walidacja na zadaniu ACADS 1(a). Licencja bezterminowa, działa offline.",
+      "offers": { "@type": "Offer", "price": "699", "priceCurrency": "PLN", "availability": "https://schema.org/PreOrder", "url": "https://tektoria.pl/#zamow" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Czy skrypty działają na ZWCAD Standard, bez wersji Professional?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Tak. Oba skrypty to czysty LISP bez modułów binarnych (ARX/ZRX), dlatego działają już na ZWCAD Standard. Testowane na ZWCAD 2022 Standard, build 22.20_2023.10.12." }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy skrypty zadziałają w AutoCAD lub innych programach CAD?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Skrypty są pisane i testowane pod ZWCAD. Większość kodu to standardowy AutoLISP, ale poprawność działania gwarantuję wyłącznie w ZWCAD 2022 i nowszych." }
+        },
+        {
+          "@type": "Question",
+          "name": "Jak wygląda instalacja skryptu LISP w ZWCAD?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Jeden plik .lsp wczytywany poleceniem APPLOAD. Do każdego skryptu dołączona jest instrukcja instalacji PDF krok po kroku, w tym dodanie do autostartu." }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy eksport zestawienia stali wymaga zainstalowanego Excela?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Eksport do Excela wymaga Microsoft Excel na tym samym komputerze (komunikacja przez COM, bez pośrednich plików CSV). Alternatywnie TEK-STAL wygeneruje tabelkę zestawienia bezpośrednio w rysunku CAD." }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy plik LISP jest bezpieczny dla firmowego komputera?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Kod to jawny, czytelny plik tekstowy .lsp — dział IT może go zweryfikować przed wdrożeniem. Skrypt nie łączy się z internetem i nie modyfikuje systemu." }
+        },
+        {
+          "@type": "Question",
+          "name": "Czym TEK-CALC i TEK-SKARPA różnią się od skryptów LISP i co trzeba mieć, żeby je uruchomić?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Skrypty LISP działają wewnątrz ZWCAD. TEK-CALC i TEK-SKARPA to samodzielne programy na Windows 10 lub 11 w wersji 64-bit — nie potrzebują żadnego CAD-a ani licencji ZWCAD. Uruchamiasz plik .exe, bez instalatora i bez uprawnień administratora. TEK-CALC korzysta ze składnika Microsoft Edge WebView2, standardowo obecnego w systemie. Przy pierwszym uruchomieniu Windows może pokazać ostrzeżenie SmartScreen o nieznanym wydawcy — pliki nie mają jeszcze certyfikatu wydawcy." }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy programy łączą się z internetem i co się dzieje z licencją, gdy zmienię komputer?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Nie łączą się z internetem. Nie ma konta, logowania ani wysyłania danych projektowych — aktywacja i obliczenia działają w całości offline. Licencja jest bezterminowa i imienna, na jedno stanowisko; nie jest przypisana do sprzętu, więc po zmianie komputera albo konta Windows po prostu wczytujesz ten sam klucz jeszcze raz. Dane robocze i ustawienia zapisują się lokalnie na Twoim komputerze." }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy wynik z programu mogę wstawić do projektu i kto odpowiada za obliczenia?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Raport z programu (PDF, Word, arkusz) jest załącznikiem obliczeniowym do dokumentacji — tak samo jak wydruk z każdego innego programu. Odpowiedzialność za przyjęte założenia, dane wejściowe i interpretację wyników ponosi projektant wykonujący samodzielną funkcję techniczną, zgodnie z art. 20 Prawa budowlanego. Programy są narzędziem pomocniczym i nie zastępują osądu inżynierskiego ani rozpoznania geotechnicznego. Dlatego przy każdym wyniku podaję źródło algorytmu i punkt normy — żebyś mógł to sprawdzić, a nie przyjąć na wiarę." }
+        },
+        {
+          "@type": "Question",
+          "name": "Kiedy ruszy sprzedaż, jak zapłacę i czy dostanę fakturę?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Sprzedaż jeszcze nie ruszyła — na tej stronie zbieram deklaracje zainteresowania i uruchomię ją, gdy zbierze się ich wystarczająco dużo. Do każdej osoby, która zostawiła zgłoszenie, napiszę wtedy z potwierdzoną ceną, sposobem płatności, dokumentem sprzedaży i regulaminem. Deklaracja z formularza nie jest zamówieniem, nie wiąże się z żadną płatnością i do niczego Cię nie zobowiązuje — na tym etapie nie zbieram nawet danych adresowych ani rozliczeniowych." }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy mogę zrezygnować po zakupie?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Kupując na firmę nie masz ustawowego prawa odstąpienia od umowy — przysługuje ono konsumentom. Jako konsument masz 14 dni na odstąpienie, ale przy treściach cyfrowych dostarczanych bez nośnika materialnego prawo to wygasa, jeżeli wyraźnie zgodzisz się na natychmiastowe dostarczenie pliku i potwierdzisz, że przyjmujesz do wiadomości utratę prawa odstąpienia (art. 38 ust. 1 pkt 13 ustawy o prawach konsumenta). Dlatego zależy mi, żebyś ocenił narzędzie przed zakupem, a nie po: darmowe skrypty LISP pobierzesz bez rejestracji i bez podawania e-maila, a zrzuty i film w tej ofercie pochodzą z rzeczywiście działających programów, bez retuszu. Pełne zasady opiszę w regulaminie i umowie licencyjnej udostępnianych przed uruchomieniem sprzedaży." }
+        },
+        {
+          "@type": "Question",
+          "name": "Co dostaję po zakupie i jak wygląda wsparcie?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Plik programu albo skryptu, instrukcję instalacji, umowę licencyjną i imienny klucz licencyjny — wszystko pocztą elektroniczną, bez nośnika materialnego. Licencja jest bezterminowa, na jedno stanowisko, bez abonamentu. Usuwanie błędów w kupionej wersji jest po mojej stronie i nie wiąże się z dopłatą. Pytania techniczne kierujesz na kontakt@tektoria.pl — odpowiada ten sam człowiek, który napisał kod, a nie pierwsza linia wsparcia." }
+        },
+        {
+          "@type": "Question",
+          "name": "Czym są TEK-BIURO BUDOWY, TEK-BHP i TEK-AUDYTOR i dlaczego nie mają ceny?",
+          "acceptedAnswer": { "@type": "Answer", "text": "To aplikacje dla wykonawstwa: TEK-BIURO BUDOWY porządkuje uwagi z obchodów, narady, raporty dzienne, protokoły i terminy kontraktowe, TEK-BHP — dokumentację BHP podwykonawców, a TEK-AUDYTOR prowadzi przegląd dokumentacji budowlanej z pomocą AI: od zasłonięcia danych wrażliwych po raport z wagami uwag. Wszystkie są w fazie pilotażu: udostępniam je bez opłat do testów, a cenę i model licencji ustalę po pilotażu. Nie zastępują dziennika budowy, służby BHP, sprawdzenia projektu przez osobę z uprawnieniami ani obowiązków kierownika budowy — porządkują pracę i przygotowują dokumenty do weryfikacji." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  /* ---------- fonty hostowane lokalnie (SIL OFL, pliki w /fonts) ----------
+     Powod: brak polaczenia z serwerami Google przy kazdym wejsciu = brak
+     przekazywania adresu IP odwiedzajacego podmiotowi trzeciemu (RODO). */
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/space-grotesk-latin-ext-400-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/space-grotesk-latin-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/space-grotesk-latin-ext-500-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/space-grotesk-latin-500-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;
+    src:url('fonts/space-grotesk-latin-ext-600-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;
+    src:url('fonts/space-grotesk-latin-600-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/space-grotesk-latin-ext-700-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/space-grotesk-latin-700-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-ext-400-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-ext-500-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-ext-700-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-700-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+
+
+  :root{
+    --bg:#0a1016;
+    --bg2:#0d151d;
+    --panel:#101b25;
+    --panel-line:#1d2f3e;
+    --grid:rgba(72,132,182,.09);
+    --txt:#d7e3ec;
+    --txt-dim:#8ba3b5;
+    --cyan:#22c3e6;        /* cyjan z logo TEKTORIA v4 (28.09.2026) */
+    --cyan-dim:#1a8fad;
+    --amber:#ffb24d;
+    --orange:#ff6b35;
+    --green:#7be07b;
+    --sel-blue:#2c76b8;
+    --radius:3px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--txt);
+    font-family:'Space Grotesk',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{margin:0;letter-spacing:-0.01em;}
+  code,.mono{font-family:'JetBrains Mono',monospace;}
+  a{color:var(--cyan);}
+  ::selection{background:var(--sel-blue);color:#fff;}
+
+  .cadgrid{
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:34px 34px;
+  }
+
+  /* ---------- topbar ---------- */
+  header.top{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,16,22,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--panel-line);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 26px;
+  }
+  .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;}
+  .brand .logo{display:block;height:32px;width:auto;}
+  .brand .tag{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--txt-dim);letter-spacing:.1em;
+    border-left:1px solid var(--panel-line);padding-left:14px;line-height:1.35;white-space:nowrap;}
+  @media(max-width:1480px){.brand .tag{display:none;}}
+  header.top nav{display:flex;align-items:center;gap:4px;}
+  header.top nav a{
+    color:var(--txt-dim);text-decoration:none;
+    font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.04em;
+    padding:7px 12px;border-radius:3px;
+  }
+  header.top nav a:hover{color:var(--cyan);background:rgba(34,195,230,.07);}
+  header.top nav a.cta{
+    border:1px solid var(--orange);color:var(--orange);margin-left:8px;
+  }
+  header.top nav a.cta:hover{background:var(--orange);color:#0a1016;}
+  @media(max-width:1160px){header.top nav a:not(.cta){display:none;}}
+
+  /* ---------- hero: fake ZWCAD viewport ---------- */
+  .hero{padding:64px 24px 40px;position:relative;overflow:hidden;}
+  .hero-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;}
+  @media(max-width:920px){.hero-inner{grid-template-columns:1fr;}}
+  .hero h1{
+    font-size:clamp(1.9rem,4.4vw,3rem);
+    font-weight:700;line-height:1.1;
+  }
+  .hero h1 .hl{color:var(--cyan);}
+  .hero h1 .strike{color:var(--txt-dim);text-decoration:line-through;text-decoration-color:var(--orange);text-decoration-thickness:3px;}
+  .hero p.lead{color:var(--txt-dim);font-size:1.08rem;max-width:48ch;margin-top:20px;}
+  .hero .ctas{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.82rem;
+    padding:13px 24px;border-radius:var(--radius);text-decoration:none;
+    border:1.5px solid transparent;cursor:pointer;transition:all .15s ease;
+  }
+  .btn-primary{background:var(--orange);color:#0a1016;font-weight:700;}
+  .btn-primary:hover{background:#ff8556;transform:translateY(-2px);box-shadow:0 6px 22px rgba(255,107,53,.28);}
+  .btn-ghost{color:var(--cyan);border-color:var(--cyan-dim);}
+  .btn-ghost:hover{border-color:var(--cyan);background:rgba(34,195,230,.08);}
+  .hero-badges{
+    margin-top:34px;display:flex;gap:20px;flex-wrap:wrap;
+    font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--txt-dim);
+  }
+  .hero-badges span::before{content:"▸ ";color:var(--cyan);}
+
+  /* fake CAD window */
+  .cadwin{
+    border:1px solid var(--panel-line);border-radius:6px;overflow:hidden;
+    background:var(--bg2);box-shadow:0 24px 60px rgba(0,0,0,.5);
+  }
+  .cadwin .bar{
+    display:flex;align-items:center;gap:8px;
+    background:#131f2a;padding:8px 12px;border-bottom:1px solid var(--panel-line);
+    font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--txt-dim);
+  }
+  .cadwin .bar .dot{width:9px;height:9px;border-radius:50%;background:#22384a;}
+  .cadwin .bar .dot.r{background:#e0564d;}
+  .cadwin .bar .dot.y{background:#e0a53f;}
+  .cadwin .bar .dot.g{background:#4fbf6b;}
+  .cadwin .bar .ttl{margin-left:6px;}
+  .cadwin .viewport{
+    position:relative;aspect-ratio:4/3.1;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:26px 26px;background-color:#0b141c;
+  }
+  .cadwin .ucs{position:absolute;left:10px;bottom:10px;opacity:.7;}
+  .cadwin .cross{position:absolute;pointer-events:none;opacity:.35;}
+  .cadwin .cmdline{
+    background:#0a1219;border-top:1px solid var(--panel-line);
+    padding:9px 12px;font-family:'JetBrains Mono',monospace;font-size:.76rem;
+    color:var(--green);min-height:56px;
+  }
+  .cmdline .hist{color:#5d7788;font-size:.68rem;line-height:1.5;}
+  .cmdline .cur .prompt{color:var(--txt-dim);}
+  .cmdline .caret{
+    display:inline-block;width:8px;height:14px;background:var(--green);
+    vertical-align:-2px;animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  #hebDraw path.steel{
+    stroke:var(--cyan);stroke-width:2;fill:none;
+    stroke-linejoin:round;
+  }
+  #hebDraw .axis{stroke:var(--orange);stroke-width:1;stroke-dasharray:10 4 2 4;opacity:0;}
+  #hebDraw .dim{stroke:#6f93ad;stroke-width:1;opacity:0;}
+  #hebDraw text{font-family:'JetBrains Mono',monospace;font-size:11px;fill:#9fc0d6;opacity:0;}
+  #hebDraw .dimshow{transition:opacity .5s;}
+  #paramTbl{
+    position:absolute;right:12px;top:12px;
+    background:rgba(13,21,29,.94);border:1px solid var(--panel-line);border-radius:3px;
+    font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--txt-dim);
+    padding:8px 10px;opacity:0;transform:translateY(-6px);transition:all .6s ease;
+  }
+  #paramTbl.show{opacity:1;transform:translateY(0);}
+  #paramTbl .h{color:var(--cyan);font-weight:700;margin-bottom:3px;}
+  #paramTbl td{padding:1px 6px 1px 0;}
+  #paramTbl td:last-child{color:var(--txt);text-align:right;}
+
+  /* ---------- stats strip ---------- */
+  .stats{border-top:1px solid var(--panel-line);border-bottom:1px solid var(--panel-line);background:var(--bg2);}
+  .stats .wrap{
+    max-width:1080px;margin:0 auto;padding:28px 24px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:22px;
+  }
+  @media(max-width:820px){.stats .wrap{grid-template-columns:repeat(2,1fr);}}
+  .stat .n{font-family:'JetBrains Mono',monospace;font-size:1.7rem;font-weight:700;color:var(--cyan);}
+  .stat .l{font-size:.82rem;color:var(--txt-dim);margin-top:2px;}
+
+  /* ---------- sections ---------- */
+  section{padding:78px 24px;}
+  .wrap{max-width:1080px;margin:0 auto;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--orange);
+  }
+  .eyebrow::before{content:"// ";color:var(--txt-dim);}
+  h2.sec{font-size:clamp(1.55rem,3.2vw,2.2rem);margin-top:10px;max-width:24ch;}
+  p.sec-lead{color:var(--txt-dim);max-width:60ch;margin-top:14px;}
+
+  /* reveal on scroll */
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+  .rv.in{opacity:1;transform:none;}
+
+  /* ---------- product layout ---------- */
+  .prod{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start;
+    margin-top:44px;
+  }
+  @media(max-width:880px){.prod{grid-template-columns:1fr;}}
+  .prod .cmd-chip,.pc-body .cmd-chip{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.7rem;
+    background:#0a1219;border:1px solid var(--panel-line);color:var(--green);
+    padding:4px 10px;border-radius:3px;margin-bottom:14px;
+  }
+  .prod h3{font-size:1.5rem;}
+  .pc-body .cmd-chip{align-self:flex-start;}
+  .prod .file,.pc-body .file{font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--txt-dim);margin-top:4px;}
+  .prod p.desc{color:var(--txt-dim);margin-top:16px;}
+  ul.feats{list-style:none;padding:0;margin:20px 0 0;}
+  ul.feats li{
+    padding:9px 0 9px 26px;position:relative;font-size:.94rem;
+    border-bottom:1px dashed var(--panel-line);
+  }
+  ul.feats li::before{
+    content:"＋";position:absolute;left:0;color:var(--cyan);
+    font-family:'JetBrains Mono',monospace;
+  }
+  .priceline{
+    display:flex;align-items:center;gap:18px;margin-top:26px;flex-wrap:wrap;
+  }
+  .priceline .price{
+    font-family:'JetBrains Mono',monospace;font-size:1.7rem;font-weight:700;color:var(--amber);
+  }
+  .priceline .price small{font-size:.66rem;color:var(--txt-dim);display:block;font-weight:400;}
+  .doc-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+  .doc-soon{color:var(--txt-dim);opacity:.75;border-style:dashed;cursor:default;}
+  .doc-link{
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;
+    padding:8px 12px;border:1px solid var(--panel-line);border-radius:3px;
+    color:var(--txt-dim);text-decoration:none;background:var(--bg2);
+  }
+  .doc-link:hover{border-color:var(--cyan);color:var(--cyan);}
+  .compat{
+    font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--green);
+    margin-top:18px;
+  }
+  .compat::before{content:"✓ ";}
+
+  /* ---------- TEK-CALC: wideo + cennik modułowy ---------- */
+  .calc-video{margin-top:40px;border:1px solid var(--panel-line);border-radius:6px;
+    background:#0b141c;overflow:hidden;}
+  .calc-video video{display:block;width:100%;height:auto;background:#0b141c;}
+  .calc-video .vcap{
+    font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--txt-dim);
+    padding:9px 12px;background:#0d1620;border-top:1px solid var(--panel-line);
+  }
+  .modprice{margin-top:46px;border:1px solid var(--panel-line);border-radius:6px;
+    background:var(--bg2);overflow:hidden;}
+  .modprice .mp-head{
+    display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    padding:16px 18px;border-bottom:1px solid var(--panel-line);background:var(--panel);
+  }
+  .modprice .mp-head h3{font-size:1.12rem;}
+  .modprice .mp-head span{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--txt-dim);}
+  .mp-row{
+    display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1.5fr) auto;
+    gap:14px;align-items:baseline;padding:11px 18px;
+    border-bottom:1px dashed var(--panel-line);font-size:.9rem;
+  }
+  .mp-row:last-child{border-bottom:none;}
+  .mp-row .mp-n{font-weight:600;}
+  .mp-row .mp-d{color:var(--txt-dim);font-size:.83rem;}
+  .mp-row .mp-p{font-family:'JetBrains Mono',monospace;color:var(--amber);
+    font-size:.92rem;font-weight:700;text-align:right;white-space:nowrap;}
+  .mp-sum{
+    display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    padding:13px 18px;background:var(--panel);border-top:1px solid var(--panel-line);
+    font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--txt-dim);
+  }
+  .mp-sum b{color:var(--txt);}
+  .modprice.limits .mp-row{grid-template-columns:minmax(0,1.05fr) minmax(0,2fr);}
+  @media(max-width:720px){
+    .mp-row{grid-template-columns:1fr auto;}
+    .modprice.limits .mp-row{grid-template-columns:1fr;}
+    .mp-row .mp-d{grid-column:1 / -1;}
+  }
+
+  /* frame player (screeny) */
+  .frame-player{border:1px solid var(--panel-line);border-radius:6px;background:var(--bg2);overflow:hidden;}
+  .fp-stage{position:relative;aspect-ratio:16/9;background:#0b141c;overflow:hidden;}
+  .fp-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#0b141c;opacity:0;transition:opacity .35s;}
+  .fp-placeholder-frame{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+    background:repeating-linear-gradient(135deg, rgba(72,132,182,.06) 0 12px, transparent 12px 24px),#0b141c;
+    color:var(--txt-dim);font-family:'JetBrains Mono',monospace;font-size:.8rem;text-align:center;padding:0 24px;
+    opacity:0;transition:opacity .35s;
+  }
+  .fp-placeholder-frame .n{font-size:1.7rem;font-weight:700;color:var(--orange);}
+  .fp-caption{
+    position:absolute;left:0;right:0;bottom:0;padding:10px 14px 12px;
+    background:linear-gradient(0deg, rgba(11,20,28,.97) 0%, rgba(11,20,28,.93) 58%, rgba(11,20,28,0) 100%);
+    color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:.72rem;
+  }
+  .fp-progress{position:absolute;top:0;left:0;right:0;display:flex;gap:3px;padding:8px 10px 0;}
+  .fp-progress .seg{flex:1;height:3px;background:rgba(215,227,236,.18);border-radius:2px;overflow:hidden;}
+  .fp-progress .seg i{display:block;height:100%;width:0%;background:var(--orange);}
+  .fp-progress .seg.done i{width:100%;}
+  .fp-controls{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#0d1620;}
+  .fp-controls button{
+    background:transparent;border:1px solid var(--panel-line);color:var(--txt-dim);
+    font-family:'JetBrains Mono',monospace;font-size:.74rem;border-radius:3px;padding:5px 11px;cursor:pointer;
+  }
+  .fp-controls button:hover{border-color:var(--cyan);color:var(--cyan);}
+  .fp-frame-idx{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--txt-dim);}
+  .media-note{
+    margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:.66rem;color:#5d7788;
+  }
+
+  /* ---------- bundle ---------- */
+  .bundle{
+    margin-top:70px;border:1px solid var(--cyan-dim);border-radius:6px;
+    background:linear-gradient(135deg, #0d1a20, #0f2231);
+    padding:38px 34px;display:flex;justify-content:space-between;align-items:center;gap:26px;flex-wrap:wrap;
+    position:relative;overflow:hidden;
+  }
+  .bundle::after{
+    content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;
+    border:1px dashed rgba(34,195,230,.25);border-radius:50%;
+  }
+  .bundle .save{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.7rem;
+    color:#0a1016;background:var(--cyan);padding:3px 10px;border-radius:3px;font-weight:700;
+  }
+  .bundle h3{font-size:1.4rem;margin-top:12px;}
+  .bundle p{color:var(--txt-dim);max-width:46ch;margin-top:8px;font-size:.94rem;}
+  .bundle .bprice{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--amber);}
+  .bundle .bprice small{display:block;font-size:.68rem;color:var(--txt-dim);font-weight:400;}
+
+  /* ---------- darmowe lispy ---------- */
+  .freegrid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:16px;margin-top:40px;
+  }
+  .freecard{
+    border:1px solid var(--panel-line);border-radius:6px;background:var(--bg2);
+    padding:22px;display:flex;flex-direction:column;gap:10px;
+  }
+  .freecard .fname{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--green);}
+  .freecard h3{font-size:1.05rem;}
+  .freecard p{color:var(--txt-dim);font-size:.88rem;margin:0;flex:1;}
+  .freecard .dl{
+    display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+    font-family:'JetBrains Mono',monospace;font-size:.76rem;
+    color:var(--cyan);text-decoration:none;
+    border:1px solid var(--cyan-dim);border-radius:3px;padding:9px 14px;
+    transition:all .15s;
+  }
+  .freecard .dl:hover{background:rgba(34,195,230,.1);border-color:var(--cyan);}
+  .free-note{
+    margin-top:22px;font-size:.84rem;color:var(--txt-dim);max-width:70ch;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq{max-width:760px;margin:40px auto 0;}
+  .faq details{
+    border:1px solid var(--panel-line);border-radius:4px;background:var(--bg2);
+    margin-bottom:10px;overflow:hidden;
+  }
+  .faq summary{
+    cursor:pointer;padding:16px 18px;font-weight:500;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+  }
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{
+    content:"+";font-family:'JetBrains Mono',monospace;color:var(--cyan);font-size:1.1rem;flex:0 0 auto;
+  }
+  .faq details[open] summary::after{content:"–";}
+  .faq .a{padding:0 18px 16px;color:var(--txt-dim);font-size:.93rem;}
+
+  /* ---------- form ---------- */
+  .order-sec{background:var(--bg2);border-top:1px solid var(--panel-line);}
+  form.order{
+    background:var(--panel);border:1px solid var(--panel-line);border-radius:6px;
+    padding:34px;margin-top:34px;max-width:680px;
+  }
+  .form-row{margin-bottom:20px;}
+  .form-row label{
+    display:block;font-family:'JetBrains Mono',monospace;font-size:.7rem;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--txt-dim);margin-bottom:7px;
+  }
+  .form-row input[type=text],
+  .form-row input[type=email],
+  .form-row textarea{
+    width:100%;padding:12px;border:1px solid var(--panel-line);border-radius:3px;
+    background:#0b141c;color:var(--txt);font-family:'Space Grotesk',sans-serif;font-size:.96rem;
+  }
+  .form-row input:focus,.form-row textarea:focus{outline:none;border-color:var(--cyan);}
+  .form-row textarea{min-height:90px;resize:vertical;}
+  .checks{display:flex;flex-direction:column;gap:10px;}
+  .check-item{
+    display:flex;align-items:center;gap:12px;padding:12px;cursor:pointer;
+    border:1px solid var(--panel-line);border-radius:3px;background:#0b141c;transition:border-color .15s;
+  }
+  .check-item:hover{border-color:var(--cyan-dim);}
+  .check-item input{accent-color:var(--orange);width:16px;height:16px;}
+  .ci-name{font-family:'JetBrains Mono',monospace;font-size:.84rem;}
+  .ci-price{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--amber);}
+  .form-note{font-size:.8rem;color:var(--txt-dim);margin:-4px 0 22px;}
+  .form-note.rodo{font-size:.74rem;line-height:1.6;margin-top:-14px;padding-top:14px;border-top:1px solid var(--panel-line);}
+  .form-note a{color:var(--cyan);}
+  .check-consent{align-items:flex-start;}
+  .check-consent input{margin-top:3px;flex-shrink:0;}
+  .check-consent .ci-name{font-family:'Space Grotesk',system-ui,sans-serif;font-size:.85rem;line-height:1.55;text-transform:none;letter-spacing:normal;color:var(--txt);}
+  .form-status{font-family:'JetBrains Mono',monospace;font-size:.76rem;margin-left:14px;}
+
+  footer{
+    border-top:1px solid var(--panel-line);padding:36px 24px;
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--txt-dim);
+  }
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  footer .fcontact{flex-basis:100%;padding-top:10px;}
+  footer .fcontact a{color:var(--cyan);text-decoration:none;border-bottom:1px solid var(--cyan-dim);}
+  footer .fcontact a:hover{border-bottom-color:var(--cyan);}
+  footer .fauthor{flex-basis:100%;padding-top:14px;margin-top:2px;border-top:1px solid var(--panel-line);}
+  footer .fauthor a{color:var(--txt-dim);text-decoration:none;border-bottom:1px solid var(--panel-line);}
+  footer .fauthor a:hover{color:var(--cyan);border-bottom-color:var(--cyan);}
+
+  /* ---------- linia 3: aplikacje dla biura budowy (pilotaż) ---------- */
+  .duo{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px;}
+  @media(max-width:1240px){.duo{grid-template-columns:1fr 1fr;}}
+  @media(max-width:900px){.duo{grid-template-columns:1fr;}}
+  .wrap.wide{max-width:1340px;}
+  .pcard{border:1px solid var(--panel-line);border-radius:6px;background:var(--bg);overflow:hidden;
+    display:flex;flex-direction:column;scroll-margin-top:80px;}
+  .pcard .calc-video{margin-top:0;border:none;border-bottom:1px solid var(--panel-line);border-radius:0;}
+  .pc-body{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1;}
+  .pc-body h3{font-size:1.4rem;}
+  .pc-body ul.feats{flex:1;}
+  .pc-body ul.feats li{font-size:.9rem;}
+  .pilot-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.64rem;font-weight:700;
+    letter-spacing:.08em;color:#0a1016;background:var(--orange);padding:2px 8px;border-radius:3px;
+    vertical-align:middle;margin-left:8px;}
+  .pstatus{margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--txt-dim);
+    border-top:1px solid var(--panel-line);padding-top:14px;}
+  .pstatus b{color:var(--amber);font-weight:500;}
+  .pc-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+  .pc-ctas .btn{padding:11px 18px;}
+
+  .setup-note{
+    padding:12px 24px;background:#2b230b;border-bottom:1px solid #6d5a1c;
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#e8cf7a;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .rv{opacity:1;transform:none;transition:none;}
+  }
+</style>
 </head>
 <body>
-<header class="topbar">
-  <button class="brand" id="brandBtn" title="Pulpit">
-    <img src="assets/logo-tek.svg" alt="">
-    <span class="word"><b>TEK</b>-BIURO <em>BUDOWY</em></span>
-  </button>
-  <span class="testbadge" title="Wersja testowa – uwagi zgłaszaj przyciskiem w pasku">TEST</span>
-  <nav class="crumbs" id="crumbs"></nav>
-  <div class="spacer"></div>
-  <div class="tb-proj" id="projSel"></div>
-  <div class="tb-user" id="userSel"></div>
-  <div id="pilotBadge"></div>
-  <button class="sync hidden" id="cloudBtn" title="Synchronizacja z chmurą"><span class="dot"></span><span>chmura</span></button>
-  <button class="sync" id="syncBtn" title="Zapis danych i kopie"><span class="dot"></span><span id="syncTxt">zapis lokalny</span></button>
-</header>
-<main class="main" id="view"></main>
-<nav class="bottomnav" id="bottomnav"></nav>
-<div class="toasts" id="toasts"></div>
-<div id="printArea" aria-hidden="true"></div>
 
-<!-- Biblioteki lokalne (działa bez internetu). pdf.js ładowany dopiero przy wgrywaniu PDF. -->
-<script src="js/lib/exceljs.min.js"></script>
-<!-- Rdzeń -->
-<script src="js/wersja.js"></script>
-<script src="js/util.js"></script>
-<script src="js/straznik_silnik.js"></script>
-<script src="js/lib/supabase.js"></script>
-<script src="js/konfiguracja.js"></script>
-<script src="js/store.js"></script>
-<script src="js/sync.js"></script>
-<script src="js/perm.js"></script>
-<script src="js/ui.js"></script>
-<script src="js/ai.js"></script>
-<script src="js/print.js"></script>
-<script src="js/pptx.js"></script>
-<script src="js/lib/pptx_sample.js"></script>
-<script src="js/mail.js"></script>
-<script src="js/demo.js"></script>
-<script src="js/licencja.js"></script>
-<script src="js/wzory.js"></script>
-<!-- Moduły (nowy moduł = nowy plik + jedna linia tutaj) -->
-<script src="js/modules/home.js"></script>
-<script src="js/modules/rzuty.js"></script>
-<script src="js/modules/uwagi.js"></script>
-<script src="js/modules/narady.js"></script>
-<script src="js/modules/raporty.js"></script>
-<script src="js/modules/raport_pptx.js"></script>
-<script src="js/modules/zanikowe.js"></script>
-<script src="js/modules/montaz.js"></script>
-<script src="js/modules/dziennik.js"></script>
-<script src="js/modules/harmonogram.js"></script>
-<script src="js/modules/straznik.js"></script>
-<script src="js/modules/breeam.js"></script>
-<script src="js/modules/terminy.js"></script>
-<script src="js/modules/asystent.js"></script>
-<script src="js/modules/wlasne.js"></script>
-<script src="js/modules/zgloszenia.js"></script>
-<script src="js/modules/ustawienia.js"></script>
-<script src="js/app.js"></script>
+
+
+<header class="top">
+  <a class="brand" href="#" aria-label="TEKTORIA — początek strony">
+    <img class="logo" src="img/tektoria-logo-poziome_ciemne-tlo.svg" alt="TEKTORIA" width="126" height="32">
+    <span class="tag">CAD · APLIKACJE DLA PROJEKTANTÓW I KIEROWNIKÓW</span>
+  </a>
+  <nav>
+    <a href="#profil">TEK-PROFIL</a>
+    <a href="#stalja">TEK-STAL</a>
+    <a href="#calc">TEK-CALC</a>
+    <a href="#skarpa">TEK-SKARPA</a>
+    <a href="#biuro">TEK-BIURO</a>
+    <a href="#bhp">TEK-BHP</a>
+    <a href="#audytor">TEK-AUDYTOR</a>
+    <a href="#darmowe">DARMOWE</a>
+    <a href="#faq">FAQ</a>
+    <a href="#zamow" class="cta">ZAMAWIAM</a>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero cadgrid">
+  <div class="hero-inner">
+    <div>
+      <h1><span class="strike">Ręczne przekroje i własne arkusze</span><br>kosztują Cię godziny. <span class="hl">Są na to narzędzia.</span></h1>
+      <p class="lead">TEKTORIA to oprogramowanie dla inżynierów budownictwa, w trzech liniach. <b>Skrypty LISP do ZWCAD</b>: przekroje profili stalowych z tabelką parametrów i zestawienie stali prosto do Excela. <b>Programy obliczeniowe na Windows</b>, bez CAD-a i bez instalatora: TEK-CALC z 10 kalkulatorami wg Eurokodów i TEK-SKARPA do stateczności skarp. <b>Aplikacje dla wykonawstwa</b>, w pilotażu: TEK-BIURO BUDOWY, TEK-BHP i TEK-AUDYTOR. Pisane przez konstruktora z uprawnieniami — nie przez firmę od wtyczek.</p>
+      <div class="ctas">
+        <a href="#zamow" class="btn btn-primary">Zgłoś zainteresowanie</a>
+        <a href="#profil" class="btn btn-ghost">Zobacz produkty ↓</a>
+      </div>
+      <div class="hero-badges">
+        <span>LISP: ZWCAD 2022 Standard i nowsze</span>
+        <span>programy: Windows 10/11, bez CAD-a i bez instalatora</span>
+        <span>LISP i programy obliczeniowe: licencje bezterminowe, bez abonamentu</span>
+        <span>aplikacje dla wykonawstwa: pilotaż 2026</span>
+        <span>uprawnienia konstrukcyjno-budowlane bez ograniczeń</span>
+      </div>
+    </div>
+
+    <!-- fake ZWCAD window with self-drawing HEB -->
+    <div class="cadwin" aria-label="Animacja: skrypt TEK-PROFIL rysuje przekrój HEB 220 w ZWCAD">
+      <div class="bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="ttl">ZWCAD 2022 — [hala_stalowa.dwg]</span>
+      </div>
+      <div class="viewport">
+        <svg id="hebDraw" viewBox="0 0 400 310" style="position:absolute;inset:0;width:100%;height:100%;">
+          <path class="steel" d="M112 67 H288 V79.8 H218.2 Q203.8 79.8 203.8 94.2 V215.8 Q203.8 230.2 218.2 230.2 H288 V243 H112 V230.2 H185.8 Q196.2 230.2 196.2 215.8 V94.2 Q196.2 79.8 185.8 79.8 H112 Z"/>
+          <line class="axis" x1="200" y1="47" x2="200" y2="263"/>
+          <line class="axis" x1="92" y1="155" x2="308" y2="155"/>
+          <g class="dimshow">
+            <line class="dim" x1="112" y1="285" x2="288" y2="285"/>
+            <line class="dim" x1="112" y1="278" x2="112" y2="292"/>
+            <line class="dim" x1="288" y1="278" x2="288" y2="292"/>
+            <text x="186" y="302">220</text>
+            <line class="dim" x1="86" y1="67" x2="86" y2="243"/>
+            <line class="dim" x1="79" y1="67" x2="93" y2="67"/>
+            <line class="dim" x1="79" y1="243" x2="93" y2="243"/>
+            <text x="56" y="160">220</text>
+          </g>
+        </svg>
+        <div id="paramTbl">
+          <div class="h">HEB 220</div>
+          <table>
+            <tr><td>A</td><td>91,0 cm²</td></tr>
+            <tr><td>G</td><td>71,5 kg/m</td></tr>
+            <tr><td>Ix</td><td>8091 cm⁴</td></tr>
+            <tr><td>Wx</td><td>735,5 cm³</td></tr>
+          </table>
+        </div>
+        <svg class="ucs" width="46" height="46" viewBox="0 0 46 46">
+          <line x1="6" y1="40" x2="40" y2="40" stroke="#6f93ad" stroke-width="1.5"/>
+          <line x1="6" y1="40" x2="6" y2="6" stroke="#6f93ad" stroke-width="1.5"/>
+          <text x="36" y="36" fill="#6f93ad" font-size="9" font-family="monospace">X</text>
+          <text x="10" y="12" fill="#6f93ad" font-size="9" font-family="monospace">Y</text>
+        </svg>
+      </div>
+      <div class="cmdline">
+        <div class="hist" id="cmdHist"></div>
+        <div class="cur"><span class="prompt">Polecenie: </span><span id="cmdTyped"></span><span class="caret"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<div class="stats">
+  <div class="wrap">
+    <div class="stat rv"><div class="n" data-count="800" data-suffix="+">0</div><div class="l">rozmiarów profili w bazie TEK-PROFIL — od IPN po RHS</div></div>
+    <div class="stat rv"><div class="n" data-count="10" data-suffix="">0</div><div class="l">modułów obliczeniowych TEK-CALC wg Eurokodów</div></div>
+    <div class="stat rv"><div class="n" data-count="4" data-suffix="">0</div><div class="l">metody pasków w TEK-SKARPA: Fellenius, Bishop, Janbu, Spencer</div></div>
+    <div class="stat rv"><div class="n" data-count="0" data-suffix=" zł/rok">0</div><div class="l">abonamentu za LISP-y i programy obliczeniowe — licencja bezterminowa</div></div>
+  </div>
+</div>
+
+<!-- ================= PRODUKT 1: PROFIL ================= -->
+<section id="profil">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">produkt 01</div>
+      <h2 class="sec">TEK-PROFIL — biblioteka przekrojów stalowych</h2>
+      <p class="sec-lead">Wybierasz typ i rozmiar z okna dialogowego, wskazujesz punkt — na rysunku ląduje gotowy przekrój jako jedna scalona polilinia, z osiami i tabelką parametrów. Geometria z zaokrągleniami wg normy, nie przybliżenia.</p>
+    </div>
+
+    <div class="prod">
+      <div class="rv">
+        <span class="cmd-chip">Polecenie: PROFIL / PS</span>
+        <h3>Przekrój w 12 sekund zamiast 12 minut</h3>
+        <div class="file">tek-profil.lsp · v4.11</div>
+        <ul class="feats">
+          <li>12 typów: IPN, IPE, HEA, HEB, HEM, UPN, kątowniki równo- i nierównoramienne, teowniki, rury okrągłe, SHS, RHS, płaskowniki, pręty</li>
+          <li>Tabelka parametrów przekroju (A, G, Ix, Wx, ix, Iy, Wy, iy) wstawiana automatycznie</li>
+          <li>Skala i wielokrotne wstawianie w pętli</li>
+          <li>Warstwy K-STAL / PS-OS / K-OPISY — gotowe pod standard rysunkowy</li>
+          <li>Jeden plik .lsp — bez zależności zewnętrznych</li>
+        </ul>
+        <div class="priceline">
+          <div class="price">219 zł<small>licencja bezterminowa · 1 stanowisko</small></div>
+          <a href="#zamow" class="btn btn-primary" onclick="preselect('profil')">Chcę TEK-PROFIL</a>
+        </div>
+        <div class="doc-links">
+          <a class="doc-link" href="docs/Instrukcja_instalacji_TEK-PROFIL.pdf">⬇ Instrukcja instalacji (PDF)</a>
+          <span class="doc-link doc-soon">umowa licencyjna (EULA) — wzór wysyłam na życzenie, przed zakupem</span>
+        </div>
+        <div class="compat">testowano na build 22.20_2023.10.12(#8730-af782e2d2ee)_x64_S</div>
+      </div>
+
+      <div class="rv">
+        <div class="frame-player"
+             data-frames='[
+               {"img":"img/profil_01.jpg","caption":"1/6 — wpisujesz PROFIL w linii poleceń","duration":2600},
+               {"img":"img/profil_02.jpg","caption":"2/6 — okno wyboru: 12 typów profili, opcje tabelki i skali","duration":3000},
+               {"img":"img/profil_03.jpg","caption":"3/6 — wybierasz rozmiar, np. HEB 220","duration":3000},
+               {"img":"img/profil_04.jpg","caption":"4/6 — wskazujesz środek przekroju; pętla: od razu kolejny profil","duration":3000},
+               {"img":"img/profil_05.jpg","caption":"5/6 — gotowy przekrój z osiami i tabelką parametrów","duration":3200},
+               {"img":"img/profil_06.jpg","caption":"6/6 — przekrój to jedna scalona polilinia — wygodna edycja","duration":3200}
+             ]'>
+          <div class="fp-stage"><div class="fp-progress"></div></div>
+          <div class="fp-controls">
+            <button class="fp-prev" type="button">‹</button>
+            <span class="fp-frame-idx">1 / 6</span>
+            <button class="fp-play" type="button">⏸</button>
+            <button class="fp-next" type="button">›</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUKT 2: STAL ================= -->
+<section id="stalja" style="background:var(--bg2);border-top:1px solid var(--panel-line);">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">produkt 02</div>
+      <h2 class="sec">TEK-STAL — zestawienie stali prosto do Excela</h2>
+      <p class="sec-lead">Zestawienie profili z rysunku — z opisami elementów, zliczaniem długości i masy — eksportowane bezpośrednio do Excela przez COM. Bez pośredniego CSV, bez przepisywania ręcznego. Zbiorcze zestawienie z wielu arkuszy jednym poleceniem.</p>
+    </div>
+
+    <div class="prod">
+      <div class="rv">
+        <div class="frame-player"
+             data-frames='[
+               {"img":"img/stal_01.jpg","caption":"1/7 — NPR: nowy profil z danymi elementu (symbol, długość, sztuki, gatunek)","duration":3200},
+               {"img":"img/stal_02.jpg","caption":"2/7 — OPR: dodatkowe opisy z numerem (nie wliczają się do zestawienia)","duration":3200},
+               {"img":"img/stal_03.jpg","caption":"3/7 — ZPR: opisy zestawienia profili przy detalach","duration":3200},
+               {"img":"img/stal_04.jpg","caption":"4/7 — wybierasz typ zestawienia: ZESTPRC (tabelka w CAD) lub ZESTPRX (Excel)","duration":3400},
+               {"img":"img/stal_05.jpg","caption":"5/7 — zaznaczasz oknem opisy ZPR do zestawienia","duration":3200},
+               {"img":"img/stal_06.jpg","caption":"6/7 — tabelka zestawienia z masami generuje się automatycznie","duration":3400},
+               {"img":"img/stal_07.jpg","caption":"7/7 — SUMAPR: zbiorcze zestawienie z całego pliku DWG","duration":3400}
+             ]'>
+          <div class="fp-stage"><div class="fp-progress"></div></div>
+          <div class="fp-controls">
+            <button class="fp-prev" type="button">‹</button>
+            <span class="fp-frame-idx">1 / 7</span>
+            <button class="fp-play" type="button">⏸</button>
+            <button class="fp-next" type="button">›</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="rv">
+        <span class="cmd-chip">Polecenia: NPR / OPR / ZPR / ZESTPRC / ZESTPRX / SUMAPR</span>
+        <h3>Koniec przepisywania do Excela</h3>
+        <div class="file">tek-stal.lsp · v1.8</div>
+        <ul class="feats">
+          <li>Bloki opisów tworzą się same przy pierwszym użyciu — zero szablonów DWG</li>
+          <li>Automatyczne zestawienie profili z rysunku (BOM)</li>
+          <li>Niezależny opis (atrybut OPIS) na każdą kopię elementu</li>
+          <li>Eksport bezpośrednio do Excela (COM) — bez pośredniego CSV — lub tabelka bezpośrednio w CAD</li>
+          <li>SUMAPR — zbiorcze zestawienie z wielu tabelek na jednym arkuszu</li>
+          <li>Spójne banery wersji — zawsze wiesz, czego używasz</li>
+        </ul>
+        <div class="priceline">
+          <div class="price">219 zł<small>licencja bezterminowa · 1 stanowisko</small></div>
+          <a href="#zamow" class="btn btn-primary" onclick="preselect('stalja')">Chcę TEK-STAL</a>
+        </div>
+        <div class="doc-links">
+          <a class="doc-link" href="docs/Instrukcja_instalacji_TEK-STAL.pdf">⬇ Instrukcja instalacji (PDF)</a>
+          <span class="doc-link doc-soon">umowa licencyjna (EULA) — wzór wysyłam na życzenie, przed zakupem</span>
+        </div>
+        <div class="compat">testowano na build 22.20_2023.10.12(#8730-af782e2d2ee)_x64_S</div>
+      </div>
+    </div>
+
+    <!-- ================= KOMPLET ================= -->
+    <div id="komplet" class="bundle rv">
+      <div>
+        <span class="save">OSZCZĘDZASZ 89 ZŁ</span>
+        <h3>TEK-KOMPLET</h3>
+        <p>TEK-PROFIL + TEK-STAL razem: wspólne menu TEKTORIA i pasek narzędzi z ikonami w ZWCAD (komenda KTMENU — raz i zostaje). Projektujesz i zestawiasz w jednym biurze? To naturalny zestaw.</p>
+      </div>
+      <div>
+        <div class="bprice">349 zł<small>zamiast 438 zł osobno</small></div>
+        <a href="#zamow" class="btn btn-primary" style="margin-top:14px;" onclick="preselect('komplet')">Chcę TEK-KOMPLET</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= TEK-CALC ================= -->
+<section id="calc" style="background:var(--bg2);border-top:1px solid var(--panel-line);">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">produkt 03 · aplikacja desktop</div>
+      <h2 class="sec">TEK-CALC — kalkulatory konstrukcyjne wg Eurokodów</h2>
+      <p class="sec-lead">Program na Windows, nie nakładka na CAD. Wymiarowanie płyt i tarcz żelbetowych, połączenia stalowe, zestawienie obciążeń, dobór śrub, kotew i krat pomostowych — wszystko wg Eurokodów z załącznikami krajowymi. Każdy moduł pokazuje, z jakiego punktu normy pochodzi wzór, żebyś mógł to sprawdzić, a nie przyjąć na wiarę.</p>
+    </div>
+
+    <div class="calc-video rv">
+      <video controls preload="metadata" playsinline poster="video/tek-calc-demo-poster.jpg">
+        <source src="video/tek-calc-demo.mp4" type="video/mp4">
+        <source src="video/tek-calc-demo.webm" type="video/webm">
+        Twoja przeglądarka nie odtworzy tego filmu — <a href="video/tek-calc-demo.mp4">pobierz plik MP4</a>.
+      </video>
+      <div class="vcap">demo · 1 min 48 s · bez dźwięku · nagranie działającego programu, nie animacja</div>
+    </div>
+
+    <div class="prod">
+      <div class="rv">
+        <span class="cmd-chip">TEK-CALC.exe · Windows 10 / 11 · 64-bit</span>
+        <h3>Liczysz w programie, nie w arkuszu, który sam sobie napisałeś</h3>
+        <div class="file">TEK-CALC 1.2 · build V1.2_03.09.2026 · ok. 3 MB</div>
+        <ul class="feats">
+          <li>10 modułów wg PN-EN 1990, 1991, 1992-1-1 i 1993-1-8 z załącznikami krajowymi</li>
+          <li>Żywe schematy statyczne — rysunek zmienia się przy wpisywaniu danych</li>
+          <li>Przy każdym wyniku źródło algorytmu i punkt normy do weryfikacji</li>
+          <li>Zestawienie obciążeń z eksportem do Excela — gotowe do opisu technicznego</li>
+          <li>Zapis i wczytywanie projektu (.json), wydruk raportu do PDF</li>
+          <li>Działa w całości offline: bez konta, bez logowania, bez wysyłania danych</li>
+          <li>Licencja bezterminowa na jedno stanowisko — kupujesz raz, nie abonament</li>
+        </ul>
+        <div class="priceline">
+          <div class="price">999 zł<small>komplet 10 modułów · licencja bezterminowa · 1 stanowisko</small></div>
+          <a href="#zamow" class="btn btn-primary" onclick="preselect('calc')">Chcę TEK-CALC</a>
+        </div>
+        <div class="doc-links">
+          <span class="doc-link doc-soon">umowa licencyjna (EULA) — wzór wysyłam na życzenie, przed zakupem</span>
+        </div>
+        <div class="compat">program działa offline — nie łączy się z internetem i nie wysyła danych projektowych</div>
+      </div>
+
+      <div class="rv">
+        <div class="frame-player"
+             data-frames='[
+               {"img":"img/calc_01.jpg","caption":"1/6 — launcher: uruchamiasz pełny program albo pojedynczy moduł","duration":3000},
+               {"img":"img/calc_02.jpg","caption":"2/6 — płyty żelbetowe: schemat statyczny rysuje się na żywo, wytężenie 80,4%","duration":3400},
+               {"img":"img/calc_03.jpg","caption":"3/6 — zasady konstrukcyjne zbrojenia z punktami normy do samodzielnej weryfikacji","duration":3400},
+               {"img":"img/calc_04.jpg","caption":"4/6 — połączenia stalowe: rozwijane „Objaśnienia i źródła” z punktami EC3-1-8","duration":3400},
+               {"img":"img/calc_05.jpg","caption":"5/6 — zestawienie obciążeń: pola żółte to dane, zielone to wyniki do projektowania","duration":3400},
+               {"img":"img/calc_06.jpg","caption":"6/6 — kraty pomostowe: dobór najlżejszej kraty i rzut z góry","duration":3200}
+             ]'>
+          <div class="fp-stage"><div class="fp-progress"></div></div>
+          <div class="fp-controls">
+            <button class="fp-prev" type="button">‹</button>
+            <span class="fp-frame-idx">1 / 6</span>
+            <button class="fp-play" type="button">⏸</button>
+            <button class="fp-next" type="button">›</button>
+          </div>
+        </div>
+        <div class="compat" style="margin-top:14px;">zrzuty z działającego programu — bez retuszu</div>
+      </div>
+    </div>
+
+    <div class="modprice rv">
+      <div class="mp-head">
+        <h3>Nie potrzebujesz wszystkiego? Kup pojedynczy moduł.</h3>
+        <span>klucz licencyjny obejmuje wybrane moduły · dokupienie kolejnych bez utraty danych</span>
+      </div>
+      <div class="mp-row"><span class="mp-n">Zestawienie obciążeń</span><span class="mp-d">dach, stropy, wiatr, podciąg, słup, ściany, podsumowania ława/stopa · eksport do Excela</span><span class="mp-p">229 zł</span></div>
+      <div class="mp-row"><span class="mp-n">Połączenia stalowe</span><span class="mp-d">8 zakładek: spoiny pachwinowe i czołowe, śruby na ścinanie i rozciąganie (T-stub), płyta podstawy, doczołowe, blacha węzłowa, klasyfikacja</span><span class="mp-p">229 zł</span></div>
+      <div class="mp-row"><span class="mp-n">Płyty żelbetowe</span><span class="mp-d">4 schematy: swobodnie podparta, krzyżowo zbrojona, ciągła, wspornik · SGN + SGU + zarysowanie</span><span class="mp-p">299 zł</span></div>
+      <div class="mp-row"><span class="mp-n">Tarcze żelbetowe</span><span class="mp-d">model strut-and-tie, 4 warianty obciążenia + atlas zbrojenia obwódek otworów</span><span class="mp-p">399 zł</span></div>
+      <div class="mp-row"><span class="mp-n">Kotwy</span><span class="mp-d">rozkład sił na grupę 4 kotew, interakcja rozciąganie–ścinanie wg ETA, stożek betonowy</span><span class="mp-p">149 zł</span></div>
+      <div class="mp-row"><span class="mp-n">Dobór śrub</span><span class="mp-d">długość, symbole DIN 933/931/7990/6914, wytężenie, połączenia sprężone, baza śrub</span><span class="mp-p">119 zł</span></div>
+      <div class="mp-row"><span class="mp-n">Kraty pomostowe</span><span class="mp-d">dobór najlżejszej kraty spełniającej SGN i SGU + porównanie wariantów</span><span class="mp-p">119 zł</span></div>
+      <div class="mp-row"><span class="mp-n">Temperatura krytyczna</span><span class="mp-d">nośność stali w pożarze wg EN 1993-1-2 (bez wyboczenia i zwichrzenia)</span><span class="mp-p">79 zł</span></div>
+      <div class="mp-row"><span class="mp-n">Katalogi materiałów</span><span class="mp-d">tablice znormalizowane (profile EN 10365, drewno, beton) + Twoje PDF-y producentów</span><span class="mp-p">59 zł</span></div>
+      <div class="mp-row"><span class="mp-n">Normy i przepisy</span><span class="mp-d">spis PN-EN i aktów prawnych z zakresem i powiązaniem z kalkulatorami</span><span class="mp-p">59 zł</span></div>
+      <div class="mp-sum">
+        <span>wszystkie moduły osobno: <b>1740 zł</b></span>
+        <span>komplet: <b>999 zł</b> — oszczędzasz <b>741 zł</b></span>
+      </div>
+    </div>
+
+    <div id="calc-komplet" class="bundle rv">
+      <div>
+        <span class="save">OSZCZĘDZASZ 741 ZŁ</span>
+        <h3>TEK-CALC KOMPLET</h3>
+        <p>Wszystkie 10 modułów jednym kluczem, jedna aktualizacja, jedna instalacja. U dużych polskich producentów oprogramowania konstrukcyjnego pojedynczy program obliczeniowy kosztuje kilkaset złotych netto, a pakiet eurokodowy kilka do kilkunastu tysięcy. TEK-CALC to jedno biuro i jeden autor — i cena, która ma to odzwierciedlać.</p>
+      </div>
+      <div>
+        <div class="bprice">999 zł<small>zamiast 1740 zł za moduły osobno</small></div>
+        <a href="#zamow" class="btn btn-primary" style="margin-top:14px;" onclick="preselect('calc')">Chcę TEK-CALC KOMPLET</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= TEK-SKARPA ================= -->
+<section id="skarpa" style="border-top:1px solid var(--panel-line);">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">produkt 04 · aplikacja desktop</div>
+      <h2 class="sec">TEK-SKARPA — stateczność skarp i zboczy</h2>
+      <p class="sec-lead">Analiza stateczności skarp, wykopów i nasypów metodami równowagi granicznej. Przekrój 2D na metr szerokości, kołowe powierzchnie poślizgu, cztery metody pasków i tryb współczynników częściowych wg Eurokodu 7. Program pokazuje warunki równowagi każdej metody i nie ukrywa rozwiązań niedopuszczalnych — jeśli Spencer nie zbiega, dostajesz o tym informację, a nie po cichu wynik Bishopa.</p>
+    </div>
+
+    <div class="prod">
+      <div class="rv">
+        <span class="cmd-chip">TEK-SKARPA.exe · Windows 10 / 11 · 64-bit</span>
+        <h3>Cztery metody, jeden przekrój, wynik, który da się obronić</h3>
+        <div class="file">TEK-SKARPA 1.0.0 · licencja offline w pliku .teklic</div>
+        <ul class="feats">
+          <li>Metody: Fellenius, Bishop uproszczona, Janbu skorygowana, Spencer — każda z własną powierzchnią krytyczną</li>
+          <li>Przeszukiwanie siatki środków obrotu z lokalnym zagęszczeniem; raportowana liczba rozwiązań bez zbieżności i niedopuszczalnych</li>
+          <li>Woda: zwierciadło swobodne, linia piezometryczna z osobną linią nasycenia, współczynnik r<sub>u</sub></li>
+          <li>Wzmocnienia z siłą ograniczoną oporem wyciągania, obciążenie naziomu, siła pseudostatyczna k<sub>h</sub></li>
+          <li>Tryb współczynników częściowych wg PN-EN 1997-1 z edytowalnym zestawem i obwiednią wariantów obciążeń</li>
+          <li>Raport PDF i Word, eksport JSON i CSV — gotowy załącznik obliczeniowy do dokumentacji</li>
+          <li>Licencja bezterminowa, offline, bez przypisania do komputera — przenosisz ją na nowy sprzęt jednym plikiem</li>
+        </ul>
+        <div class="priceline">
+          <div class="price">699 zł<small>licencja bezterminowa · 1 stanowisko</small></div>
+          <a href="#zamow" class="btn btn-primary" onclick="preselect('skarpa')">Chcę TEK-SKARPA</a>
+        </div>
+        <div class="doc-links">
+          <span class="doc-link doc-soon">umowa licencyjna (EULA) — wzór wysyłam na życzenie, przed zakupem</span>
+        </div>
+        <div class="compat">walidacja na zadaniu ACADS 1(a): Bishop, Janbu i Spencer zgodne z opublikowanymi wynikami Slide2 w granicach 0,3%</div>
+      </div>
+
+      <div class="rv">
+        <div class="frame-player"
+             data-frames='[
+               {"img":"img/skarpa_01.jpg","caption":"1/6 — geometria, warstwy gruntu i woda w jednym widoku","duration":3400},
+               {"img":"img/skarpa_02.jpg","caption":"2/6 — schemat 2D z siatką środków obrotu przeszukiwanych powierzchni poślizgu","duration":3200},
+               {"img":"img/skarpa_03.jpg","caption":"3/6 — wynik: FS = 1,911 przy wymaganym 1,30, mapa potencjalnych odłamów","duration":3400},
+               {"img":"img/skarpa_04.jpg","caption":"4/6 — walidacja ACADS 1(a): zgodność z opublikowanymi wynikami Slide2","duration":3600},
+               {"img":"img/skarpa_05.jpg","caption":"5/6 — „Teoria w pigułce”: warunki równowagi każdej metody wypisane wprost","duration":3400},
+               {"img":"img/skarpa_06.jpg","caption":"6/6 — źródła i zakres: Eurokod 7, przepisy krajowe, literatura metodyczna","duration":3400}
+             ]'>
+          <div class="fp-stage"><div class="fp-progress"></div></div>
+          <div class="fp-controls">
+            <button class="fp-prev" type="button">‹</button>
+            <span class="fp-frame-idx">1 / 6</span>
+            <button class="fp-play" type="button">⏸</button>
+            <button class="fp-next" type="button">›</button>
+          </div>
+        </div>
+        <div class="compat" style="margin-top:14px;">zrzuty z działającego programu — bez retuszu</div>
+      </div>
+    </div>
+
+    <div class="modprice limits rv">
+      <div class="mp-head">
+        <h3>Granice modelu — piszę je wprost, zanim zapłacisz</h3>
+        <span>geotechnika nie znosi niedopowiedzeń · pełny opis w zakładce „Źródła” w programie</span>
+      </div>
+      <div class="mp-row"><span class="mp-n">Model 2D</span><span class="mp-d">przekrój na metr szerokości; nie zastępuje analizy przestrzennej. Widok 3D w programie jest ilustracją przekroju, a nie modelem obliczeniowym.</span></div>
+      <div class="mp-row"><span class="mp-n">Powierzchnie kołowe</span><span class="mp-d">dolne łuki okręgów przecinające teren w dwóch punktach; brak powierzchni niekołowych i klinowych</span></div>
+      <div class="mp-row"><span class="mp-n">Bez przemieszczeń</span><span class="mp-d">metoda równowagi granicznej daje współczynnik stateczności, nie osiadania ani odkształcenia — do tego służy MES</span></div>
+      <div class="mp-row"><span class="mp-n">Eurokod 7, pierwsza generacja</span><span class="mp-d">zestaw referencyjny współczynników wg załącznika krajowego do PN-EN 1997-1; wersja 1.0 nie wdraża drugiej generacji Eurokodu 7</span></div>
+      <div class="mp-row"><span class="mp-n">Minimum lokalne</span><span class="mp-d">wynik to najniższa znaleziona wartość w zadanej siatce, a nie dowód minimum globalnego — dlatego program raportuje zakres przeszukiwania</span></div>
+      <div class="mp-sum">
+        <span>wersja 1.0.0 · pierwsze wydanie Windows</span>
+        <span>walidacja: <b>ACADS 1(a)</b> wobec opublikowanych wyników Slide2</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LINIA 3: APLIKACJE DLA WYKONAWSTWA (pilotaż) ================= -->
+<section id="budowa" style="background:var(--bg2);border-top:1px solid var(--panel-line);">
+  <div class="wrap wide">
+    <div class="rv">
+      <div class="eyebrow">produkty 05–07 · aplikacje dla wykonawstwa · pilotaż</div>
+      <h2 class="sec" style="max-width:30ch;">Dla wykonawstwa: biuro budowy, dokumentacja BHP i audyt dokumentacji</h2>
+      <p class="sec-lead">Trzecia linia TEKTORIA to aplikacje do pracy po stronie wykonawcy — na budowie i przy przygotowaniu oferty. Wszystkie są w fazie pilotażu: szukam kierowników budów i inżynierów, którzy sprawdzą je na prawdziwej robocie, zanim ustalę cenę i model licencji. Filmy pokazują działające wersje testowe na danych przykładowych — bez obietnic, których aplikacja dziś nie spełnia.</p>
+    </div>
+
+    <div class="duo">
+      <article id="biuro" class="pcard rv">
+        <div class="calc-video">
+          <video controls preload="none" playsinline muted poster="video/tek-biuro-demo-15s-poster.jpg" aria-label="Krótkie demo aplikacji TEK-BIURO BUDOWY, 15 sekund">
+            <source src="video/tek-biuro-demo-15s.mp4" type="video/mp4">
+            <source src="video/tek-biuro-demo-15s.webm" type="video/webm">
+            Twoja przeglądarka nie odtworzy tego filmu — <a href="video/tek-biuro-demo-15s.mp4">pobierz plik MP4</a>.
+          </video>
+          <div class="vcap">demo · 15 s · bez dźwięku · timelapse na danych przykładowych · prototyp</div>
+        </div>
+        <div class="pc-body">
+          <span class="cmd-chip">przeglądarka Edge / Chrome · komputer + telefon · offline</span>
+          <h3>TEK-BIURO BUDOWY<span class="pilot-tag">PILOTAŻ</span></h3>
+          <div class="file">biuro kierownika budowy w jednym miejscu</div>
+          <ul class="feats">
+            <li>Obchód z telefonem: zdjęcie → znacznik na rzucie → firma i termin → gotowy mail do podwykonawcy</li>
+            <li>Rejestr uwag i raport PDF dla każdej firmy — ze zdjęciami i wycinkiem rzutu</li>
+            <li>Narady, raport dzienny w szablonie PowerPoint Twojej budowy, protokoły robót zanikowych</li>
+            <li>Harmonogram z MS Project (XML), terminy zawiadomień wg FIDIC, rejestr dowodów BREEAM</li>
+            <li>Dane zostają na Twoim komputerze — nie trafiają na serwer autora</li>
+          </ul>
+          <div class="pstatus">status: <b>pilotaż na budowach hal</b> · cena: <b>ustalana po pilotażu</b></div>
+          <div class="pc-ctas">
+            <a href="#zamow" class="btn btn-primary" onclick="preselect('biuro')">Chcę przetestować</a>
+            <a href="biuro-budowy.html" class="btn btn-ghost">Szczegóły i film 60 s →</a>
+          </div>
+        </div>
+      </article>
+
+      <article id="bhp" class="pcard rv">
+        <div class="calc-video">
+          <video controls preload="none" playsinline muted poster="video/tek-bhp-demo-15s-poster.jpg" aria-label="Krótkie demo aplikacji TEK-BHP, 15 sekund">
+            <source src="video/tek-bhp-demo-15s.mp4" type="video/mp4">
+            <source src="video/tek-bhp-demo-15s.webm" type="video/webm">
+            Twoja przeglądarka nie odtworzy tego filmu — <a href="video/tek-bhp-demo-15s.mp4">pobierz plik MP4</a>.
+          </video>
+          <div class="vcap">demo · 15 s · bez dźwięku · fikcyjna budowa i fikcyjne firmy · wersja beta</div>
+        </div>
+        <div class="pc-body">
+          <span class="cmd-chip">TEK-BHP Beta · Windows x64 · jedno stanowisko · offline</span>
+          <h3>TEK-BHP<span class="pilot-tag">BETA</span></h3>
+          <div class="file">dokumentacja BHP podwykonawców pod kontrolą</div>
+          <ul class="feats">
+            <li>Baza podwykonawców z importem z Excela i wymaganiami dopasowanymi do robót każdej firmy</li>
+            <li>Skany dokumentów z oceną: dostarczone, sprawdzone, ważne do — braki widoczne od razu</li>
+            <li>Raport dla całej budowy albo jednej firmy do PDF i edytowalna treść maila</li>
+            <li>IBWR z wzorców branżowych, plan BIOZ z rewizjami, gotowe prompty do Twojego narzędzia AI</li>
+            <li>Działa lokalnie: bez chmury, bez telemetrii, dane w profilu aplikacji na Twoim komputerze</li>
+          </ul>
+          <div class="pstatus">status: <b>pilotaż wersji beta</b> · cena: <b>ustalana po pilotażu</b></div>
+          <div class="pc-ctas">
+            <a href="#zamow" class="btn btn-primary" onclick="preselect('bhp')">Chcę przetestować</a>
+            <a href="tek-bhp.html" class="btn btn-ghost">Szczegóły i film 60 s →</a>
+          </div>
+        </div>
+      </article>
+      <article id="audytor" class="pcard rv">
+        <div class="calc-video">
+          <video controls preload="none" playsinline muted poster="video/tek-audytor-demo-15s-poster.jpg" aria-label="Krótkie demo aplikacji TEK-AUDYTOR, 15 sekund">
+            <source src="video/tek-audytor-demo-15s.mp4" type="video/mp4">
+            <source src="video/tek-audytor-demo-15s.webm" type="video/webm">
+            Twoja przeglądarka nie odtworzy tego filmu — <a href="video/tek-audytor-demo-15s.mp4">pobierz plik MP4</a>.
+          </video>
+          <div class="vcap">demo · 15 s · bez dźwięku · timelapse na fikcyjnym dokumencie · prototyp</div>
+        </div>
+        <div class="pc-body">
+          <span class="cmd-chip">TEK-AUDYTOR 0.7 · Windows 10 / 11 lub przeglądarka · offline</span>
+          <h3>TEK-AUDYTOR<span class="pilot-tag">PILOTAŻ</span></h3>
+          <div class="file">audyt dokumentacji budowlanej wspomagany przez AI</div>
+          <ul class="feats">
+            <li>Zasłanianie danych wrażliwych w PDF: frazy, wzorce (NIP, e-mail, działki, nazwiska) i ręczne prostokąty</li>
+            <li>Gotowy prompt do Twojego asystenta AI: 5 modułów, 33 obszary kontroli, perspektywa projektanta lub wykonawcy</li>
+            <li>Import tabeli uwag z Excela i weryfikacja: wagi 1–5, statusy, komentarz weryfikującego</li>
+            <li>Raport z audytu do Excela i PDF — z wykazem uwag, skalą ocen i zastrzeżeniami</li>
+            <li>Działa lokalnie: aplikacja nie łączy się z internetem i sama niczego nie wysyła</li>
+          </ul>
+          <div class="pstatus">status: <b>pilotaż prototypu 0.7</b> · cena: <b>ustalana po pilotażu</b></div>
+          <div class="pc-ctas">
+            <a href="#zamow" class="btn btn-primary" onclick="preselect('audytor')">Chcę przetestować</a>
+            <a href="tek-audytor.html" class="btn btn-ghost">Szczegóły i film 60 s →</a>
+          </div>
+        </div>
+      </article>
+    </div>
+    <p class="media-note rv">Aplikacje porządkują dokumenty i przygotowują je do sprawdzenia. Nie zastępują dziennika budowy, służby BHP, sprawdzenia projektu przez osobę z uprawnieniami ani obowiązków kierownika budowy i pracodawcy. Nazwy MS Project, PowerPoint, Excel, FIDIC i BREEAM użyte są wyłącznie opisowo — do wskazania, z czym aplikacja współpracuje.</p>
+  </div>
+</section>
+
+<!-- ================= DARMOWE LISPY ================= -->
+<section id="darmowe" style="border-top:1px solid var(--panel-line);">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">darmowe narzędzia</div>
+      <h2 class="sec">Darmowe LISP-y do pobrania</h2>
+      <p class="sec-lead">Kilka prostych skryptów za darmo — bez rejestracji, bez podawania e-maila. Pobierz, wczytaj przez APPLOAD i sprawdź, jak pracują narzędzia TEKTORIA, zanim kupisz te większe.</p>
+    </div>
+    <div class="freegrid rv">
+      <div class="freecard">
+        <div class="fname">tek-printall.lsp · v0.6</div>
+        <h3>Wydruk wszystkich arkuszy do PDF</h3>
+        <p>Jedno polecenie PDFALL drukuje wszystkie arkusze (Layout) do osobnych plików PDF — każdy ze swoim page setupem (format, skala, CTB), bez zmiany ustawień rysunku. PDF1 drukuje bieżący arkusz. Cichy wydruk przez COM.</p>
+        <a class="dl" href="darmowe/tek-printall.lsp" download>⬇ pobierz .lsp</a>
+      </div>
+      <div class="freecard">
+        <div class="fname">tek-draworder.lsp · v1.0</div>
+        <h3>Pod spód / na wierzch dwoma literami</h3>
+        <p>DB przesuwa zaznaczone obiekty pod spód, DF — na wierzch. Działa na wcześniejszym zaznaczeniu albo poprosi o wybór. Koniec klikania po menu przy porządkowaniu kreskowań i podkładów.</p>
+        <a class="dl" href="darmowe/tek-draworder.lsp" download>⬇ pobierz .lsp</a>
+      </div>
+      <div class="freecard">
+        <div class="fname">tek-warstwa.lsp · v1.0</div>
+        <h3>Przejmij warstwę z elementu</h3>
+        <p>Wpisujesz SS, wskazujesz dowolny element — jego warstwa staje się warstwą aktualną. Rysujesz dalej od razu na właściwej warstwie, bez szukania jej na liście.</p>
+        <a class="dl" href="darmowe/tek-warstwa.lsp" download>⬇ pobierz .lsp</a>
+      </div>
+    </div>
+    <p class="free-note rv">Darmowe skrypty możesz używać bez ograniczeń w pracy zawodowej. Jeśli któryś oszczędzi Ci czas — wróć po <a href="#profil">TEK-PROFIL</a> i <a href="#stalja">TEK-STAL</a>.</p>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="wrap">
+    <div class="rv" style="text-align:center;">
+      <div class="eyebrow" style="display:inline-block;">pytania</div>
+      <h2 class="sec" style="margin-left:auto;margin-right:auto;">Zanim zapytasz</h2>
+    </div>
+    <div class="faq rv">
+      <details>
+        <summary>Czy skrypty działają na ZWCAD Standard, bez wersji Professional?</summary>
+        <div class="a">Tak. Oba skrypty to czysty LISP bez modułów binarnych (ARX/ZRX), dlatego działają już na ZWCAD Standard. Testowane na ZWCAD 2022 Standard, build 22.20_2023.10.12.</div>
+      </details>
+      <details>
+        <summary>Czy zadziałają w AutoCAD lub innym CAD?</summary>
+        <div class="a">Skrypty są pisane i testowane pod ZWCAD. Większość kodu to standardowy AutoLISP, ale poprawność działania gwarantuję wyłącznie w ZWCAD 2022 i nowszych.</div>
+      </details>
+      <details>
+        <summary>Jak wygląda instalacja?</summary>
+        <div class="a">
+          Jeden plik .lsp wczytywany poleceniem APPLOAD. Do każdego skryptu dołączona jest instrukcja PDF krok po kroku, w tym dodanie do autostartu ZWCAD. Tak to wygląda:
+          <div class="frame-player" style="margin-top:14px;"
+               data-frames='[
+                 {"img":"img/instrukcja_01.jpg","caption":"1/6 — zapisujesz plik .lsp na dysku","duration":3000},
+                 {"img":"img/instrukcja_02.jpg","caption":"2/6 — w ZWCAD wpisujesz APPLOAD","duration":3000},
+                 {"img":"img/instrukcja_03.jpg","caption":"3/6 — wskazujesz plik i klikasz Load","duration":3000},
+                 {"img":"img/instrukcja_04.jpg","caption":"4/6 — opcjonalnie: Startup Suite, skrypt wczyta się przy każdym starcie","duration":3200},
+                 {"img":"img/instrukcja_05.jpg","caption":"5/6 — wpisujesz komendę skryptu i pracujesz","duration":3200},
+                 {"img":"img/instrukcja_06.jpg","caption":"6/6 — KTMENU (jednorazowo): menu TEKTORIA i pasek ikon — wszystkie komendy pod ręką","duration":3400}
+               ]'>
+            <div class="fp-stage"><div class="fp-progress"></div></div>
+            <div class="fp-controls">
+              <button class="fp-prev" type="button">‹</button>
+              <span class="fp-frame-idx">1 / 6</span>
+              <button class="fp-play" type="button">⏸</button>
+              <button class="fp-next" type="button">›</button>
+            </div>
+          </div>
+        </div>
+      </details>
+      <details>
+        <summary>Czy eksport zestawienia wymaga zainstalowanego Excela?</summary>
+        <div class="a">Eksport do Excela wymaga Microsoft Excel na tym samym komputerze (komunikacja przez COM, bez pośrednich plików CSV). Alternatywnie TEK-STAL wygeneruje tabelkę zestawienia bezpośrednio w rysunku CAD — bez Excela.</div>
+      </details>
+      <details>
+        <summary>Czy plik LISP jest bezpieczny dla firmowego komputera?</summary>
+        <div class="a">Kod to jawny, czytelny plik tekstowy .lsp — dział IT może go zweryfikować przed wdrożeniem. Skrypt nie łączy się z internetem i nie modyfikuje systemu.</div>
+      </details>
+      <details>
+        <summary>Czym TEK-CALC i TEK-SKARPA różnią się od skryptów LISP i co trzeba mieć, żeby je uruchomić?</summary>
+        <div class="a">Skrypty LISP działają wewnątrz ZWCAD. TEK-CALC i TEK-SKARPA to samodzielne programy na Windows 10 lub 11 w wersji 64-bit — nie potrzebują żadnego CAD-a ani licencji ZWCAD. Uruchamiasz plik .exe, bez instalatora i bez uprawnień administratora. TEK-CALC korzysta ze składnika Microsoft Edge WebView2, standardowo obecnego w systemie. Przy pierwszym uruchomieniu Windows może pokazać ostrzeżenie SmartScreen o nieznanym wydawcy — pliki nie mają jeszcze certyfikatu wydawcy.</div>
+      </details>
+      <details>
+        <summary>Czy programy łączą się z internetem i co się dzieje z licencją, gdy zmienię komputer?</summary>
+        <div class="a">Nie łączą się z internetem. Nie ma konta, logowania ani wysyłania danych projektowych — aktywacja i obliczenia działają w całości offline. Licencja jest bezterminowa i imienna, na jedno stanowisko; nie jest przypisana do sprzętu, więc po zmianie komputera albo konta Windows po prostu wczytujesz ten sam klucz jeszcze raz. Dane robocze i ustawienia zapisują się lokalnie na Twoim komputerze.</div>
+      </details>
+      <details>
+        <summary>Czy wynik z programu mogę wstawić do projektu i kto odpowiada za obliczenia?</summary>
+        <div class="a">Raport z programu (PDF, Word, arkusz) jest załącznikiem obliczeniowym do dokumentacji — tak samo jak wydruk z każdego innego programu. Odpowiedzialność za przyjęte założenia, dane wejściowe i interpretację wyników ponosi projektant wykonujący samodzielną funkcję techniczną, zgodnie z art. 20 Prawa budowlanego. Programy są narzędziem pomocniczym i nie zastępują osądu inżynierskiego ani rozpoznania geotechnicznego. Dlatego przy każdym wyniku podaję źródło algorytmu i punkt normy — żebyś mógł to sprawdzić, a nie przyjąć na wiarę.</div>
+      </details>
+      <details>
+        <summary>Kiedy ruszy sprzedaż, jak zapłacę i czy dostanę fakturę?</summary>
+        <div class="a">Sprzedaż jeszcze nie ruszyła — na tej stronie zbieram deklaracje zainteresowania i uruchomię ją, gdy zbierze się ich wystarczająco dużo. Do każdej osoby, która zostawiła zgłoszenie, napiszę wtedy z potwierdzoną ceną, sposobem płatności, dokumentem sprzedaży i regulaminem. Deklaracja z formularza nie jest zamówieniem, nie wiąże się z żadną płatnością i do niczego Cię nie zobowiązuje — na tym etapie nie zbieram nawet danych adresowych ani rozliczeniowych.</div>
+      </details>
+      <details>
+        <summary>Czy mogę zrezygnować po zakupie?</summary>
+        <div class="a">Kupując na firmę nie masz ustawowego prawa odstąpienia od umowy — przysługuje ono konsumentom. Jako konsument masz 14 dni na odstąpienie, ale przy treściach cyfrowych dostarczanych bez nośnika materialnego prawo to wygasa, jeżeli wyraźnie zgodzisz się na natychmiastowe dostarczenie pliku i potwierdzisz, że przyjmujesz do wiadomości utratę prawa odstąpienia (art. 38 ust. 1 pkt 13 ustawy o prawach konsumenta). Dlatego zależy mi, żebyś ocenił narzędzie przed zakupem, a nie po: darmowe skrypty LISP pobierzesz bez rejestracji i bez podawania e-maila, a zrzuty i film w tej ofercie pochodzą z rzeczywiście działających programów, bez retuszu. Pełne zasady opiszę w regulaminie i umowie licencyjnej udostępnianych przed uruchomieniem sprzedaży.</div>
+      </details>
+      <details>
+        <summary>Co dostaję po zakupie i jak wygląda wsparcie?</summary>
+        <div class="a">Plik programu albo skryptu, instrukcję instalacji, umowę licencyjną i imienny klucz licencyjny — wszystko pocztą elektroniczną, bez nośnika materialnego. Licencja jest bezterminowa, na jedno stanowisko, bez abonamentu. Usuwanie błędów w kupionej wersji jest po mojej stronie i nie wiąże się z dopłatą. Pytania techniczne kierujesz na kontakt@tektoria.pl — odpowiada ten sam człowiek, który napisał kod, a nie pierwsza linia wsparcia.</div>
+      </details>
+      <details>
+        <summary>Czym są TEK-BIURO BUDOWY, TEK-BHP i TEK-AUDYTOR i dlaczego nie mają ceny?</summary>
+        <div class="a">To aplikacje dla wykonawstwa: <a href="biuro-budowy.html">TEK-BIURO BUDOWY</a> porządkuje uwagi z obchodów, narady, raporty dzienne, protokoły i terminy kontraktowe, <a href="tek-bhp.html">TEK-BHP</a> — dokumentację BHP podwykonawców, a <a href="tek-audytor.html">TEK-AUDYTOR</a> prowadzi przegląd dokumentacji budowlanej z pomocą AI: od zasłonięcia danych wrażliwych po raport z wagami uwag. Wszystkie są w fazie pilotażu: udostępniam je bez opłat do testów, a cenę i model licencji ustalę po pilotażu. Nie zastępują dziennika budowy, służby BHP, sprawdzenia projektu przez osobę z uprawnieniami ani obowiązków kierownika budowy — porządkują pracę i przygotowują dokumenty do weryfikacji.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FORMULARZ ================= -->
+<section id="zamow" class="order-sec">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">deklaracja zamówienia · zgłoszenie do pilotażu</div>
+      <h2 class="sec">Zadeklaruj zakup — płatność dopiero, gdy ruszy sprzedaż</h2>
+      <p class="sec-lead">Sprzedaż uruchamiam, gdy zbiorę wystarczające zainteresowanie. Zostaw imię i e-mail, zaznacz co Cię interesuje i czy to deklaracja zakupu, czy wstępne zainteresowanie. Gdy wystartuję, napiszę do Ciebie z ceną potwierdzoną i sposobem płatności — deklaracja do niczego nie zobowiązuje. Przy aplikacjach w pilotażu (TEK-BIURO BUDOWY, TEK-BHP, TEK-AUDYTOR) zgłaszasz się do testów — bez opłat. Zero danych adresowych i rozliczeniowych na tym etapie.</p>
+    </div>
+
+    <form class="order rv" action="https://api.web3forms.com/submit" method="POST" id="orderForm">
+      <input type="hidden" name="access_key" value="eeee67ec-6c4b-4cbf-9eb5-e0e413849437">
+      <input type="hidden" name="subject" value="TEKTORIA — nowe zgłoszenie zainteresowania">
+      <input type="hidden" name="redirect" value="https://tektoria.pl/dziekuje.html">
+      <input type="checkbox" name="botcheck" style="display:none;">
+
+      <div class="form-row">
+        <label for="name">Imię i nazwisko</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-row">
+        <label for="email">E-mail do kontaktu</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-row">
+        <label>Co Cię interesuje</label>
+        <div class="checks">
+          <label class="check-item">
+            <input type="checkbox" name="produkt" value="TEK-PROFIL (tek-profil.lsp)" id="chk-profil">
+            <span class="ci-name">TEK-PROFIL — tek-profil.lsp</span>
+            <span class="ci-price">219 zł</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="produkt" value="TEK-STAL (tek-stal.lsp)" id="chk-stalja">
+            <span class="ci-name">TEK-STAL — tek-stal.lsp</span>
+            <span class="ci-price">219 zł</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="produkt" value="TEK-KOMPLET" id="chk-komplet">
+            <span class="ci-name">TEK-KOMPLET</span>
+            <span class="ci-price">349 zł</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="produkt" value="TEK-CALC KOMPLET (10 modułów)" id="chk-calc">
+            <span class="ci-name">TEK-CALC — komplet 10 modułów</span>
+            <span class="ci-price">999 zł</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="produkt" value="TEK-CALC — wybrane moduły (lista w wiadomości)" id="chk-calcmod">
+            <span class="ci-name">TEK-CALC — wybrane moduły</span>
+            <span class="ci-price">od 59 zł</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="produkt" value="TEK-SKARPA (stateczność skarp i zboczy)" id="chk-skarpa">
+            <span class="ci-name">TEK-SKARPA — stateczność skarp</span>
+            <span class="ci-price">699 zł</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="produkt" value="TEK-BIURO BUDOWY — pilotaż na budowie" id="chk-biuro">
+            <span class="ci-name">TEK-BIURO BUDOWY — pilotaż</span>
+            <span class="ci-price">bez opłat</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="produkt" value="TEK-BHP Beta — pilotaż" id="chk-bhp">
+            <span class="ci-name">TEK-BHP Beta — pilotaż</span>
+            <span class="ci-price">bez opłat</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="produkt" value="TEK-AUDYTOR — pilotaż" id="chk-audytor">
+            <span class="ci-name">TEK-AUDYTOR — pilotaż</span>
+            <span class="ci-price">bez opłat</span>
+          </label>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Charakter zgłoszenia</label>
+        <div class="checks">
+          <label class="check-item">
+            <input type="radio" name="charakter" value="Deklaruję zakup po uruchomieniu sprzedaży" checked>
+            <span class="ci-name">Deklaruję zakup, gdy sprzedaż ruszy</span>
+          </label>
+          <label class="check-item">
+            <input type="radio" name="charakter" value="Wstępne zainteresowanie — proszę o informację o starcie">
+            <span class="ci-name">Wstępnie zainteresowany — dajcie znać o starcie</span>
+          </label>
+          <label class="check-item">
+            <input type="radio" name="charakter" value="Zgłaszam się do pilotażu (TEK-BIURO BUDOWY / TEK-BHP / TEK-AUDYTOR)" id="rad-pilot">
+            <span class="ci-name">Zgłaszam się do pilotażu</span>
+          </label>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Zgoda na kontakt</label>
+        <div class="checks">
+          <label class="check-item check-consent">
+            <input type="checkbox" name="zgoda" value="TAK — zgoda na kontakt e-mail i informację o starcie sprzedaży lub pilotażu" id="chk-zgoda" required>
+            <span class="ci-name">Zgadzam się na kontakt e-mail w sprawie tego zgłoszenia oraz na przesłanie mi informacji o uruchomieniu sprzedaży lub pilotażu. Wiem, że zgodę mogę wycofać w każdej chwili jednym mailem.</span>
+          </label>
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="msg">Wiadomość (opcjonalnie)</label>
+        <textarea id="msg" name="wiadomość" placeholder="Np. jaka wersja ZWCAD; przy TEK-CALC — które moduły Cię interesują"></textarea>
+        <p class="form-note" id="pilotNote" style="display:none;margin:8px 0 0;">Przy zgłoszeniu do pilotażu nie wpisuj nazwy budowy ani inwestora i nie załączaj dokumentów — na tym etapie nie są potrzebne, a często są poufne.</p>
+      </div>
+      <p class="form-note">Deklaracja nie jest zamówieniem z płatnością i do niczego nie zobowiązuje — sprawdzam skalę zainteresowania przed uruchomieniem sprzedaży.</p>
+      <p class="form-note rodo">Administratorem Twoich danych jest Jarosław Sarafin, kontakt: <a href="mailto:kontakt@tektoria.pl">kontakt@tektoria.pl</a>. Podanie danych jest dobrowolne, a służą wyłącznie odpowiedzi na to zgłoszenie, ocenie zainteresowania ofertą, organizacji pilotażu i poinformowaniu Cię o starcie sprzedaży. Formularz obsługuje zewnętrzny dostawca (Web3Forms), który przetwarza dane na moje zlecenie. Nie przekazuję danych innym administratorom i nie profiluję ich. Masz prawo dostępu do danych, ich sprostowania, usunięcia, ograniczenia i sprzeciwu, a także wniesienia skargi do Prezesa UODO. Szczegóły w <a href="polityka-prywatnosci.html">polityce prywatności</a>.</p>
+      <div style="display:flex;align-items:center;flex-wrap:wrap;">
+        <button type="submit" class="btn btn-primary">Wyślij zgłoszenie</button>
+        <span class="form-status" id="formStatus"></span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>TEKTORIA · oprogramowanie dla inżynierów · CAD i aplikacje dla projektantów i kierowników · inżynier z uprawnieniami konstrukcyjno-budowlanymi bez ograniczeń</span>
+    <span>zgodność testowana: ZWCAD 2022 Standard · build 22.20_2023.10.12</span>
+    <span class="fcontact">kontakt: <a href="mailto:kontakt@tektoria.pl">kontakt@tektoria.pl</a> &nbsp;·&nbsp; <a href="polityka-prywatnosci.html">polityka prywatności</a> &nbsp;·&nbsp; warunki pilotażu: <a href="eula-tek-biuro-budowy.html">TEK-BIURO BUDOWY</a>, <a href="eula-tek-bhp.html">TEK-BHP</a>, <a href="eula-tek-audytor.html">TEK-AUDYTOR</a></span>
+    <span class="fauthor">autor i administrator danych: <a href="https://js-3web.github.io/js-wizytowka/" target="_blank" rel="noopener">Jarosław Sarafin — wizytówka</a> · projektant konstrukcji i inspektor nadzoru, Lublin</span>
+  </div>
+</footer>
+
+<script>
+/* ===== hero: komenda + rysujący się HEB ===== */
+(function(){
+  var typed = document.getElementById('cmdTyped');
+  var hist = document.getElementById('cmdHist');
+  var steel = document.querySelector('#hebDraw .steel');
+  var axes = document.querySelectorAll('#hebDraw .axis');
+  var dims = document.querySelector('#hebDraw .dimshow');
+  var dimEls = dims.querySelectorAll('.dim, text');
+  var tbl = document.getElementById('paramTbl');
+  var len = steel.getTotalLength();
+  steel.style.strokeDasharray = len;
+  steel.style.strokeDashoffset = len;
+
+  function typeText(el, text, speed, done){
+    var i = 0;
+    (function step(){
+      if(i <= text.length){
+        el.textContent = text.slice(0, i);
+        i++;
+        setTimeout(step, speed);
+      } else if(done) done();
+    })();
+  }
+
+  function reset(){
+    typed.textContent = '';
+    hist.innerHTML = '';
+    steel.style.transition = 'none';
+    steel.style.strokeDashoffset = len;
+    axes.forEach(function(a){ a.style.transition='none'; a.style.opacity=0; });
+    dimEls.forEach(function(d){ d.style.opacity=0; });
+    tbl.classList.remove('show');
+  }
+
+  function run(){
+    reset();
+    setTimeout(function(){
+      typeText(typed, 'PROFIL', 160, function(){
+        setTimeout(function(){
+          hist.innerHTML = 'Polecenie: PROFIL<br>Wybierz typ profilu [HEB]: HEB 220<br>Wskaż punkt wstawienia:';
+          typed.textContent = '';
+          steel.style.transition = 'stroke-dashoffset 2.4s ease-in-out';
+          steel.style.strokeDashoffset = 0;
+          setTimeout(function(){
+            axes.forEach(function(a){ a.style.transition='opacity .6s'; a.style.opacity=.85; });
+          }, 2200);
+          setTimeout(function(){
+            dimEls.forEach(function(d){ d.style.transition='opacity .6s'; d.style.opacity=1; });
+          }, 2800);
+          setTimeout(function(){ tbl.classList.add('show'); }, 3400);
+          setTimeout(run, 8200);
+        }, 700);
+      });
+    }, 600);
+  }
+  run();
+})();
+
+/* ===== reveal on scroll + liczniki ===== */
+(function(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      e.target.classList.add('in');
+      e.target.querySelectorAll('[data-count]').forEach(function(el){
+        if(el.dataset.done) return;
+        el.dataset.done = 1;
+        var target = parseInt(el.dataset.count, 10);
+        var suffix = el.dataset.suffix || '';
+        var cur = 0, steps = Math.min(Math.max(target, 1), 50), inc = Math.max(1, Math.round(target/steps)), dur = 900;
+        var t = setInterval(function(){
+          cur += inc;
+          if(cur >= target){ cur = target; clearInterval(t); }
+          el.textContent = cur + suffix;
+        }, dur/steps);
+      });
+      io.unobserve(e.target);
+    });
+  }, {threshold:.25});
+  document.querySelectorAll('.rv, .stat').forEach(function(el){ io.observe(el); });
+
+})();
+
+/* ===== frame player ===== */
+function initFramePlayer(root){
+  var frames = JSON.parse(root.getAttribute('data-frames'));
+  var stage = root.querySelector('.fp-stage');
+  var progressWrap = root.querySelector('.fp-progress');
+  var idxLabel = root.querySelector('.fp-frame-idx');
+  var playBtn = root.querySelector('.fp-play');
+  var prevBtn = root.querySelector('.fp-prev');
+  var nextBtn = root.querySelector('.fp-next');
+  var current = 0, playing = true, segElapsed = 0;
+
+  frames.forEach(function(){
+    var seg = document.createElement('div');
+    seg.className = 'seg';
+    seg.innerHTML = '<i></i>';
+    progressWrap.appendChild(seg);
+  });
+  frames.forEach(function(f, i){
+    var layer;
+    if(f.img){
+      layer = document.createElement('img');
+      layer.className = 'fp-img';
+      /* UWAGA: loading i decoding MUSZĄ być ustawione PRZED src —
+         inaczej przeglądarka zaczyna pobierać, zanim dowie się, że ma być leniwa. */
+      layer.loading = 'lazy';
+      layer.decoding = 'async';
+      layer.src = f.img;
+      layer.alt = f.caption;
+    } else {
+      layer = document.createElement('div');
+      layer.className = 'fp-placeholder-frame';
+      layer.innerHTML = '<div class="n">' + (i+1) + '</div><div>' + f.caption + '</div>';
+    }
+    layer.style.opacity = i===0 ? '1' : '0';
+    stage.appendChild(layer);
+  });
+  var caption = document.createElement('div');
+  caption.className = 'fp-caption';
+  stage.appendChild(caption);
+
+  var layers = stage.querySelectorAll('.fp-placeholder-frame, .fp-img');
+  var segs = progressWrap.querySelectorAll('.seg');
+
+  function render(){
+    layers.forEach(function(l,i){ l.style.opacity = (i===current) ? '1' : '0'; });
+    caption.textContent = frames[current].caption;
+    idxLabel.textContent = (current+1) + ' / ' + frames.length;
+    segs.forEach(function(s,i){
+      s.classList.toggle('done', i < current);
+      s.querySelector('i').style.width = i < current ? '100%' : '0%';
+    });
+  }
+  function goTo(i){
+    current = (i + frames.length) % frames.length;
+    segElapsed = 0;
+    render();
+  }
+  setInterval(function(){
+    if(!playing) return;
+    var dur = frames[current].duration;
+    segElapsed += 60;
+    segs[current].querySelector('i').style.width = Math.min(100,(segElapsed/dur)*100) + '%';
+    if(segElapsed >= dur) goTo(current+1);
+  }, 60);
+  render();
+
+  playBtn.addEventListener('click', function(){
+    playing = !playing;
+    playBtn.textContent = playing ? '⏸' : '▶';
+  });
+  prevBtn.addEventListener('click', function(){ playing=false; playBtn.textContent='▶'; goTo(current-1); });
+  nextBtn.addEventListener('click', function(){ playing=false; playBtn.textContent='▶'; goTo(current+1); });
+}
+document.querySelectorAll('.frame-player').forEach(initFramePlayer);
+
+/* ===== formularz ===== */
+var PILOT_HINT = 'Rodzaj budowy (hala magazynowa / produkcyjna / inna), etap robót, liczba osób w biurze budowy, czy harmonogram jest w MS Project; przy TEK-BHP — ilu podwykonawców zwykle prowadzisz; przy TEK-AUDYTOR — jaką dokumentację chcesz sprawdzać i z jakiego asystenta AI korzystasz';
+var DEFAULT_HINT = document.getElementById('msg').getAttribute('placeholder');
+function syncPilot(){
+  var isPilot = ['biuro','bhp','audytor'].some(function(k){ var el=document.getElementById('chk-'+k); return el && el.checked; });
+  document.getElementById('msg').setAttribute('placeholder', isPilot ? PILOT_HINT : DEFAULT_HINT);
+  document.getElementById('pilotNote').style.display = isPilot ? 'block' : 'none';
+  if(isPilot){ document.getElementById('rad-pilot').checked = true; }
+}
+function preselect(which){
+  ['profil','stalja','komplet','calc','calcmod','skarpa','biuro','bhp','audytor'].forEach(function(k){
+    var el = document.getElementById('chk-'+k);
+    if(el) el.checked = (k===which);
+  });
+  syncPilot();
+}
+['chk-biuro','chk-bhp','chk-audytor'].forEach(function(id){ document.getElementById(id).addEventListener('change', syncPilot); });
+/* podstrony produktów linkują do index.html?pilot=biuro#zamow (biuro | bhp | audytor) */
+(function(){
+  var m = /[?&]pilot=(biuro|bhp|audytor)\b/.exec(location.search);
+  if(m) preselect(m[1]);
+})();
+document.getElementById('orderForm').addEventListener('submit', function(e){
+  var status = document.getElementById('formStatus');
+  var key = this.querySelector('input[name="access_key"]').value;
+  if(key === 'access key'){
+    e.preventDefault();
+    status.textContent = 'Skonfiguruj Web3Forms access key przed publikacją.';
+    status.style.color = 'var(--orange)';
+    return;
+  }
+  status.textContent = 'Wysyłanie…';
+  status.style.color = 'var(--txt-dim)';
+});
+</script>
+
 </body>
 </html>

@@ -1,0 +1,8 @@
+# tektoria.pl
+User-agent: *
+Allow: /
+
+# strona podziękowania po wysłaniu formularza — nie ma wartości w wynikach wyszukiwania
+Disallow: /dziekuje.html
+
+Sitemap: https://tektoria.pl/sitemap.xml

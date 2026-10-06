@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polityka prywatności — TEKTORIA</title>
+<meta name="description" content="Polityka prywatności serwisu tektoria.pl — kto jest administratorem danych, w jakim celu i na jakiej podstawie przetwarzane są dane z formularza, komu są powierzane i jakie prawa przysługują osobie, której dane dotyczą.">
+<link rel="canonical" href="https://tektoria.pl/polityka-prywatnosci.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b1622">
+<style>
+  /* ---------- fonty hostowane lokalnie (SIL OFL, pliki w /fonts) ----------
+     Powod: brak polaczenia z serwerami Google przy kazdym wejsciu = brak
+     przekazywania adresu IP odwiedzajacego podmiotowi trzeciemu (RODO). */
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/space-grotesk-latin-ext-400-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/space-grotesk-latin-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/space-grotesk-latin-ext-500-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/space-grotesk-latin-500-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;
+    src:url('fonts/space-grotesk-latin-ext-600-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;
+    src:url('fonts/space-grotesk-latin-600-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/space-grotesk-latin-ext-700-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/space-grotesk-latin-700-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-ext-400-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-ext-500-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-ext-700-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-700-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  :root{
+    --bg:#0a1016;--bg2:#0d151d;--panel-line:#1d2f3e;--grid:rgba(72,132,182,.09);
+    --txt:#d7e3ec;--txt-dim:#8ba3b5;--cyan:#22c3e6;--cyan-dim:#1a8fad;--orange:#ff6b35;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--bg);color:var(--txt);
+    font-family:'Space Grotesk',system-ui,sans-serif;line-height:1.65;
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:34px 34px;
+  }
+  .wrap{max-width:820px;margin:0 auto;padding:48px 24px 80px;}
+  header.top{border-bottom:1px solid var(--panel-line);background:rgba(10,16,22,.92);}
+  header.top .inner{max-width:820px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;gap:12px;}
+  .mark{width:30px;height:30px;border:1.5px solid var(--cyan);border-radius:3px;display:flex;
+        align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;
+        font-weight:700;color:var(--cyan);font-size:.95rem;}
+  .name{font-weight:700;font-size:1.1rem;letter-spacing:.04em;text-decoration:none;color:var(--txt);}
+  .name span{color:var(--cyan);}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.16em;
+           text-transform:uppercase;color:var(--orange);}
+  h1{font-size:1.9rem;line-height:1.2;margin:10px 0 6px;letter-spacing:-0.01em;}
+  .updated{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--txt-dim);margin-bottom:30px;}
+  h2{font-size:1.12rem;margin:36px 0 10px;letter-spacing:-0.01em;}
+  h2 .num{font-family:'JetBrains Mono',monospace;color:var(--cyan);font-size:.9rem;margin-right:8px;}
+  p,li{color:var(--txt-dim);font-size:.95rem;}
+  p strong,li strong{color:var(--txt);font-weight:500;}
+  ul{padding-left:20px;}
+  li{margin-bottom:7px;}
+  a{color:var(--cyan);}
+  .box{background:var(--bg2);border:1px solid var(--panel-line);border-radius:4px;padding:18px 20px;margin:18px 0;}
+  .box p:last-child{margin-bottom:0;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem;}
+  th,td{text-align:left;padding:10px 12px;border:1px solid var(--panel-line);vertical-align:top;color:var(--txt-dim);}
+  th{background:var(--bg2);color:var(--txt);font-weight:500;font-size:.8rem;
+     font-family:'JetBrains Mono',monospace;letter-spacing:.04em;}
+  .tablewrap{overflow-x:auto;}
+  .back{display:inline-block;margin-top:40px;font-family:'JetBrains Mono',monospace;font-size:.82rem;
+        padding:12px 22px;border-radius:3px;text-decoration:none;color:var(--cyan);
+        border:1.5px solid var(--cyan-dim);}
+  .back:hover{border-color:var(--cyan);background:rgba(34,195,230,.08);}
+  footer{border-top:1px solid var(--panel-line);background:var(--bg2);}
+  footer .inner{max-width:820px;margin:0 auto;padding:24px;font-family:'JetBrains Mono',monospace;
+                font-size:.72rem;color:var(--txt-dim);display:flex;flex-direction:column;gap:6px;}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <a class="name" href="index.html" aria-label="TEKTORIA — strona główna"><img src="img/tektoria-logo-poziome_ciemne-tlo.svg" alt="TEKTORIA" width="126" height="32" style="display:block;height:32px;width:auto;"></a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="eyebrow">dokument</div>
+  <h1>Polityka prywatności</h1>
+  <div class="updated">serwis tektoria.pl · wersja z dnia 6 października 2026 r. (poprzednia: 28 września 2026 r.)</div>
+
+  <div class="box">
+    <p><strong>W skrócie.</strong> Serwis nie używa plików cookies, nie ma na sobie żadnego narzędzia
+    analitycznego ani reklamowego i nie śledzi odwiedzających. Fonty są hostowane na tym samym serwerze
+    co strona, więc samo jej otwarcie nie przekazuje Twojego adresu IP żadnej firmie trzeciej.
+    Dane osobowe zbieram wyłącznie wtedy, gdy sam wypełnisz formularz zgłoszenia.</p>
+  </div>
+
+  <h2><span class="num">1.</span>Kto jest administratorem Twoich danych</h2>
+  <p>Administratorem danych osobowych podanych w formularzu jest <strong>Jarosław Sarafin</strong>,
+  autor i wydawca narzędzi udostępnianych pod marką TEKTORIA.</p>
+  <p>Kontakt we wszystkich sprawach dotyczących danych osobowych:
+  <strong><a href="mailto:kontakt@tektoria.pl">kontakt@tektoria.pl</a></strong>.
+  Pełne dane identyfikacyjne i adresowe podaję na żądanie, a także — obowiązkowo — przed zawarciem
+  umowy sprzedaży, gdy sprzedaż zostanie uruchomiona. Nie wyznaczyłem inspektora ochrony danych;
+  we wszystkich sprawach piszesz bezpośrednio do mnie.</p>
+
+  <h2><span class="num">2.</span>Jakie dane zbieram</h2>
+  <p>Wyłącznie te, które sam wpiszesz w formularzu zgłoszenia zainteresowania:</p>
+  <ul>
+    <li>imię i nazwisko,</li>
+    <li>adres e-mail,</li>
+    <li>zaznaczone produkty i charakter zgłoszenia (deklaracja zakupu, wstępne zainteresowanie albo zgłoszenie do pilotażu aplikacji),</li>
+    <li>treść wiadomości, jeśli ją wpiszesz.</li>
+  </ul>
+  <p>Jeśli weźmiesz udział w pilotażu aplikacji TEK-BIURO BUDOWY, TEK-BHP albo TEK-AUDYTOR, dochodzą do tego dane
+  potrzebne do jego organizacji: korespondencja w sprawie testów, oznaczenie licencji testowej,
+  przy TEK-BHP — kod stanowiska, który sam mi przekazujesz do wystawienia klucza (jest obliczany
+  z identyfikatora komputera i nazwy konta Windows, więc jest pseudonimowy, a nie anonimowy),
+  oraz dobrowolne zgłoszenia błędów. Proszę, aby zgłoszenia i zrzuty ekranu nie zawierały danych
+  osobowych pracowników ani informacji poufnych z budowy.</p>
+  <p>Nie zbieram danych adresowych, rozliczeniowych ani żadnych danych szczególnych kategorii.
+  Podanie danych jest w pełni dobrowolne — bez wypełnienia formularza możesz korzystać z całej
+  strony i pobierać darmowe skrypty, bez podawania czegokolwiek.</p>
+
+  <h2><span class="num">3.</span>Po co i na jakiej podstawie prawnej</h2>
+  <div class="tablewrap">
+  <table>
+    <tr><th>Cel</th><th>Podstawa prawna</th></tr>
+    <tr>
+      <td>Odpowiedź na Twoje zgłoszenie i kontakt w jego sprawie</td>
+      <td>art. 6 ust. 1 lit. f RODO — mój prawnie uzasadniony interes polegający na obsłudze
+          zgłoszenia, które sam do mnie wysłałeś</td>
+    </tr>
+    <tr>
+      <td>Ocena skali zainteresowania ofertą przed uruchomieniem sprzedaży</td>
+      <td>art. 6 ust. 1 lit. f RODO — prawnie uzasadniony interes polegający na badaniu rynku
+          dla własnej działalności</td>
+    </tr>
+    <tr>
+      <td>Organizacja pilotażu aplikacji: przekazanie aplikacji i klucza testowego, kontakt w sprawie
+          testów, obsługa zgłoszeń błędów</td>
+      <td>art. 6 ust. 1 lit. b RODO — wykonanie umowy o nieodpłatne udostępnienie aplikacji w pilotażu,
+          której jesteś stroną; jeżeli zgłaszasz się w imieniu firmy — art. 6 ust. 1 lit. f RODO,
+          prawnie uzasadniony interes polegający na kontakcie z jej przedstawicielem</td>
+    </tr>
+    <tr>
+      <td>Wysłanie Ci informacji handlowej o uruchomieniu sprzedaży, cenie i sposobie zakupu</td>
+      <td>art. 6 ust. 1 lit. a RODO — Twoja zgoda, w związku z art. 398 ustawy z dnia
+          12 lipca 2024 r. – Prawo komunikacji elektronicznej</td>
+    </tr>
+  </table>
+  </div>
+  <p>Zgodę na kontakt handlowy możesz wycofać w każdej chwili — wystarczy jedno zdanie na adres
+  <a href="mailto:kontakt@tektoria.pl">kontakt@tektoria.pl</a>. Wycofanie zgody nie wpływa
+  na zgodność z prawem przetwarzania, którego dokonano przed jej wycofaniem.</p>
+
+  <h2><span class="num">4.</span>Komu powierzam dane</h2>
+  <p>Nie sprzedaję i nie udostępniam Twoich danych innym administratorom. Korzystam natomiast
+  z usług dostawców, którzy przetwarzają dane na moje zlecenie:</p>
+  <div class="tablewrap">
+  <table>
+    <tr><th>Podmiot</th><th>Zakres</th><th>Lokalizacja danych</th></tr>
+    <tr>
+      <td>Web3Creative (usługa Web3Forms)</td>
+      <td>obsługa formularza — odbiera zgłoszenie i przekazuje je na mój adres e-mail;
+          przechowuje treść zgłoszenia przez maksymalnie 3 lata</td>
+      <td>serwery Amazon Web Services; dostawca ma siedzibę poza EOG — przekazanie danych
+          odbywa się na podstawie standardowych klauzul umownych zawartych w umowie
+          powierzenia przetwarzania</td>
+    </tr>
+    <tr>
+      <td>GitHub, Inc. (GitHub Pages)</td>
+      <td>hosting plików strony; standardowe logi serwera WWW</td>
+      <td>przekazanie poza EOG na podstawie standardowych klauzul umownych</td>
+    </tr>
+    <tr>
+      <td>Cloudflare, Inc.</td>
+      <td>obsługa DNS domeny tektoria.pl</td>
+      <td>przekazanie poza EOG na podstawie standardowych klauzul umownych</td>
+    </tr>
+    <tr>
+      <td>Operator poczty dla domeny tektoria.pl</td>
+      <td>przechowywanie korespondencji e-mail prowadzonej po Twoim zgłoszeniu</td>
+      <td>Polska / EOG</td>
+    </tr>
+  </table>
+  </div>
+
+  <h2><span class="num">5.</span>Jak długo przechowuję dane</h2>
+  <ul>
+    <li><strong>Zgłoszenia z formularza</strong> — do czasu zakończenia badania zainteresowania
+        i rozstrzygnięcia, czy sprzedaż zostanie uruchomiona, nie dłużej niż <strong>24 miesiące</strong>
+        od dnia zgłoszenia.</li>
+    <li><strong>Dane uczestników pilotażu</strong> — przez czas pilotażu, a po jego zakończeniu
+        do upływu terminu przedawnienia ewentualnych roszczeń związanych z udostępnieniem aplikacji.</li>
+    <li><strong>Dane przetwarzane na podstawie zgody</strong> — do jej wycofania.</li>
+    <li>Wcześniej, jeśli wniesiesz skuteczny sprzeciw albo poprosisz o usunięcie danych.</li>
+  </ul>
+
+  <h2><span class="num">6.</span>Twoje prawa</h2>
+  <p>Masz prawo do: dostępu do swoich danych i uzyskania ich kopii, sprostowania, usunięcia,
+  ograniczenia przetwarzania, przenoszenia danych, wniesienia sprzeciwu wobec przetwarzania
+  opartego na prawnie uzasadnionym interesie oraz wycofania zgody w dowolnym momencie.</p>
+  <p>Każde z tych żądań realizuję po zwykłej wiadomości e-mail — nie wymagam formularzy
+  ani uzasadnienia.</p>
+  <div class="box">
+    <p>Przysługuje Ci również prawo wniesienia skargi do organu nadzorczego:
+    <strong>Prezes Urzędu Ochrony Danych Osobowych</strong>, ul. Stawki 2, 00-193 Warszawa,
+    <a href="https://uodo.gov.pl" target="_blank" rel="noopener">uodo.gov.pl</a>.</p>
+  </div>
+
+  <h2><span class="num">7.</span>Cookies, analityka i profilowanie</h2>
+  <p>Serwis <strong>nie zapisuje plików cookies</strong> i nie korzysta z Google Analytics ani
+  z żadnego innego narzędzia analitycznego czy reklamowego osadzonego w kodzie strony.
+  Fonty są serwowane z tego samego serwera co strona, więc jej otwarcie nie łączy Twojej
+  przeglądarki z serwerami firm trzecich.</p>
+  <p>Twoje dane nie są profilowane ani wykorzystywane do zautomatyzowanego podejmowania decyzji
+  w rozumieniu art. 22 RODO.</p>
+  <p>Statystyki odwiedzin odczytuję wyłącznie z narzędzia Google Search Console, które działa
+  na poziomie wyszukiwarki i nie wymaga żadnego skryptu na stronie ani nie identyfikuje
+  poszczególnych odwiedzających.</p>
+
+  <h2><span class="num">8.</span>Pliki do pobrania</h2>
+  <p>Darmowe skrypty pobierzesz bez rejestracji, bez podawania adresu e-mail i bez zapisywania
+  jakichkolwiek danych po mojej stronie.</p>
+
+  <h2><span class="num">9.</span>Dane wprowadzane do aplikacji</h2>
+  <p>Ta polityka dotyczy serwisu tektoria.pl i kontaktu ze mną. Nie obejmuje danych, które wprowadzasz
+  do samych aplikacji: TEK-BIURO BUDOWY, TEK-BHP i TEK-AUDYTOR w obecnych wersjach zapisują dane (uwagi,
+  zdjęcia, rzuty, skany, dane firm i pracowników, projekty audytów) wyłącznie lokalnie, na Twoim urządzeniu.
+  Dokumenty, które sam przekazujesz do zewnętrznego asystenta AI, podlegają warunkom dostawcy tego narzędzia. Nie mam do nich
+  dostępu i nie jestem ich administratorem — jest nim podmiot, który decyduje o celach ich
+  przetwarzania na budowie, zwykle Twój pracodawca albo Ty. Szczegóły są w warunkach pilotażu:
+  <a href="eula-tek-biuro-budowy.html">TEK-BIURO BUDOWY</a>, <a href="eula-tek-bhp.html">TEK-BHP</a>
+  i <a href="eula-tek-audytor.html">TEK-AUDYTOR</a>.</p>
+
+  <h2><span class="num">10.</span>Zmiany polityki</h2>
+  <p>Jeśli zmienię zakres przetwarzania — na przykład przy uruchomieniu sprzedaży i płatności —
+  zaktualizuję ten dokument i zmienię datę w nagłówku. Osoby, które zostawiły zgłoszenie,
+  poinformuję o istotnych zmianach e-mailem.</p>
+
+  <a class="back" href="index.html">‹ wróć na stronę główną</a>
+</div>
+
+<footer>
+  <div class="inner">
+    <span>TEKTORIA · oprogramowanie dla inżynierów · CAD i aplikacje dla projektantów i kierowników</span>
+    <span>administrator danych: Jarosław Sarafin · kontakt@tektoria.pl</span>
+  </div>
+</footer>
+
+</body>
+</html>

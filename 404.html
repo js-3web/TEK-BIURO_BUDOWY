@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nie ma takiej strony (404) — TEKTORIA</title>
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico" sizes="32x32">
+<meta name="theme-color" content="#0b1622">
+<style>
+  /* ---------- fonty hostowane lokalnie (SIL OFL, pliki w /fonts) ----------
+     Powod: brak polaczenia z serwerami Google przy kazdym wejsciu = brak
+     przekazywania adresu IP odwiedzajacego podmiotowi trzeciemu (RODO). */
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;
+    src:url(/fonts/space-grotesk-latin-ext-400-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;
+    src:url(/fonts/space-grotesk-latin-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;
+    src:url(/fonts/space-grotesk-latin-ext-500-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;
+    src:url(/fonts/space-grotesk-latin-500-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;
+    src:url(/fonts/space-grotesk-latin-ext-600-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;
+    src:url(/fonts/space-grotesk-latin-600-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;
+    src:url(/fonts/space-grotesk-latin-ext-700-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;
+    src:url(/fonts/space-grotesk-latin-700-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+    src:url(/fonts/jetbrains-mono-latin-ext-400-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+    src:url(/fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;
+    src:url(/fonts/jetbrains-mono-latin-ext-500-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;
+    src:url(/fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;
+    src:url(/fonts/jetbrains-mono-latin-ext-700-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;
+    src:url(/fonts/jetbrains-mono-latin-700-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  :root{--bg:#0a1016;--bg2:#0d151d;--panel-line:#1d2f3e;--grid:rgba(72,132,182,.09);
+        --txt:#d7e3ec;--txt-dim:#8ba3b5;--cyan:#22c3e6;--cyan-dim:#1a8fad;--orange:#ff6b35;}
+  *{box-sizing:border-box;}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+    background:var(--bg);color:var(--txt);font-family:'Space Grotesk',system-ui,sans-serif;line-height:1.6;
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:34px 34px;padding:24px;}
+  .card{max-width:600px;background:var(--bg2);border:1px solid var(--panel-line);border-radius:6px;
+        overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.5);}
+  .bar{display:flex;align-items:center;gap:8px;background:#131f2a;padding:8px 12px;
+       border-bottom:1px solid var(--panel-line);font-family:'JetBrains Mono',monospace;
+       font-size:.68rem;color:var(--txt-dim);}
+  .dot{width:9px;height:9px;border-radius:50%;}
+  .dot.r{background:#e0564d;}.dot.y{background:#e0a53f;}.dot.g{background:#4fbf6b;}
+  .body{padding:36px 34px;}
+  .code{font-family:'JetBrains Mono',monospace;font-size:2.6rem;font-weight:700;color:var(--orange);
+        line-height:1;margin-bottom:14px;}
+  h1{font-size:1.45rem;margin:0 0 12px;letter-spacing:-0.01em;}
+  p{color:var(--txt-dim);margin:0 0 12px;}
+  .cmd{font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--cyan);background:#0a1219;
+       border:1px solid var(--panel-line);border-radius:3px;padding:10px 12px;margin:18px 0;}
+  .cmd .dim{color:#5d7788;}
+  .links{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
+  a.btn{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.8rem;padding:12px 20px;
+        border-radius:3px;text-decoration:none;color:var(--cyan);border:1.5px solid var(--cyan-dim);}
+  a.btn:hover{border-color:var(--cyan);background:rgba(34,195,230,.08);}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="bar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span style="margin-left:6px;">TEKTORIA — nie znaleziono</span>
+    </div>
+    <div class="body">
+      <div class="code">404</div>
+      <h1>Tego adresu tu nie ma</h1>
+      <p>Strona, której szukasz, nie istnieje albo zmieniła adres. Nic się nie zepsuło — po prostu
+      pod tym linkiem nic nie leży.</p>
+      <div class="cmd"><span class="dim">Polecenie:</span> WROC<br><span class="dim">Status:</span> zasób nieodnaleziony</div>
+      <div class="links">
+        <a class="btn" href="/">‹ strona główna</a>
+        <a class="btn" href="/#darmowe">darmowe skrypty</a>
+        <a class="btn" href="/#zamow">zgłoszenie</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

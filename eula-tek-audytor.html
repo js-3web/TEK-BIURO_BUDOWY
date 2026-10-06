@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warunki licencji TEK-AUDYTOR — wersja pilotażowa | TEKTORIA</title>
+<meta name="description" content="Wzór ogólny warunków nieodpłatnej licencji na wersję pilotażową aplikacji TEK-AUDYTOR: zakres, dane lokalne, anonimizacja, narzędzie AI, odpowiedzialność.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tektoria.pl/eula-tek-audytor.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b1622">
+
+<style>
+  /* ---------- fonty hostowane lokalnie (SIL OFL, pliki w /fonts) ----------
+     Powod: brak polaczenia z serwerami Google przy kazdym wejsciu = brak
+     przekazywania adresu IP odwiedzajacego podmiotowi trzeciemu (RODO). */
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/space-grotesk-latin-ext-400-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/space-grotesk-latin-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/space-grotesk-latin-ext-500-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/space-grotesk-latin-500-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;
+    src:url('fonts/space-grotesk-latin-ext-600-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;
+    src:url('fonts/space-grotesk-latin-600-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/space-grotesk-latin-ext-700-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/space-grotesk-latin-700-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-ext-400-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-ext-500-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-ext-700-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-700-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+
+
+  :root{
+    --bg:#0a1016;
+    --bg2:#0d151d;
+    --panel:#101b25;
+    --panel-line:#1d2f3e;
+    --grid:rgba(72,132,182,.09);
+    --txt:#d7e3ec;
+    --txt-dim:#8ba3b5;
+    --cyan:#22c3e6;        /* cyjan z logo TEKTORIA v4 (28.09.2026) */
+    --cyan-dim:#1a8fad;
+    --amber:#ffb24d;
+    --orange:#ff6b35;
+    --green:#7be07b;
+    --sel-blue:#2c76b8;
+    --radius:3px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--txt);
+    font-family:'Space Grotesk',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{margin:0;letter-spacing:-0.01em;}
+  code,.mono{font-family:'JetBrains Mono',monospace;}
+  a{color:var(--cyan);}
+  ::selection{background:var(--sel-blue);color:#fff;}
+
+  .cadgrid{
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:34px 34px;
+  }
+
+  /* ---------- topbar ---------- */
+  header.top{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,16,22,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--panel-line);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 26px;
+  }
+  .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;}
+  .brand .logo{display:block;height:32px;width:auto;}
+  .brand .tag{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--txt-dim);letter-spacing:.1em;
+    border-left:1px solid var(--panel-line);padding-left:14px;line-height:1.35;white-space:nowrap;}
+  @media(max-width:1480px){.brand .tag{display:none;}}
+  header.top nav{display:flex;align-items:center;gap:4px;}
+  header.top nav a{
+    color:var(--txt-dim);text-decoration:none;
+    font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.04em;
+    padding:7px 12px;border-radius:3px;
+  }
+  header.top nav a:hover{color:var(--cyan);background:rgba(34,195,230,.07);}
+  header.top nav a.cta{
+    border:1px solid var(--orange);color:var(--orange);margin-left:8px;
+  }
+  header.top nav a.cta:hover{background:var(--orange);color:#0a1016;}
+  @media(max-width:1160px){header.top nav a:not(.cta){display:none;}}
+
+  /* ---------- hero: fake ZWCAD viewport ---------- */
+  .hero{padding:64px 24px 40px;position:relative;overflow:hidden;}
+  .hero-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;}
+  @media(max-width:920px){.hero-inner{grid-template-columns:1fr;}}
+  .hero h1{
+    font-size:clamp(1.9rem,4.4vw,3rem);
+    font-weight:700;line-height:1.1;
+  }
+  .hero h1 .hl{color:var(--cyan);}
+  .hero h1 .strike{color:var(--txt-dim);text-decoration:line-through;text-decoration-color:var(--orange);text-decoration-thickness:3px;}
+  .hero p.lead{color:var(--txt-dim);font-size:1.08rem;max-width:48ch;margin-top:20px;}
+  .hero .ctas{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.82rem;
+    padding:13px 24px;border-radius:var(--radius);text-decoration:none;
+    border:1.5px solid transparent;cursor:pointer;transition:all .15s ease;
+  }
+  .btn-primary{background:var(--orange);color:#0a1016;font-weight:700;}
+  .btn-primary:hover{background:#ff8556;transform:translateY(-2px);box-shadow:0 6px 22px rgba(255,107,53,.28);}
+  .btn-ghost{color:var(--cyan);border-color:var(--cyan-dim);}
+  .btn-ghost:hover{border-color:var(--cyan);background:rgba(34,195,230,.08);}
+  .hero-badges{
+    margin-top:34px;display:flex;gap:20px;flex-wrap:wrap;
+    font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--txt-dim);
+  }
+  .hero-badges span::before{content:"▸ ";color:var(--cyan);}
+
+  /* fake CAD window */
+  .cadwin{
+    border:1px solid var(--panel-line);border-radius:6px;overflow:hidden;
+    background:var(--bg2);box-shadow:0 24px 60px rgba(0,0,0,.5);
+  }
+  .cadwin .bar{
+    display:flex;align-items:center;gap:8px;
+    background:#131f2a;padding:8px 12px;border-bottom:1px solid var(--panel-line);
+    font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--txt-dim);
+  }
+  .cadwin .bar .dot{width:9px;height:9px;border-radius:50%;background:#22384a;}
+  .cadwin .bar .dot.r{background:#e0564d;}
+  .cadwin .bar .dot.y{background:#e0a53f;}
+  .cadwin .bar .dot.g{background:#4fbf6b;}
+  .cadwin .bar .ttl{margin-left:6px;}
+  .cadwin .viewport{
+    position:relative;aspect-ratio:4/3.1;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:26px 26px;background-color:#0b141c;
+  }
+  .cadwin .ucs{position:absolute;left:10px;bottom:10px;opacity:.7;}
+  .cadwin .cross{position:absolute;pointer-events:none;opacity:.35;}
+  .cadwin .cmdline{
+    background:#0a1219;border-top:1px solid var(--panel-line);
+    padding:9px 12px;font-family:'JetBrains Mono',monospace;font-size:.76rem;
+    color:var(--green);min-height:56px;
+  }
+  .cmdline .hist{color:#5d7788;font-size:.68rem;line-height:1.5;}
+  .cmdline .cur .prompt{color:var(--txt-dim);}
+  .cmdline .caret{
+    display:inline-block;width:8px;height:14px;background:var(--green);
+    vertical-align:-2px;animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  #hebDraw path.steel{
+    stroke:var(--cyan);stroke-width:2;fill:none;
+    stroke-linejoin:round;
+  }
+  #hebDraw .axis{stroke:var(--orange);stroke-width:1;stroke-dasharray:10 4 2 4;opacity:0;}
+  #hebDraw .dim{stroke:#6f93ad;stroke-width:1;opacity:0;}
+  #hebDraw text{font-family:'JetBrains Mono',monospace;font-size:11px;fill:#9fc0d6;opacity:0;}
+  #hebDraw .dimshow{transition:opacity .5s;}
+  #paramTbl{
+    position:absolute;right:12px;top:12px;
+    background:rgba(13,21,29,.94);border:1px solid var(--panel-line);border-radius:3px;
+    font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--txt-dim);
+    padding:8px 10px;opacity:0;transform:translateY(-6px);transition:all .6s ease;
+  }
+  #paramTbl.show{opacity:1;transform:translateY(0);}
+  #paramTbl .h{color:var(--cyan);font-weight:700;margin-bottom:3px;}
+  #paramTbl td{padding:1px 6px 1px 0;}
+  #paramTbl td:last-child{color:var(--txt);text-align:right;}
+
+  /* ---------- stats strip ---------- */
+  .stats{border-top:1px solid var(--panel-line);border-bottom:1px solid var(--panel-line);background:var(--bg2);}
+  .stats .wrap{
+    max-width:1080px;margin:0 auto;padding:28px 24px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:22px;
+  }
+  @media(max-width:820px){.stats .wrap{grid-template-columns:repeat(2,1fr);}}
+  .stat .n{font-family:'JetBrains Mono',monospace;font-size:1.7rem;font-weight:700;color:var(--cyan);}
+  .stat .l{font-size:.82rem;color:var(--txt-dim);margin-top:2px;}
+
+  /* ---------- sections ---------- */
+  section{padding:78px 24px;}
+  .wrap{max-width:1080px;margin:0 auto;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--orange);
+  }
+  .eyebrow::before{content:"// ";color:var(--txt-dim);}
+  h2.sec{font-size:clamp(1.55rem,3.2vw,2.2rem);margin-top:10px;max-width:24ch;}
+  p.sec-lead{color:var(--txt-dim);max-width:60ch;margin-top:14px;}
+
+  /* reveal on scroll */
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+  .rv.in{opacity:1;transform:none;}
+
+  /* ---------- product layout ---------- */
+  .prod{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start;
+    margin-top:44px;
+  }
+  @media(max-width:880px){.prod{grid-template-columns:1fr;}}
+  .prod .cmd-chip,.pc-body .cmd-chip{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.7rem;
+    background:#0a1219;border:1px solid var(--panel-line);color:var(--green);
+    padding:4px 10px;border-radius:3px;margin-bottom:14px;
+  }
+  .prod h3{font-size:1.5rem;}
+  .pc-body .cmd-chip{align-self:flex-start;}
+  .prod .file,.pc-body .file{font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--txt-dim);margin-top:4px;}
+  .prod p.desc{color:var(--txt-dim);margin-top:16px;}
+  ul.feats{list-style:none;padding:0;margin:20px 0 0;}
+  ul.feats li{
+    padding:9px 0 9px 26px;position:relative;font-size:.94rem;
+    border-bottom:1px dashed var(--panel-line);
+  }
+  ul.feats li::before{
+    content:"＋";position:absolute;left:0;color:var(--cyan);
+    font-family:'JetBrains Mono',monospace;
+  }
+  .priceline{
+    display:flex;align-items:center;gap:18px;margin-top:26px;flex-wrap:wrap;
+  }
+  .priceline .price{
+    font-family:'JetBrains Mono',monospace;font-size:1.7rem;font-weight:700;color:var(--amber);
+  }
+  .priceline .price small{font-size:.66rem;color:var(--txt-dim);display:block;font-weight:400;}
+  .doc-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+  .doc-soon{color:var(--txt-dim);opacity:.75;border-style:dashed;cursor:default;}
+  .doc-link{
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;
+    padding:8px 12px;border:1px solid var(--panel-line);border-radius:3px;
+    color:var(--txt-dim);text-decoration:none;background:var(--bg2);
+  }
+  .doc-link:hover{border-color:var(--cyan);color:var(--cyan);}
+  .compat{
+    font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--green);
+    margin-top:18px;
+  }
+  .compat::before{content:"✓ ";}
+
+  /* ---------- TEK-CALC: wideo + cennik modułowy ---------- */
+  .calc-video{margin-top:40px;border:1px solid var(--panel-line);border-radius:6px;
+    background:#0b141c;overflow:hidden;}
+  .calc-video video{display:block;width:100%;height:auto;background:#0b141c;}
+  .calc-video .vcap{
+    font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--txt-dim);
+    padding:9px 12px;background:#0d1620;border-top:1px solid var(--panel-line);
+  }
+  .modprice{margin-top:46px;border:1px solid var(--panel-line);border-radius:6px;
+    background:var(--bg2);overflow:hidden;}
+  .modprice .mp-head{
+    display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    padding:16px 18px;border-bottom:1px solid var(--panel-line);background:var(--panel);
+  }
+  .modprice .mp-head h3{font-size:1.12rem;}
+  .modprice .mp-head span{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--txt-dim);}
+  .mp-row{
+    display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1.5fr) auto;
+    gap:14px;align-items:baseline;padding:11px 18px;
+    border-bottom:1px dashed var(--panel-line);font-size:.9rem;
+  }
+  .mp-row:last-child{border-bottom:none;}
+  .mp-row .mp-n{font-weight:600;}
+  .mp-row .mp-d{color:var(--txt-dim);font-size:.83rem;}
+  .mp-row .mp-p{font-family:'JetBrains Mono',monospace;color:var(--amber);
+    font-size:.92rem;font-weight:700;text-align:right;white-space:nowrap;}
+  .mp-sum{
+    display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    padding:13px 18px;background:var(--panel);border-top:1px solid var(--panel-line);
+    font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--txt-dim);
+  }
+  .mp-sum b{color:var(--txt);}
+  .modprice.limits .mp-row{grid-template-columns:minmax(0,1.05fr) minmax(0,2fr);}
+  @media(max-width:720px){
+    .mp-row{grid-template-columns:1fr auto;}
+    .modprice.limits .mp-row{grid-template-columns:1fr;}
+    .mp-row .mp-d{grid-column:1 / -1;}
+  }
+
+  /* frame player (screeny) */
+  .frame-player{border:1px solid var(--panel-line);border-radius:6px;background:var(--bg2);overflow:hidden;}
+  .fp-stage{position:relative;aspect-ratio:16/9;background:#0b141c;overflow:hidden;}
+  .fp-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#0b141c;opacity:0;transition:opacity .35s;}
+  .fp-placeholder-frame{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+    background:repeating-linear-gradient(135deg, rgba(72,132,182,.06) 0 12px, transparent 12px 24px),#0b141c;
+    color:var(--txt-dim);font-family:'JetBrains Mono',monospace;font-size:.8rem;text-align:center;padding:0 24px;
+    opacity:0;transition:opacity .35s;
+  }
+  .fp-placeholder-frame .n{font-size:1.7rem;font-weight:700;color:var(--orange);}
+  .fp-caption{
+    position:absolute;left:0;right:0;bottom:0;padding:10px 14px 12px;
+    background:linear-gradient(0deg, rgba(11,20,28,.97) 0%, rgba(11,20,28,.93) 58%, rgba(11,20,28,0) 100%);
+    color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:.72rem;
+  }
+  .fp-progress{position:absolute;top:0;left:0;right:0;display:flex;gap:3px;padding:8px 10px 0;}
+  .fp-progress .seg{flex:1;height:3px;background:rgba(215,227,236,.18);border-radius:2px;overflow:hidden;}
+  .fp-progress .seg i{display:block;height:100%;width:0%;background:var(--orange);}
+  .fp-progress .seg.done i{width:100%;}
+  .fp-controls{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#0d1620;}
+  .fp-controls button{
+    background:transparent;border:1px solid var(--panel-line);color:var(--txt-dim);
+    font-family:'JetBrains Mono',monospace;font-size:.74rem;border-radius:3px;padding:5px 11px;cursor:pointer;
+  }
+  .fp-controls button:hover{border-color:var(--cyan);color:var(--cyan);}
+  .fp-frame-idx{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--txt-dim);}
+  .media-note{
+    margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:.66rem;color:#5d7788;
+  }
+
+  /* ---------- bundle ---------- */
+  .bundle{
+    margin-top:70px;border:1px solid var(--cyan-dim);border-radius:6px;
+    background:linear-gradient(135deg, #0d1a20, #0f2231);
+    padding:38px 34px;display:flex;justify-content:space-between;align-items:center;gap:26px;flex-wrap:wrap;
+    position:relative;overflow:hidden;
+  }
+  .bundle::after{
+    content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;
+    border:1px dashed rgba(34,195,230,.25);border-radius:50%;
+  }
+  .bundle .save{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.7rem;
+    color:#0a1016;background:var(--cyan);padding:3px 10px;border-radius:3px;font-weight:700;
+  }
+  .bundle h3{font-size:1.4rem;margin-top:12px;}
+  .bundle p{color:var(--txt-dim);max-width:46ch;margin-top:8px;font-size:.94rem;}
+  .bundle .bprice{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--amber);}
+  .bundle .bprice small{display:block;font-size:.68rem;color:var(--txt-dim);font-weight:400;}
+
+  /* ---------- darmowe lispy ---------- */
+  .freegrid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:16px;margin-top:40px;
+  }
+  .freecard{
+    border:1px solid var(--panel-line);border-radius:6px;background:var(--bg2);
+    padding:22px;display:flex;flex-direction:column;gap:10px;
+  }
+  .freecard .fname{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--green);}
+  .freecard h3{font-size:1.05rem;}
+  .freecard p{color:var(--txt-dim);font-size:.88rem;margin:0;flex:1;}
+  .freecard .dl{
+    display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+    font-family:'JetBrains Mono',monospace;font-size:.76rem;
+    color:var(--cyan);text-decoration:none;
+    border:1px solid var(--cyan-dim);border-radius:3px;padding:9px 14px;
+    transition:all .15s;
+  }
+  .freecard .dl:hover{background:rgba(34,195,230,.1);border-color:var(--cyan);}
+  .free-note{
+    margin-top:22px;font-size:.84rem;color:var(--txt-dim);max-width:70ch;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq{max-width:760px;margin:40px auto 0;}
+  .faq details{
+    border:1px solid var(--panel-line);border-radius:4px;background:var(--bg2);
+    margin-bottom:10px;overflow:hidden;
+  }
+  .faq summary{
+    cursor:pointer;padding:16px 18px;font-weight:500;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+  }
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{
+    content:"+";font-family:'JetBrains Mono',monospace;color:var(--cyan);font-size:1.1rem;flex:0 0 auto;
+  }
+  .faq details[open] summary::after{content:"–";}
+  .faq .a{padding:0 18px 16px;color:var(--txt-dim);font-size:.93rem;}
+
+  /* ---------- form ---------- */
+  .order-sec{background:var(--bg2);border-top:1px solid var(--panel-line);}
+  form.order{
+    background:var(--panel);border:1px solid var(--panel-line);border-radius:6px;
+    padding:34px;margin-top:34px;max-width:680px;
+  }
+  .form-row{margin-bottom:20px;}
+  .form-row label{
+    display:block;font-family:'JetBrains Mono',monospace;font-size:.7rem;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--txt-dim);margin-bottom:7px;
+  }
+  .form-row input[type=text],
+  .form-row input[type=email],
+  .form-row textarea{
+    width:100%;padding:12px;border:1px solid var(--panel-line);border-radius:3px;
+    background:#0b141c;color:var(--txt);font-family:'Space Grotesk',sans-serif;font-size:.96rem;
+  }
+  .form-row input:focus,.form-row textarea:focus{outline:none;border-color:var(--cyan);}
+  .form-row textarea{min-height:90px;resize:vertical;}
+  .checks{display:flex;flex-direction:column;gap:10px;}
+  .check-item{
+    display:flex;align-items:center;gap:12px;padding:12px;cursor:pointer;
+    border:1px solid var(--panel-line);border-radius:3px;background:#0b141c;transition:border-color .15s;
+  }
+  .check-item:hover{border-color:var(--cyan-dim);}
+  .check-item input{accent-color:var(--orange);width:16px;height:16px;}
+  .ci-name{font-family:'JetBrains Mono',monospace;font-size:.84rem;}
+  .ci-price{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--amber);}
+  .form-note{font-size:.8rem;color:var(--txt-dim);margin:-4px 0 22px;}
+  .form-note.rodo{font-size:.74rem;line-height:1.6;margin-top:-14px;padding-top:14px;border-top:1px solid var(--panel-line);}
+  .form-note a{color:var(--cyan);}
+  .check-consent{align-items:flex-start;}
+  .check-consent input{margin-top:3px;flex-shrink:0;}
+  .check-consent .ci-name{font-family:'Space Grotesk',system-ui,sans-serif;font-size:.85rem;line-height:1.55;text-transform:none;letter-spacing:normal;color:var(--txt);}
+  .form-status{font-family:'JetBrains Mono',monospace;font-size:.76rem;margin-left:14px;}
+
+  footer{
+    border-top:1px solid var(--panel-line);padding:36px 24px;
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--txt-dim);
+  }
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  footer .fcontact{flex-basis:100%;padding-top:10px;}
+  footer .fcontact a{color:var(--cyan);text-decoration:none;border-bottom:1px solid var(--cyan-dim);}
+  footer .fcontact a:hover{border-bottom-color:var(--cyan);}
+  footer .fauthor{flex-basis:100%;padding-top:14px;margin-top:2px;border-top:1px solid var(--panel-line);}
+  footer .fauthor a{color:var(--txt-dim);text-decoration:none;border-bottom:1px solid var(--panel-line);}
+  footer .fauthor a:hover{color:var(--cyan);border-bottom-color:var(--cyan);}
+
+  /* ---------- linia 3: aplikacje dla biura budowy (pilotaż) ---------- */
+  .duo{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px;}
+  @media(max-width:1240px){.duo{grid-template-columns:1fr 1fr;}}
+  @media(max-width:900px){.duo{grid-template-columns:1fr;}}
+  .wrap.wide{max-width:1340px;}
+  .pcard{border:1px solid var(--panel-line);border-radius:6px;background:var(--bg);overflow:hidden;
+    display:flex;flex-direction:column;scroll-margin-top:80px;}
+  .pcard .calc-video{margin-top:0;border:none;border-bottom:1px solid var(--panel-line);border-radius:0;}
+  .pc-body{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1;}
+  .pc-body h3{font-size:1.4rem;}
+  .pc-body ul.feats{flex:1;}
+  .pc-body ul.feats li{font-size:.9rem;}
+  .pilot-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.64rem;font-weight:700;
+    letter-spacing:.08em;color:#0a1016;background:var(--orange);padding:2px 8px;border-radius:3px;
+    vertical-align:middle;margin-left:8px;}
+  .pstatus{margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--txt-dim);
+    border-top:1px solid var(--panel-line);padding-top:14px;}
+  .pstatus b{color:var(--amber);font-weight:500;}
+  .pc-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+  .pc-ctas .btn{padding:11px 18px;}
+
+  .setup-note{
+    padding:12px 24px;background:#2b230b;border-bottom:1px solid #6d5a1c;
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#e8cf7a;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .rv{opacity:1;transform:none;transition:none;}
+  }
+</style>
+<style>
+  /* ---------- podstrony produktowe ---------- */
+  .shero{padding:64px 24px 44px;}
+  .shero h1{font-size:clamp(1.9rem,4.4vw,3rem);font-weight:700;line-height:1.1;max-width:24ch;margin-top:14px;}
+  .shero h1 .hl{color:var(--cyan);}
+  .shero p.lead{color:var(--txt-dim);font-size:1.08rem;max-width:62ch;margin-top:20px;}
+  .shero .ctas{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;}
+  section.tight{padding-top:0;}
+  section.tight .calc-video{margin-top:0;}
+  .wrap.narrow{max-width:820px;}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px;}
+  @media(max-width:860px){.steps{grid-template-columns:1fr;}}
+  .step{border:1px solid var(--panel-line);border-radius:6px;background:var(--bg);padding:22px;}
+  .step .sn{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:700;color:var(--orange);}
+  .step h3{font-size:1.08rem;margin-top:8px;}
+  .step p{color:var(--txt-dim);font-size:.9rem;margin:8px 0 0;}
+  .tbl2{display:grid;grid-template-columns:1fr 1fr;margin-top:22px;border:1px solid var(--panel-line);
+    border-radius:6px;overflow:hidden;font-size:.88rem;}
+  .tbl2>div{padding:10px 14px;border-bottom:1px dashed var(--panel-line);color:var(--txt-dim);}
+  .tbl2>div:nth-child(odd){border-right:1px solid var(--panel-line);}
+  .tbl2 .th{background:var(--panel);color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:.72rem;
+    letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--panel-line);}
+  ul.feats li b{color:var(--txt);font-weight:600;}
+  .rv{opacity:1;transform:none;}
+  /* ---------- dokumenty (EULA) ---------- */
+  .doc{max-width:820px;margin:0 auto;padding:48px 24px 80px;}
+  .doc h1{font-size:1.9rem;line-height:1.2;margin:10px 0 6px;}
+  .doc .updated{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--txt-dim);margin-bottom:26px;}
+  .doc h2{font-size:1.1rem;margin:34px 0 10px;}
+  .doc h2 .num{font-family:'JetBrains Mono',monospace;color:var(--cyan);font-size:.9rem;margin-right:8px;}
+  .doc p,.doc li{color:var(--txt-dim);font-size:.94rem;}
+  .doc ol,.doc ul{padding-left:22px;}
+  .doc li{margin-bottom:7px;}
+  .doc strong{color:var(--txt);font-weight:600;}
+  .doc .box{background:var(--bg2);border:1px solid var(--panel-line);border-radius:4px;padding:16px 20px;margin:18px 0;}
+  .doc .box.warn{border-color:#6d5a1c;background:#1f1b0e;}
+  .doc .box p{margin:0 0 8px;} .doc .box p:last-child{margin:0;}
+  .back{display:inline-block;margin-top:40px;font-family:'JetBrains Mono',monospace;font-size:.82rem;
+    padding:12px 22px;border-radius:3px;text-decoration:none;color:var(--cyan);border:1.5px solid var(--cyan-dim);}
+  .back:hover{border-color:var(--cyan);background:rgba(34,195,230,.08);}
+  @media print{header.top,footer,.back{display:none;} body{background:#fff;color:#000;} .doc p,.doc li{color:#222;}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="index.html" aria-label="TEKTORIA — strona główna">
+    <img class="logo" src="img/tektoria-logo-poziome_ciemne-tlo.svg" alt="TEKTORIA" width="126" height="32">
+    <span class="tag">CAD · APLIKACJE DLA PROJEKTANTÓW I KIEROWNIKÓW</span>
+  </a>
+  <nav>
+    <a href="index.html">‹ TEKTORIA</a>
+    <a href="tek-audytor.html">O APLIKACJI</a>
+    <a href="index.html?pilot=audytor#zamow" class="cta">ZGŁOSZENIE</a>
+  </nav>
+</header>
+
+<div class="doc">
+  <div class="eyebrow">dokument · wzór ogólny</div>
+  <h1>Warunki licencji TEK-AUDYTOR — wersja pilotażowa</h1>
+  <div class="updated">wersja wzoru: EULA-AUDYTOR-PILOT-2026-10-06 · obowiązuje wyłącznie w pilotażu</div>
+
+  <div class="box warn">
+    <p><strong>Czym jest ten dokument.</strong> To wzór ogólny warunków, na jakich udostępniam aplikację
+    TEK-AUDYTOR uczestnikom pilotażu. Aplikacja nie jest obecnie sprzedawana, a ten dokument nie jest
+    regulaminem sprzedaży. Zanim przekażę aplikację, uczestnik dostaje ode mnie e-mailem te warunki
+    uzupełnione o dane stron i okres pilotażu — dopiero wtedy stają się umową.</p>
+    <p>Warunki licencji odpłatnej (cena, model licencji, regulamin, prawa kupującego) opiszę osobno,
+    przed uruchomieniem sprzedaży.</p>
+  </div>
+
+  <h2><span class="num">1.</span>Pojęcia</h2>
+  <ol>
+    <li><strong>Licencjodawca</strong> — autor Aplikacji, prowadzący serwis tektoria.pl. Pełne dane
+    identyfikacyjne Licencjodawcy są podawane Uczestnikowi przy przekazaniu Aplikacji.</li>
+    <li><strong>Uczestnik</strong> — osoba, której Licencjodawca przekazał Aplikację w ramach Pilotażu,
+    działająca we własnym imieniu albo w imieniu reprezentowanego podmiotu (np. pracodawcy).</li>
+    <li><strong>Aplikacja</strong> — program TEK-AUDYTOR w wersji pilotażowej (prototyp), w postaci programu dla Windows lub pliku uruchamianego w przeglądarce, wraz
+    z dokumentacją i poprawkami przekazanymi w trakcie Pilotażu.</li>
+    <li><strong>Pilotaż</strong> — nieodpłatne, ograniczone w czasie testowanie Aplikacji przez Uczestnika
+    na wybranej przez niego dokumentacji.</li>
+    <li><strong>Dane Uczestnika</strong> — wszystkie treści wprowadzone do Aplikacji lub w niej
+    wytworzone: dane projektu, dokumenty wczytane do anonimizacji, listy zasłanianych fraz, uwagi,
+    komentarze i raporty.</li>
+    <li><strong>Narzędzie AI</strong> — zewnętrzny asystent AI wybrany przez Uczestnika, któremu Uczestnik
+    sam przekazuje prompt i dokumenty. Nie jest częścią Aplikacji.</li>
+  </ol>
+
+  <h2><span class="num">2.</span>Zawarcie umowy i jej charakter</h2>
+  <ol>
+    <li>Umowa licencyjna zostaje zawarta z chwilą przekazania Uczestnikowi Aplikacji wraz z tymi warunkami
+    i przyjęcia ich przez Uczestnika (np. odpowiedzią e-mail lub zaznaczeniem akceptacji w Aplikacji).</li>
+    <li>Licencja jest <strong>nieodpłatna</strong>. Udział w Pilotażu nie zobowiązuje do zakupu przyszłej
+    wersji, nie wymaga zgody marketingowej i nie przedłuża się automatycznie w umowę odpłatną.</li>
+    <li>Przekazywanie opinii jest dobrowolne i nie jest warunkiem udziału w Pilotażu.</li>
+  </ol>
+
+  <h2><span class="num">3.</span>Zakres licencji</h2>
+  <ol>
+    <li>Licencjodawca udziela Uczestnikowi <strong>licencji niewyłącznej i niezbywalnej</strong>,
+    na czas Pilotażu, bez ograniczeń terytorialnych.</li>
+    <li>Licencja obejmuje następujące pola eksploatacji:
+      <ul>
+        <li>zapisanie Aplikacji w pamięci komputera Uczestnika, jej uruchamianie i wyświetlanie,</li>
+        <li>sporządzanie kopii zapasowej Aplikacji,</li>
+        <li>korzystanie z Aplikacji na potrzeby własne Uczestnika albo reprezentowanego przez niego podmiotu,
+        w zakresie uzgodnionym na czas Pilotażu.</li>
+      </ul>
+    </li>
+    <li>Licencja jest udzielana jednej osobie. Udostępnienie Aplikacji kolejnym osobom z tej samej firmy
+    wymaga uzgodnienia z Licencjodawcą.</li>
+  </ol>
+
+  <h2><span class="num">4.</span>Czego licencja nie obejmuje</h2>
+  <ol>
+    <li>Uczestnik nie może odsprzedawać, wynajmować, użyczać ani udostępniać Aplikacji osobom trzecim,
+    udzielać dalszych licencji ani usuwać z Aplikacji oznaczeń autora.</li>
+    <li>Uczestnik nie może modyfikować, tłumaczyć ani dekompilować Aplikacji, z zastrzeżeniem czynności,
+    na które pozwala art. 75 ustawy o prawie autorskim i prawach pokrewnych. Postanowienia sprzeczne
+    z art. 75 ust. 2 i 3 tej ustawy są nieważne (art. 76) i niniejsze warunki ich nie ograniczają.</li>
+  </ol>
+
+  <h2><span class="num">5.</span>Charakter prototypu</h2>
+  <ol>
+    <li>Aplikacja jest wersją testową. Może zawierać błędy, a jej funkcje, listy kontrolne i treść promptów
+    mogą się zmieniać między kolejnymi wersjami przekazanymi w Pilotażu.</li>
+    <li>Uczestnik przechowuje niezależne kopie Danych Uczestnika. Aplikacja nie przechowuje dokumentów
+    PDF i nie powinna być jedynym miejscem przechowywania wyników audytu.</li>
+    <li>Wykaz aktów prawnych i norm w Aplikacji odpowiada stanowi prawnemu wskazanemu w programie.
+    Uczestnik sprawdza jego aktualność przed użyciem raportu wobec osób trzecich.</li>
+  </ol>
+
+  <h2><span class="num">6.</span>Aplikacja jako narzędzie pomocnicze</h2>
+  <ol>
+    <li>Aplikacja wspiera przegląd dokumentacji: przygotowuje prompt, pomaga zasłonić dane w dokumentach,
+    porządkuje uwagi i raport. <strong>Nie zastępuje</strong> sprawdzenia projektu przez osobę
+    z uprawnieniami (art. 20 ust. 2 ustawy – Prawo budowlane), ekspertyzy technicznej ani porady prawnej.</li>
+    <li>Uwagi zwrócone przez Narzędzie AI są hipotezami. Mogą być błędne, niepełne albo powoływać
+    nieistniejące lub nieaktualne przepisy i normy. Każdą uwagę weryfikuje Uczestnik; brak uwagi
+    nie oznacza poprawności dokumentacji.</li>
+    <li>Za treść raportu, oceny wag oraz decyzje podjęte na jego podstawie (oferta, umowa, realizacja)
+    odpowiada osoba, która raport sporządza i podpisuje.</li>
+  </ol>
+
+  <h2><span class="num">7.</span>Dane Uczestnika, anonimizacja i Narzędzie AI</h2>
+  <ol>
+    <li>Aplikacja <strong>nie łączy się z internetem</strong> i sama nie wysyła żadnych danych. Dane
+    Uczestnika są zapisywane wyłącznie lokalnie — w folderze na komputerze Uczestnika albo w pamięci
+    jego przeglądarki. Licencjodawca nie ma do nich dostępu i nie jest ich administratorem ani podmiotem
+    przetwarzającym.</li>
+    <li>Przekazanie promptu i dokumentów do Narzędzia AI jest samodzielną czynnością Uczestnika, na
+    warunkach dostawcy tego narzędzia. Przed przekazaniem Uczestnik upewnia się, że ma do tego prawo:
+    sprawdza umowę i obowiązek poufności wobec inwestora, zasady swojego pracodawcy, prawa autorskie
+    do dokumentacji oraz podstawę przetwarzania danych osobowych.</li>
+    <li>Funkcja anonimizacji zasłania wyłącznie te fragmenty, które Uczestnik zakrył i zatwierdził.
+    Zasłony proponowane automatycznie są podpowiedzią i wymagają przejrzenia każdej strony. Treść
+    techniczna dokumentu pozostaje widoczna i może pozwolić na rozpoznanie inwestycji. Anonimizacja
+    nie zastępuje zgody inwestora ani pracodawcy, jeżeli jest wymagana.</li>
+    <li>Pliki projektów i raporty zawierają dane inwestycji — Uczestnik zabezpiecza je jak dokumenty
+    poufne.</li>
+    <li>Zgłoszenia błędów i zrzuty ekranu przekazywane Licencjodawcy powinny być zanonimizowane.
+    Dane kontaktowe Uczestnika Licencjodawca przetwarza zgodnie z
+    <a href="polityka-prywatnosci.html">polityką prywatności</a>.</li>
+  </ol>
+
+  <h2><span class="num">8.</span>Prawa autorskie</h2>
+  <ol>
+    <li>Autorskie prawa majątkowe do Aplikacji i oznaczenia TEKTORIA pozostają przy Licencjodawcy.
+    Umowa nie przenosi tych praw.</li>
+    <li>Dane Uczestnika należą do Uczestnika lub reprezentowanego przez niego podmiotu. Licencjodawca
+    nie nabywa do nich żadnych praw.</li>
+    <li>Licencjodawca może wykorzystać przekazane mu sugestie funkcjonalne do rozwoju Aplikacji,
+    bez wykorzystywania Danych Uczestnika.</li>
+    <li>Komponenty zewnętrzne użyte w Aplikacji podlegają swoim licencjom, wskazanym w dokumentacji
+    wydania.</li>
+  </ol>
+
+  <h2><span class="num">9.</span>Odpowiedzialność</h2>
+  <ol>
+    <li>Strony odpowiadają na zasadach prawa polskiego. W zakresie dopuszczalnym przez prawo
+    Licencjodawca nie odpowiada za utracone korzyści, za treść odpowiedzi Narzędzia AI, za skutki
+    przekazania dokumentów do Narzędzia AI ani za skutki decyzji podjętych na podstawie niezweryfikowanych
+    uwag.</li>
+    <li>Ograniczenie to nie dotyczy szkody wyrządzonej umyślnie (art. 473 § 2 Kodeksu cywilnego)
+    ani praw, których nie można wyłączyć ani ograniczyć umową — w tym praw konsumenta i przedsiębiorcy
+    korzystającego z ochrony przysługującej konsumentom, jeżeli mają zastosowanie.</li>
+  </ol>
+
+  <h2><span class="num">10.</span>Czas trwania i zakończenie</h2>
+  <ol>
+    <li>Licencja trwa przez okres Pilotażu wskazany przy przekazaniu Aplikacji.</li>
+    <li>Każda strona może zakończyć udział w Pilotażu w dowolnym momencie, informując drugą stronę
+    e-mailem.</li>
+    <li>Po zakończeniu Uczestnik przestaje korzystać z Aplikacji. Dane Uczestnika pozostają u niego —
+    przed zakończeniem może je wyeksportować. Licencjodawca nie usuwa zdalnie żadnych danych.</li>
+  </ol>
+
+  <h2><span class="num">11.</span>Postanowienia końcowe</h2>
+  <ol>
+    <li>Do umowy stosuje się prawo polskie, w szczególności ustawę o prawie autorskim i prawach
+    pokrewnych oraz Kodeks cywilny. Spory rozstrzyga sąd właściwy według przepisów ogólnych.</li>
+    <li>O istotnych zmianach warunków Licencjodawca informuje Uczestnika e-mailem. Zmiany nie działają
+    wstecz.</li>
+    <li>Kontakt w sprawach licencji i Pilotażu: <a href="mailto:kontakt@tektoria.pl">kontakt@tektoria.pl</a>.</li>
+  </ol>
+
+  <a class="back" href="tek-audytor.html">‹ wróć do opisu TEK-AUDYTOR</a>
+</div>
+
+
+<footer>
+  <div class="wrap">
+    <span>TEKTORIA · oprogramowanie dla inżynierów · CAD i aplikacje dla projektantów i kierowników</span>
+    <span><a href="index.html" style="color:var(--txt-dim);">‹ wszystkie produkty</a></span>
+    <span class="fcontact">kontakt: <a href="mailto:kontakt@tektoria.pl">kontakt@tektoria.pl</a> &nbsp;·&nbsp; <a href="polityka-prywatnosci.html">polityka prywatności</a> &nbsp;·&nbsp; warunki pilotażu: <a href="eula-tek-biuro-budowy.html">TEK-BIURO BUDOWY</a>, <a href="eula-tek-bhp.html">TEK-BHP</a>, <a href="eula-tek-audytor.html">TEK-AUDYTOR</a></span>
+    
+    <span class="fauthor">autor i administrator danych: <a href="https://js-3web.github.io/js-wizytowka/" target="_blank" rel="noopener">Jarosław Sarafin — wizytówka</a> · projektant konstrukcji i inspektor nadzoru, Lublin</span>
+  </div>
+</footer>
+
+</body>
+</html>

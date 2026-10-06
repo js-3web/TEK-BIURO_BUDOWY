@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEK-BIURO BUDOWY – uwagi na rzutach, raporty, narady | TEKTORIA</title>
+<meta name="description" content="Aplikacja dla kierownika budowy hal: uwagi ze zdjęciem na rzucie, mail do firmy, raporty w szablonie PowerPoint, protokoły, harmonogram MS Project. Pilotaż.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tektoria.pl/biuro-budowy.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b1622">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TEK-BIURO BUDOWY – uwagi na rzutach, raporty, narady | TEKTORIA">
+<meta property="og:description" content="Aplikacja dla kierownika budowy hal: uwagi ze zdjęciem na rzucie, mail do firmy, raporty w szablonie PowerPoint, protokoły, harmonogram MS Project. Pilotaż.">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:url" content="https://tektoria.pl/biuro-budowy.html">
+<meta property="og:site_name" content="TEKTORIA">
+<meta property="og:image" content="https://tektoria.pl/video/tek-biuro-demo-poster.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:image:alt" content="TEK-BIURO BUDOWY — biuro budowy w jednym miejscu: uwagi na rzutach, narady, raporty, harmonogram">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "TEKTORIA",
+          "item": "https://tektoria.pl/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "TEK-BIURO BUDOWY",
+          "item": "https://tektoria.pl/biuro-budowy.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Czy to zastępuje dziennik budowy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nie. Dziennik budowy prowadzisz tak jak dotąd — w systemie EDB albo w wersji papierowej. Aplikacja przygotowuje z raportu dziennego projekt wpisu, który przepisujesz lub kopiujesz do dziennika."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy potrzebuję MS Project?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nie. Harmonogram wczytasz też z Excela lub CSV. Jeśli pracujesz w MS Project, zapisz plik jako XML (Plik → Zapisz jako → XML). Pliku .mpp aplikacja nie czyta bezpośrednio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy mogę użyć szablonu raportu mojej budowy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tak. Wgrywasz szablon PowerPoint (.pptx) budowy, a aplikacja wstawia w niego treść i zdjęcia. Pola w szablonie oznaczasz sam albo z pomocą asystenta AI."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy aplikacja wysyła maile sama?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "W obecnej wersji nie. Przygotowuje gotową wiadomość — z adresem, tematem i treścią albo jako plik .eml ze zdjęciami — a wysyłasz ją ze swojej poczty. Automatyczna wysyłka jest planowana w wersji zespołowej."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy potrzebuję płatnego AI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nie. Asystent przygotowuje polecenie, które wklejasz do narzędzia AI, z którego już korzystasz — także darmowego. Bez AI wszystkie moduły też działają; tracisz tylko podpowiedzi przy protokołach i raportach. Zanim wkleisz cokolwiek do zewnętrznego AI, sprawdź zasady swojej firmy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy działa na telefonie?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tak, w przeglądarce telefonu (układ mobilny, aparat). W obecnej wersji dane z telefonu przenosisz na komputer kopią. Synchronizacja przyjdzie z wersją zespołową."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Ile kosztuje?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cena i model licencji zostaną ustalone po pilotażu. Wersja jednostanowiskowa i zespołowa mogą mieć inny model, bo zespołowa wymaga serwera, który kosztuje co miesiąc. Udział w pilotażu nie zobowiązuje do zakupu."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kto to robi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Jarosław Sarafin — inżynier budownictwa z uprawnieniami konstrukcyjno-budowlanymi bez ograniczeń, od ok. 8 lat na budowach hal przemysłowych i logistycznych. Ten sam autor co pozostałe narzędzia TEKTORIA."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  /* ---------- fonty hostowane lokalnie (SIL OFL, pliki w /fonts) ----------
+     Powod: brak polaczenia z serwerami Google przy kazdym wejsciu = brak
+     przekazywania adresu IP odwiedzajacego podmiotowi trzeciemu (RODO). */
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/space-grotesk-latin-ext-400-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/space-grotesk-latin-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/space-grotesk-latin-ext-500-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/space-grotesk-latin-500-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;
+    src:url('fonts/space-grotesk-latin-ext-600-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;
+    src:url('fonts/space-grotesk-latin-600-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/space-grotesk-latin-ext-700-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/space-grotesk-latin-700-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-ext-400-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-ext-500-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-ext-700-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/jetbrains-mono-latin-700-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+
+
+  :root{
+    --bg:#0a1016;
+    --bg2:#0d151d;
+    --panel:#101b25;
+    --panel-line:#1d2f3e;
+    --grid:rgba(72,132,182,.09);
+    --txt:#d7e3ec;
+    --txt-dim:#8ba3b5;
+    --cyan:#22c3e6;        /* cyjan z logo TEKTORIA v4 (28.09.2026) */
+    --cyan-dim:#1a8fad;
+    --amber:#ffb24d;
+    --orange:#ff6b35;
+    --green:#7be07b;
+    --sel-blue:#2c76b8;
+    --radius:3px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--txt);
+    font-family:'Space Grotesk',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{margin:0;letter-spacing:-0.01em;}
+  code,.mono{font-family:'JetBrains Mono',monospace;}
+  a{color:var(--cyan);}
+  ::selection{background:var(--sel-blue);color:#fff;}
+
+  .cadgrid{
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:34px 34px;
+  }
+
+  /* ---------- topbar ---------- */
+  header.top{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,16,22,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--panel-line);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 26px;
+  }
+  .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;}
+  .brand .logo{display:block;height:32px;width:auto;}
+  .brand .tag{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--txt-dim);letter-spacing:.1em;
+    border-left:1px solid var(--panel-line);padding-left:14px;line-height:1.35;white-space:nowrap;}
+  @media(max-width:1480px){.brand .tag{display:none;}}
+  header.top nav{display:flex;align-items:center;gap:4px;}
+  header.top nav a{
+    color:var(--txt-dim);text-decoration:none;
+    font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.04em;
+    padding:7px 12px;border-radius:3px;
+  }
+  header.top nav a:hover{color:var(--cyan);background:rgba(34,195,230,.07);}
+  header.top nav a.cta{
+    border:1px solid var(--orange);color:var(--orange);margin-left:8px;
+  }
+  header.top nav a.cta:hover{background:var(--orange);color:#0a1016;}
+  @media(max-width:1160px){header.top nav a:not(.cta){display:none;}}
+
+  /* ---------- hero: fake ZWCAD viewport ---------- */
+  .hero{padding:64px 24px 40px;position:relative;overflow:hidden;}
+  .hero-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;}
+  @media(max-width:920px){.hero-inner{grid-template-columns:1fr;}}
+  .hero h1{
+    font-size:clamp(1.9rem,4.4vw,3rem);
+    font-weight:700;line-height:1.1;
+  }
+  .hero h1 .hl{color:var(--cyan);}
+  .hero h1 .strike{color:var(--txt-dim);text-decoration:line-through;text-decoration-color:var(--orange);text-decoration-thickness:3px;}
+  .hero p.lead{color:var(--txt-dim);font-size:1.08rem;max-width:48ch;margin-top:20px;}
+  .hero .ctas{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.82rem;
+    padding:13px 24px;border-radius:var(--radius);text-decoration:none;
+    border:1.5px solid transparent;cursor:pointer;transition:all .15s ease;
+  }
+  .btn-primary{background:var(--orange);color:#0a1016;font-weight:700;}
+  .btn-primary:hover{background:#ff8556;transform:translateY(-2px);box-shadow:0 6px 22px rgba(255,107,53,.28);}
+  .btn-ghost{color:var(--cyan);border-color:var(--cyan-dim);}
+  .btn-ghost:hover{border-color:var(--cyan);background:rgba(34,195,230,.08);}
+  .hero-badges{
+    margin-top:34px;display:flex;gap:20px;flex-wrap:wrap;
+    font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--txt-dim);
+  }
+  .hero-badges span::before{content:"▸ ";color:var(--cyan);}
+
+  /* fake CAD window */
+  .cadwin{
+    border:1px solid var(--panel-line);border-radius:6px;overflow:hidden;
+    background:var(--bg2);box-shadow:0 24px 60px rgba(0,0,0,.5);
+  }
+  .cadwin .bar{
+    display:flex;align-items:center;gap:8px;
+    background:#131f2a;padding:8px 12px;border-bottom:1px solid var(--panel-line);
+    font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--txt-dim);
+  }
+  .cadwin .bar .dot{width:9px;height:9px;border-radius:50%;background:#22384a;}
+  .cadwin .bar .dot.r{background:#e0564d;}
+  .cadwin .bar .dot.y{background:#e0a53f;}
+  .cadwin .bar .dot.g{background:#4fbf6b;}
+  .cadwin .bar .ttl{margin-left:6px;}
+  .cadwin .viewport{
+    position:relative;aspect-ratio:4/3.1;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:26px 26px;background-color:#0b141c;
+  }
+  .cadwin .ucs{position:absolute;left:10px;bottom:10px;opacity:.7;}
+  .cadwin .cross{position:absolute;pointer-events:none;opacity:.35;}
+  .cadwin .cmdline{
+    background:#0a1219;border-top:1px solid var(--panel-line);
+    padding:9px 12px;font-family:'JetBrains Mono',monospace;font-size:.76rem;
+    color:var(--green);min-height:56px;
+  }
+  .cmdline .hist{color:#5d7788;font-size:.68rem;line-height:1.5;}
+  .cmdline .cur .prompt{color:var(--txt-dim);}
+  .cmdline .caret{
+    display:inline-block;width:8px;height:14px;background:var(--green);
+    vertical-align:-2px;animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  #hebDraw path.steel{
+    stroke:var(--cyan);stroke-width:2;fill:none;
+    stroke-linejoin:round;
+  }
+  #hebDraw .axis{stroke:var(--orange);stroke-width:1;stroke-dasharray:10 4 2 4;opacity:0;}
+  #hebDraw .dim{stroke:#6f93ad;stroke-width:1;opacity:0;}
+  #hebDraw text{font-family:'JetBrains Mono',monospace;font-size:11px;fill:#9fc0d6;opacity:0;}
+  #hebDraw .dimshow{transition:opacity .5s;}
+  #paramTbl{
+    position:absolute;right:12px;top:12px;
+    background:rgba(13,21,29,.94);border:1px solid var(--panel-line);border-radius:3px;
+    font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--txt-dim);
+    padding:8px 10px;opacity:0;transform:translateY(-6px);transition:all .6s ease;
+  }
+  #paramTbl.show{opacity:1;transform:translateY(0);}
+  #paramTbl .h{color:var(--cyan);font-weight:700;margin-bottom:3px;}
+  #paramTbl td{padding:1px 6px 1px 0;}
+  #paramTbl td:last-child{color:var(--txt);text-align:right;}
+
+  /* ---------- stats strip ---------- */
+  .stats{border-top:1px solid var(--panel-line);border-bottom:1px solid var(--panel-line);background:var(--bg2);}
+  .stats .wrap{
+    max-width:1080px;margin:0 auto;padding:28px 24px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:22px;
+  }
+  @media(max-width:820px){.stats .wrap{grid-template-columns:repeat(2,1fr);}}
+  .stat .n{font-family:'JetBrains Mono',monospace;font-size:1.7rem;font-weight:700;color:var(--cyan);}
+  .stat .l{font-size:.82rem;color:var(--txt-dim);margin-top:2px;}
+
+  /* ---------- sections ---------- */
+  section{padding:78px 24px;}
+  .wrap{max-width:1080px;margin:0 auto;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--orange);
+  }
+  .eyebrow::before{content:"// ";color:var(--txt-dim);}
+  h2.sec{font-size:clamp(1.55rem,3.2vw,2.2rem);margin-top:10px;max-width:24ch;}
+  p.sec-lead{color:var(--txt-dim);max-width:60ch;margin-top:14px;}
+
+  /* reveal on scroll */
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+  .rv.in{opacity:1;transform:none;}
+
+  /* ---------- product layout ---------- */
+  .prod{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start;
+    margin-top:44px;
+  }
+  @media(max-width:880px){.prod{grid-template-columns:1fr;}}
+  .prod .cmd-chip,.pc-body .cmd-chip{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.7rem;
+    background:#0a1219;border:1px solid var(--panel-line);color:var(--green);
+    padding:4px 10px;border-radius:3px;margin-bottom:14px;
+  }
+  .prod h3{font-size:1.5rem;}
+  .pc-body .cmd-chip{align-self:flex-start;}
+  .prod .file,.pc-body .file{font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--txt-dim);margin-top:4px;}
+  .prod p.desc{color:var(--txt-dim);margin-top:16px;}
+  ul.feats{list-style:none;padding:0;margin:20px 0 0;}
+  ul.feats li{
+    padding:9px 0 9px 26px;position:relative;font-size:.94rem;
+    border-bottom:1px dashed var(--panel-line);
+  }
+  ul.feats li::before{
+    content:"＋";position:absolute;left:0;color:var(--cyan);
+    font-family:'JetBrains Mono',monospace;
+  }
+  .priceline{
+    display:flex;align-items:center;gap:18px;margin-top:26px;flex-wrap:wrap;
+  }
+  .priceline .price{
+    font-family:'JetBrains Mono',monospace;font-size:1.7rem;font-weight:700;color:var(--amber);
+  }
+  .priceline .price small{font-size:.66rem;color:var(--txt-dim);display:block;font-weight:400;}
+  .doc-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+  .doc-soon{color:var(--txt-dim);opacity:.75;border-style:dashed;cursor:default;}
+  .doc-link{
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;
+    padding:8px 12px;border:1px solid var(--panel-line);border-radius:3px;
+    color:var(--txt-dim);text-decoration:none;background:var(--bg2);
+  }
+  .doc-link:hover{border-color:var(--cyan);color:var(--cyan);}
+  .compat{
+    font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--green);
+    margin-top:18px;
+  }
+  .compat::before{content:"✓ ";}
+
+  /* ---------- TEK-CALC: wideo + cennik modułowy ---------- */
+  .calc-video{margin-top:40px;border:1px solid var(--panel-line);border-radius:6px;
+    background:#0b141c;overflow:hidden;}
+  .calc-video video{display:block;width:100%;height:auto;background:#0b141c;}
+  .calc-video .vcap{
+    font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--txt-dim);
+    padding:9px 12px;background:#0d1620;border-top:1px solid var(--panel-line);
+  }
+  .modprice{margin-top:46px;border:1px solid var(--panel-line);border-radius:6px;
+    background:var(--bg2);overflow:hidden;}
+  .modprice .mp-head{
+    display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    padding:16px 18px;border-bottom:1px solid var(--panel-line);background:var(--panel);
+  }
+  .modprice .mp-head h3{font-size:1.12rem;}
+  .modprice .mp-head span{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--txt-dim);}
+  .mp-row{
+    display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1.5fr) auto;
+    gap:14px;align-items:baseline;padding:11px 18px;
+    border-bottom:1px dashed var(--panel-line);font-size:.9rem;
+  }
+  .mp-row:last-child{border-bottom:none;}
+  .mp-row .mp-n{font-weight:600;}
+  .mp-row .mp-d{color:var(--txt-dim);font-size:.83rem;}
+  .mp-row .mp-p{font-family:'JetBrains Mono',monospace;color:var(--amber);
+    font-size:.92rem;font-weight:700;text-align:right;white-space:nowrap;}
+  .mp-sum{
+    display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    padding:13px 18px;background:var(--panel);border-top:1px solid var(--panel-line);
+    font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--txt-dim);
+  }
+  .mp-sum b{color:var(--txt);}
+  .modprice.limits .mp-row{grid-template-columns:minmax(0,1.05fr) minmax(0,2fr);}
+  @media(max-width:720px){
+    .mp-row{grid-template-columns:1fr auto;}
+    .modprice.limits .mp-row{grid-template-columns:1fr;}
+    .mp-row .mp-d{grid-column:1 / -1;}
+  }
+
+  /* frame player (screeny) */
+  .frame-player{border:1px solid var(--panel-line);border-radius:6px;background:var(--bg2);overflow:hidden;}
+  .fp-stage{position:relative;aspect-ratio:16/9;background:#0b141c;overflow:hidden;}
+  .fp-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#0b141c;opacity:0;transition:opacity .35s;}
+  .fp-placeholder-frame{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+    background:repeating-linear-gradient(135deg, rgba(72,132,182,.06) 0 12px, transparent 12px 24px),#0b141c;
+    color:var(--txt-dim);font-family:'JetBrains Mono',monospace;font-size:.8rem;text-align:center;padding:0 24px;
+    opacity:0;transition:opacity .35s;
+  }
+  .fp-placeholder-frame .n{font-size:1.7rem;font-weight:700;color:var(--orange);}
+  .fp-caption{
+    position:absolute;left:0;right:0;bottom:0;padding:10px 14px 12px;
+    background:linear-gradient(0deg, rgba(11,20,28,.97) 0%, rgba(11,20,28,.93) 58%, rgba(11,20,28,0) 100%);
+    color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:.72rem;
+  }
+  .fp-progress{position:absolute;top:0;left:0;right:0;display:flex;gap:3px;padding:8px 10px 0;}
+  .fp-progress .seg{flex:1;height:3px;background:rgba(215,227,236,.18);border-radius:2px;overflow:hidden;}
+  .fp-progress .seg i{display:block;height:100%;width:0%;background:var(--orange);}
+  .fp-progress .seg.done i{width:100%;}
+  .fp-controls{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#0d1620;}
+  .fp-controls button{
+    background:transparent;border:1px solid var(--panel-line);color:var(--txt-dim);
+    font-family:'JetBrains Mono',monospace;font-size:.74rem;border-radius:3px;padding:5px 11px;cursor:pointer;
+  }
+  .fp-controls button:hover{border-color:var(--cyan);color:var(--cyan);}
+  .fp-frame-idx{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--txt-dim);}
+  .media-note{
+    margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:.66rem;color:#5d7788;
+  }
+
+  /* ---------- bundle ---------- */
+  .bundle{
+    margin-top:70px;border:1px solid var(--cyan-dim);border-radius:6px;
+    background:linear-gradient(135deg, #0d1a20, #0f2231);
+    padding:38px 34px;display:flex;justify-content:space-between;align-items:center;gap:26px;flex-wrap:wrap;
+    position:relative;overflow:hidden;
+  }
+  .bundle::after{
+    content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;
+    border:1px dashed rgba(34,195,230,.25);border-radius:50%;
+  }
+  .bundle .save{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.7rem;
+    color:#0a1016;background:var(--cyan);padding:3px 10px;border-radius:3px;font-weight:700;
+  }
+  .bundle h3{font-size:1.4rem;margin-top:12px;}
+  .bundle p{color:var(--txt-dim);max-width:46ch;margin-top:8px;font-size:.94rem;}
+  .bundle .bprice{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--amber);}
+  .bundle .bprice small{display:block;font-size:.68rem;color:var(--txt-dim);font-weight:400;}
+
+  /* ---------- darmowe lispy ---------- */
+  .freegrid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:16px;margin-top:40px;
+  }
+  .freecard{
+    border:1px solid var(--panel-line);border-radius:6px;background:var(--bg2);
+    padding:22px;display:flex;flex-direction:column;gap:10px;
+  }
+  .freecard .fname{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--green);}
+  .freecard h3{font-size:1.05rem;}
+  .freecard p{color:var(--txt-dim);font-size:.88rem;margin:0;flex:1;}
+  .freecard .dl{
+    display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+    font-family:'JetBrains Mono',monospace;font-size:.76rem;
+    color:var(--cyan);text-decoration:none;
+    border:1px solid var(--cyan-dim);border-radius:3px;padding:9px 14px;
+    transition:all .15s;
+  }
+  .freecard .dl:hover{background:rgba(34,195,230,.1);border-color:var(--cyan);}
+  .free-note{
+    margin-top:22px;font-size:.84rem;color:var(--txt-dim);max-width:70ch;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq{max-width:760px;margin:40px auto 0;}
+  .faq details{
+    border:1px solid var(--panel-line);border-radius:4px;background:var(--bg2);
+    margin-bottom:10px;overflow:hidden;
+  }
+  .faq summary{
+    cursor:pointer;padding:16px 18px;font-weight:500;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+  }
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{
+    content:"+";font-family:'JetBrains Mono',monospace;color:var(--cyan);font-size:1.1rem;flex:0 0 auto;
+  }
+  .faq details[open] summary::after{content:"–";}
+  .faq .a{padding:0 18px 16px;color:var(--txt-dim);font-size:.93rem;}
+
+  /* ---------- form ---------- */
+  .order-sec{background:var(--bg2);border-top:1px solid var(--panel-line);}
+  form.order{
+    background:var(--panel);border:1px solid var(--panel-line);border-radius:6px;
+    padding:34px;margin-top:34px;max-width:680px;
+  }
+  .form-row{margin-bottom:20px;}
+  .form-row label{
+    display:block;font-family:'JetBrains Mono',monospace;font-size:.7rem;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--txt-dim);margin-bottom:7px;
+  }
+  .form-row input[type=text],
+  .form-row input[type=email],
+  .form-row textarea{
+    width:100%;padding:12px;border:1px solid var(--panel-line);border-radius:3px;
+    background:#0b141c;color:var(--txt);font-family:'Space Grotesk',sans-serif;font-size:.96rem;
+  }
+  .form-row input:focus,.form-row textarea:focus{outline:none;border-color:var(--cyan);}
+  .form-row textarea{min-height:90px;resize:vertical;}
+  .checks{display:flex;flex-direction:column;gap:10px;}
+  .check-item{
+    display:flex;align-items:center;gap:12px;padding:12px;cursor:pointer;
+    border:1px solid var(--panel-line);border-radius:3px;background:#0b141c;transition:border-color .15s;
+  }
+  .check-item:hover{border-color:var(--cyan-dim);}
+  .check-item input{accent-color:var(--orange);width:16px;height:16px;}
+  .ci-name{font-family:'JetBrains Mono',monospace;font-size:.84rem;}
+  .ci-price{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--amber);}
+  .form-note{font-size:.8rem;color:var(--txt-dim);margin:-4px 0 22px;}
+  .form-note.rodo{font-size:.74rem;line-height:1.6;margin-top:-14px;padding-top:14px;border-top:1px solid var(--panel-line);}
+  .form-note a{color:var(--cyan);}
+  .check-consent{align-items:flex-start;}
+  .check-consent input{margin-top:3px;flex-shrink:0;}
+  .check-consent .ci-name{font-family:'Space Grotesk',system-ui,sans-serif;font-size:.85rem;line-height:1.55;text-transform:none;letter-spacing:normal;color:var(--txt);}
+  .form-status{font-family:'JetBrains Mono',monospace;font-size:.76rem;margin-left:14px;}
+
+  footer{
+    border-top:1px solid var(--panel-line);padding:36px 24px;
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--txt-dim);
+  }
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  footer .fcontact{flex-basis:100%;padding-top:10px;}
+  footer .fcontact a{color:var(--cyan);text-decoration:none;border-bottom:1px solid var(--cyan-dim);}
+  footer .fcontact a:hover{border-bottom-color:var(--cyan);}
+  footer .fauthor{flex-basis:100%;padding-top:14px;margin-top:2px;border-top:1px solid var(--panel-line);}
+  footer .fauthor a{color:var(--txt-dim);text-decoration:none;border-bottom:1px solid var(--panel-line);}
+  footer .fauthor a:hover{color:var(--cyan);border-bottom-color:var(--cyan);}
+
+  /* ---------- linia 3: aplikacje dla biura budowy (pilotaż) ---------- */
+  .duo{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px;}
+  @media(max-width:1240px){.duo{grid-template-columns:1fr 1fr;}}
+  @media(max-width:900px){.duo{grid-template-columns:1fr;}}
+  .wrap.wide{max-width:1340px;}
+  .pcard{border:1px solid var(--panel-line);border-radius:6px;background:var(--bg);overflow:hidden;
+    display:flex;flex-direction:column;scroll-margin-top:80px;}
+  .pcard .calc-video{margin-top:0;border:none;border-bottom:1px solid var(--panel-line);border-radius:0;}
+  .pc-body{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1;}
+  .pc-body h3{font-size:1.4rem;}
+  .pc-body ul.feats{flex:1;}
+  .pc-body ul.feats li{font-size:.9rem;}
+  .pilot-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.64rem;font-weight:700;
+    letter-spacing:.08em;color:#0a1016;background:var(--orange);padding:2px 8px;border-radius:3px;
+    vertical-align:middle;margin-left:8px;}
+  .pstatus{margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--txt-dim);
+    border-top:1px solid var(--panel-line);padding-top:14px;}
+  .pstatus b{color:var(--amber);font-weight:500;}
+  .pc-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+  .pc-ctas .btn{padding:11px 18px;}
+
+  .setup-note{
+    padding:12px 24px;background:#2b230b;border-bottom:1px solid #6d5a1c;
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#e8cf7a;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .rv{opacity:1;transform:none;transition:none;}
+  }
+</style>
+<style>
+  /* ---------- podstrony produktowe ---------- */
+  .shero{padding:64px 24px 44px;}
+  .shero h1{font-size:clamp(1.9rem,4.4vw,3rem);font-weight:700;line-height:1.1;max-width:24ch;margin-top:14px;}
+  .shero h1 .hl{color:var(--cyan);}
+  .shero p.lead{color:var(--txt-dim);font-size:1.08rem;max-width:62ch;margin-top:20px;}
+  .shero .ctas{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;}
+  section.tight{padding-top:0;}
+  section.tight .calc-video{margin-top:0;}
+  .wrap.narrow{max-width:820px;}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px;}
+  @media(max-width:860px){.steps{grid-template-columns:1fr;}}
+  .step{border:1px solid var(--panel-line);border-radius:6px;background:var(--bg);padding:22px;}
+  .step .sn{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:700;color:var(--orange);}
+  .step h3{font-size:1.08rem;margin-top:8px;}
+  .step p{color:var(--txt-dim);font-size:.9rem;margin:8px 0 0;}
+  .tbl2{display:grid;grid-template-columns:1fr 1fr;margin-top:22px;border:1px solid var(--panel-line);
+    border-radius:6px;overflow:hidden;font-size:.88rem;}
+  .tbl2>div{padding:10px 14px;border-bottom:1px dashed var(--panel-line);color:var(--txt-dim);}
+  .tbl2>div:nth-child(odd){border-right:1px solid var(--panel-line);}
+  .tbl2 .th{background:var(--panel);color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:.72rem;
+    letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--panel-line);}
+  ul.feats li b{color:var(--txt);font-weight:600;}
+  .rv{opacity:1;transform:none;}
+  /* ---------- dokumenty (EULA) ---------- */
+  .doc{max-width:820px;margin:0 auto;padding:48px 24px 80px;}
+  .doc h1{font-size:1.9rem;line-height:1.2;margin:10px 0 6px;}
+  .doc .updated{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--txt-dim);margin-bottom:26px;}
+  .doc h2{font-size:1.1rem;margin:34px 0 10px;}
+  .doc h2 .num{font-family:'JetBrains Mono',monospace;color:var(--cyan);font-size:.9rem;margin-right:8px;}
+  .doc p,.doc li{color:var(--txt-dim);font-size:.94rem;}
+  .doc ol,.doc ul{padding-left:22px;}
+  .doc li{margin-bottom:7px;}
+  .doc strong{color:var(--txt);font-weight:600;}
+  .doc .box{background:var(--bg2);border:1px solid var(--panel-line);border-radius:4px;padding:16px 20px;margin:18px 0;}
+  .doc .box.warn{border-color:#6d5a1c;background:#1f1b0e;}
+  .doc .box p{margin:0 0 8px;} .doc .box p:last-child{margin:0;}
+  .back{display:inline-block;margin-top:40px;font-family:'JetBrains Mono',monospace;font-size:.82rem;
+    padding:12px 22px;border-radius:3px;text-decoration:none;color:var(--cyan);border:1.5px solid var(--cyan-dim);}
+  .back:hover{border-color:var(--cyan);background:rgba(34,195,230,.08);}
+  @media print{header.top,footer,.back{display:none;} body{background:#fff;color:#000;} .doc p,.doc li{color:#222;}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="index.html" aria-label="TEKTORIA — strona główna">
+    <img class="logo" src="img/tektoria-logo-poziome_ciemne-tlo.svg" alt="TEKTORIA" width="126" height="32">
+    <span class="tag">CAD · APLIKACJE DLA PROJEKTANTÓW I KIEROWNIKÓW</span>
+  </a>
+  <nav>
+    <a href="index.html">‹ TEKTORIA</a>
+    <a href="#film">FILM</a>
+    <a href="#pilotaz">PILOTAŻ</a>
+    <a href="#faq">FAQ</a>
+    <a href="index.html?pilot=biuro#zamow" class="cta">ZGŁOŚ BUDOWĘ</a>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="shero cadgrid">
+  <div class="wrap">
+    <div class="eyebrow">TEK-BIURO BUDOWY · aplikacja dla biura budowy · pilotaż 2026</div>
+    <h1>Zdjęcie z obchodu, znacznik na rzucie, mail do firmy — <span class="hl">jeszcze na budowie.</span></h1>
+    <p class="lead">TEK-BIURO BUDOWY zbiera w jednym miejscu to, co kierownik budowy dziś prowadzi w pięciu plikach: uwagi, narady, raporty dzienne, protokoły odbiorów i terminy kontraktowe.</p>
+    <div class="ctas">
+      <a href="#film" class="btn btn-ghost">Zobacz film (60 s)</a>
+      <a href="index.html?pilot=biuro#zamow" class="btn btn-primary">Zgłoś budowę do pilotażu</a>
+    </div>
+    <div class="hero-badges">
+      <span>prototyp w fazie pilotażu</span>
+      <span>budowy hal magazynowych i przemysłowych</span>
+      <span>przeglądarka Edge / Chrome + telefon</span>
+      <span>dane na Twoim komputerze</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FILM ================= -->
+<section id="film" class="tight">
+  <div class="wrap">
+    <div class="calc-video">
+      <video controls preload="none" playsinline muted poster="video/tek-biuro-demo-poster.jpg" aria-label="Demo aplikacji TEK-BIURO BUDOWY, 60 sekund">
+        <source src="video/tek-biuro-demo-60s.mp4" type="video/mp4">
+        <source src="video/tek-biuro-demo-60s.webm" type="video/webm">
+        Twoja przeglądarka nie odtworzy tego filmu — <a href="video/tek-biuro-demo-60s.mp4">pobierz plik MP4</a>.
+      </video>
+      <div class="vcap">demo · 1 min · bez dźwięku · timelapse z pracy w aplikacji na danych przykładowych · prototyp</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROBLEM ================= -->
+<section style="border-top:1px solid var(--panel-line);">
+  <div class="wrap narrow">
+    <div class="eyebrow">problem</div>
+    <h2 class="sec">Uwagi są w telefonie, ustalenia w mailach, raport w Wordzie</h2>
+    <p class="sec-lead">Na budowie hali w jednym tygodniu powstają dziesiątki zdjęć z obchodów, kilka protokołów, notatka z narady, pięć raportów dziennych i kilka pism do inwestora — każde w innym miejscu. Potem trzeba to zebrać: kto ma poprawić, do kiedy, co jest otwarte od trzech narad i który termin z umowy właśnie mija.</p>
+    <p class="sec-lead">TEK-BIURO BUDOWY nie zastępuje dziennika budowy ani systemu obiegu dokumentów Twojej firmy. Porządkuje codzienną pracę biura budowy.</p>
+  </div>
+</section>
+
+<!-- ================= JAK TO DZIAŁA ================= -->
+<section style="background:var(--bg2);border-top:1px solid var(--panel-line);">
+  <div class="wrap">
+    <div class="eyebrow">jak to działa</div>
+    <h2 class="sec">Trzy kroki od usterki do maila</h2>
+    <div class="steps">
+      <div class="step"><div class="sn">01</div><h3>Wgrywasz rzut</h3><p>PDF, JPG lub PNG. Rzut jest w każdej wersji (rewizji) projektu, więc uwagi trzymają się aktualnego rysunku.</p></div>
+      <div class="step"><div class="sn">02</div><h3>Stukasz miejsce i robisz zdjęcie</h3><p>Na obchodzie wskazujesz punkt na rzucie w telefonie, robisz zdjęcie, wpisujesz lub dyktujesz opis, wybierasz firmę, kategorię (jakość, BHP, projektowa, porządek) i termin.</p></div>
+      <div class="step"><div class="sn">03</div><h3>Mail do firmy jest gotowy</h3><p>Aplikacja przygotowuje wiadomość z numerem uwagi, opisem i terminem. Wysyłasz ją jednym kliknięciem ze swojej poczty. W biurze masz rejestr wszystkich uwag i raport PDF dla każdego podwykonawcy.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MODUŁY ================= -->
+<section style="border-top:1px solid var(--panel-line);">
+  <div class="wrap">
+    <div class="eyebrow">moduły</div>
+    <h2 class="sec">Co jest w aplikacji</h2>
+    <div class="modprice limits">
+      <div class="mp-head"><h3>10 modułów, jedna budowa</h3><span>stan: prototyp, Rewizja 8 · wrzesień 2026</span></div>
+      <div class="mp-row"><span class="mp-n">Rzuty i uwagi</span><span class="mp-d">znaczniki na rzutach, zdjęcia, odpowiedzialny, termin, status; widok na telefonie</span></div>
+      <div class="mp-row"><span class="mp-n">Rejestr uwag</span><span class="mp-d">filtry, raport PDF dla każdej firmy, eksport do Excela, maile zbiorcze</span></div>
+      <div class="mp-row"><span class="mp-n">Narady</span><span class="mp-d">porządek z szablonu budowy, ustalenia z odpowiedzialnym i terminem, sprawy otwarte przenoszone na kolejną naradę</span></div>
+      <div class="mp-row"><span class="mp-n">Raporty dzienne</span><span class="mp-d">pogoda, obsada, roboty, zdjęcia → raport PDF, prezentacja w szablonie PowerPoint budowy, projekt wpisu do dziennika budowy</span></div>
+      <div class="mp-row"><span class="mp-n">Roboty zanikowe</span><span class="mp-d">8 gotowych wzorów protokołów (m.in. zbrojenie, kotwy, izolacje, kanalizacja, uziom, przejścia ppoż.) oraz własne wzory</span></div>
+      <div class="mp-row"><span class="mp-n">Harmonogram</span><span class="mp-d">import z MS Project (XML) lub Excela, wykres Gantta, ostrzeżenia o zamówieniach z długim czasem dostawy i o opóźnieniach</span></div>
+      <div class="mp-row"><span class="mp-n">Terminy kontraktowe</span><span class="mp-d">liczniki terminów zawiadomień wg warunków FIDIC (np. 28 i 84 dni od zdarzenia w wydaniu 2017) i projekty pism — terminy zawsze sprawdzasz z własną umową</span></div>
+      <div class="mp-row"><span class="mp-n">BREEAM</span><span class="mp-d">rejestr dowodów z terminami i odpowiedzialnymi, punktacja względem celu</span></div>
+      <div class="mp-row"><span class="mp-n">Asystent AI</span><span class="mp-d">gotowe polecenia (prompty) do Twojego narzędzia AI: protokół z notatek, raport, opis uwagi. Aplikacja sama nie łączy się z AI — wynik wklejasz z powrotem</span></div>
+      <div class="mp-row"><span class="mp-n">Moduły własne</span><span class="mp-d">własne rejestry bez programowania, np. dostawy, teczka podwykonawcy, wnioski na przyszłość (lessons learned)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DLA KOGO + GOTOWE/W DRODZE ================= -->
+<section style="background:var(--bg2);border-top:1px solid var(--panel-line);">
+  <div class="wrap">
+    <div class="prod" style="margin-top:0;">
+      <div>
+        <div class="eyebrow">dla kogo</div>
+        <h2 class="sec">Kto z tego korzysta</h2>
+        <ul class="feats">
+          <li><b>Kierownik budowy i inżynierowie budowy</b> — obchody, uwagi, raporty, protokoły</li>
+          <li><b>Kierownik projektu / kontraktu</b> — stan uwag na budowie, harmonogram, terminy zawiadomień</li>
+          <li><b>Podwykonawcy</b> — widzą tylko swoje uwagi i terminy <i>(w planowanej wersji zespołowej)</i></li>
+          <li><b>Projektanci</b> — odpowiadają na uwagi projektowe <i>(w planowanej wersji zespołowej)</i></li>
+        </ul>
+        <p class="sec-lead" style="font-size:.9rem;">Aplikacja powstaje pod budowy hal magazynowych i przemysłowych realizowane w generalnym wykonawstwie. Na innych budowach też zadziała, ale wzory protokołów i raportów są przygotowane pod hale.</p>
+      </div>
+      <div>
+        <div class="eyebrow">stan prac</div>
+        <h2 class="sec">Co jest gotowe, a co w drodze</h2>
+        <div class="tbl2">
+          <div class="th">gotowe do testów</div><div class="th">w przygotowaniu</div>
+          <div>wszystkie moduły z tabeli powyżej</div><div>wersja zespołowa: wspólne dane dla całej budowy, logowanie, role</div>
+          <div>działanie w przeglądarce Edge / Chrome, także offline</div><div>program instalacyjny dla Windows</div>
+          <div>układ na telefon z aparatem</div><div>synchronizacja telefon ↔ komputer</div>
+          <div>zapis danych w folderze na Twoim dysku, kopie</div><div>wysyłka maili bez udziału użytkownika</div>
+        </div>
+        <p class="sec-lead" style="font-size:.9rem;"><b>Dziś, uczciwie:</b> maile przygotowuje aplikacja, a wysyłasz je Ty ze swojej poczty; dane z telefonu przenosisz na komputer kopią; role (kto co widzi) to podgląd, a nie zabezpieczenie hasłem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DANE ================= -->
+<section style="border-top:1px solid var(--panel-line);">
+  <div class="wrap narrow">
+    <div class="eyebrow">twoje dane</div>
+    <h2 class="sec">Gdzie są dane budowy</h2>
+    <ul class="feats">
+      <li><b>Wersja obecna:</b> uwagi, zdjęcia i rzuty są zapisane w przeglądarce i w wybranym folderze na Twoim komputerze. Nie trafiają na serwer autora — nie mam do nich dostępu.</li>
+      <li><b>Połączenia z internetem są tylko dwa i oba uruchamiasz sam:</b> przycisk „Pobierz pogodę” wysyła do zewnętrznego serwisu pogodowego (Open-Meteo) współrzędne budowy; Asystent AI nie łączy się z niczym — kopiujesz polecenie do własnego narzędzia AI. Za to, jakie dane tam wkleisz, odpowiadasz Ty i Twoja firma.</li>
+      <li><b>Wersja zespołowa (planowana):</b> baza w centrum danych w UE, dostęp według ról — podwykonawca widzi tylko swoje uwagi. Zasady przetwarzania danych i umowę powierzenia opiszę przed jej uruchomieniem.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= PILOTAŻ ================= -->
+<section id="pilotaz" style="background:var(--bg2);border-top:1px solid var(--panel-line);">
+  <div class="wrap">
+    <div class="bundle" style="margin-top:0;">
+      <div>
+        <span class="save">PILOTAŻ · BEZ OPŁAT</span>
+        <h3>Szukam budów do testów</h3>
+        <p>Szukam kierowników budów hal, którzy przez kilka tygodni poprowadzą w TEK-BIURO uwagi z obchodów i raporty dzienne. Porównamy, jak wygląda ta praca z aplikacją i bez niej.</p>
+        <p><b style="color:var(--txt);">Co dostajesz:</b> aplikację na czas pilotażu bez opłat i wpływ na to, co zostanie zrobione w pierwszej kolejności.<br>
+        <b style="color:var(--txt);">Czego potrzebuję:</b> krótkiej notatki co tydzień — co działa, co przeszkadza — oraz zgody Twojego pracodawcy na testy, bo aplikacja pracuje na dokumentacji budowy.</p>
+      </div>
+      <div>
+        <a href="index.html?pilot=biuro#zamow" class="btn btn-primary">Zgłaszam budowę</a>
+        <div class="doc-links" style="margin-top:14px;"><a class="doc-link" href="eula-tek-biuro-budowy.html">warunki pilotażu (licencja)</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="wrap">
+    <div style="text-align:center;">
+      <div class="eyebrow" style="display:inline-block;">pytania</div>
+      <h2 class="sec" style="margin-left:auto;margin-right:auto;">Zanim zapytasz</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Czy to zastępuje dziennik budowy?</summary>
+        <div class="a">Nie. Dziennik budowy prowadzisz tak jak dotąd — w systemie EDB albo w wersji papierowej. Aplikacja przygotowuje z raportu dziennego projekt wpisu, który przepisujesz lub kopiujesz do dziennika.</div></details>
+      <details><summary>Czy potrzebuję MS Project?</summary>
+        <div class="a">Nie. Harmonogram wczytasz też z Excela lub CSV. Jeśli pracujesz w MS Project, zapisz plik jako XML (Plik → Zapisz jako → XML). Pliku .mpp aplikacja nie czyta bezpośrednio.</div></details>
+      <details><summary>Czy mogę użyć szablonu raportu mojej budowy?</summary>
+        <div class="a">Tak. Wgrywasz szablon PowerPoint (.pptx) budowy, a aplikacja wstawia w niego treść i zdjęcia. Pola w szablonie oznaczasz sam albo z pomocą asystenta AI.</div></details>
+      <details><summary>Czy aplikacja wysyła maile sama?</summary>
+        <div class="a">W obecnej wersji nie. Przygotowuje gotową wiadomość — z adresem, tematem i treścią albo jako plik .eml ze zdjęciami — a wysyłasz ją ze swojej poczty. Automatyczna wysyłka jest planowana w wersji zespołowej.</div></details>
+      <details><summary>Czy potrzebuję płatnego AI?</summary>
+        <div class="a">Nie. Asystent przygotowuje polecenie, które wklejasz do narzędzia AI, z którego już korzystasz — także darmowego. Bez AI wszystkie moduły też działają; tracisz tylko podpowiedzi przy protokołach i raportach. Zanim wkleisz cokolwiek do zewnętrznego AI, sprawdź zasady swojej firmy.</div></details>
+      <details><summary>Czy działa na telefonie?</summary>
+        <div class="a">Tak, w przeglądarce telefonu (układ mobilny, aparat). W obecnej wersji dane z telefonu przenosisz na komputer kopią. Synchronizacja przyjdzie z wersją zespołową.</div></details>
+      <details><summary>Ile kosztuje?</summary>
+        <div class="a">Cena i model licencji zostaną ustalone po pilotażu. Wersja jednostanowiskowa i zespołowa mogą mieć inny model, bo zespołowa wymaga serwera, który kosztuje co miesiąc. Udział w pilotażu nie zobowiązuje do zakupu.</div></details>
+      <details><summary>Kto to robi?</summary>
+        <div class="a">Jarosław Sarafin — inżynier budownictwa z uprawnieniami konstrukcyjno-budowlanymi bez ograniczeń, od ok. 8 lat na budowach hal przemysłowych i logistycznych. Ten sam autor co pozostałe narzędzia TEKTORIA.</div></details>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap">
+    <span>TEKTORIA · oprogramowanie dla inżynierów · CAD i aplikacje dla projektantów i kierowników</span>
+    <span><a href="index.html" style="color:var(--txt-dim);">‹ wszystkie produkty</a></span>
+    <span class="fcontact">kontakt: <a href="mailto:kontakt@tektoria.pl">kontakt@tektoria.pl</a> &nbsp;·&nbsp; <a href="polityka-prywatnosci.html">polityka prywatności</a> &nbsp;·&nbsp; warunki pilotażu: <a href="eula-tek-biuro-budowy.html">TEK-BIURO BUDOWY</a>, <a href="eula-tek-bhp.html">TEK-BHP</a>, <a href="eula-tek-audytor.html">TEK-AUDYTOR</a></span>
+    <span class="fcontact" style="padding-top:4px;">Nazwy MS Project, PowerPoint, Excel, FIDIC i BREEAM są oznaczeniami ich właścicieli i zostały użyte wyłącznie opisowo. TEKTORIA nie jest z nimi powiązana.</span>
+    <span class="fauthor">autor i administrator danych: <a href="https://js-3web.github.io/js-wizytowka/" target="_blank" rel="noopener">Jarosław Sarafin — wizytówka</a> · projektant konstrukcji i inspektor nadzoru, Lublin</span>
+  </div>
+</footer>
+
+</body>
+</html>
