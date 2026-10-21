@@ -13,7 +13,8 @@
 
   function parse() { const [name, ...rest] = (location.hash.replace(/^#\/?/, '') || '').split('/').map(decodeURIComponent); return { name: name || 'home', rest }; }
   function render() {
-    if (M.LIC && !M.LIC.get()) { topbar(); document.getElementById('crumbs').innerHTML = ''; return M.LIC.screen(); }
+    if (M.LIC && !M.LIC.get()) { topbar(); document.getElementById('crumbs').innerHTML = ''; document.getElementById('tabsnav').innerHTML = ''; return M.LIC.screen(); }
+    document.body.classList.remove('locked');
     const { name, rest } = parse();
     let mod = M.modules[name] || M.modules.home; let modId = M.modules[name] ? name : 'home';
     if (name === 'wlasny') { mod = M.modules.wlasne; modId = rest[0]; }
@@ -24,6 +25,7 @@
     document.getElementById('crumbs').innerHTML = mod === M.modules.home ? '' : `<span>/</span><span class="cur">${e(title)}</span>`;
     document.title = (mod === M.modules.home ? 'Pulpit' : title) + ' · TEK-BIURO BUDOWY';
     bottomnav(name);
+    tabsnav(name === 'wlasny' ? 'wlasny/' + rest[0] : modId);
     if (!M.P.canView(modId)) { v.innerHTML = `<div class="card card-pad">${M.UI.empty(`Moduł „${e(title)}” nie jest dostępny dla roli <b>${e(M.P.ROLES[M.P.role()].label)}</b>.`, 'lock')}</div>`; current = null; return; }
     current = { mod, v, rest };
     try { mod.render(v, rest); } catch (err) { console.error(err); v.innerHTML = `<div class="banner warn">${M.icon.alert}<span>Błąd modułu: ${e(err.message)}</span></div>`; }
@@ -38,6 +40,14 @@
     const pSel = document.getElementById('pSel'); if (pSel) pSel.onchange = () => { M.S.set('currentProject', pSel.value); render(); };
     const me = M.S.me();
     document.getElementById('userSel').innerHTML = me ? `<span class="rolebadge" title="${e((M.P.ROLES[me.role] || {}).label || me.role)}">${e(me.role)}</span><span class="tb-name" title="Zalogowano kodem licencyjnym">${e(me.name)}</span>` : '';
+  }
+  /** zakładki modułów u góry („segregator” – jak w TEK-RAPORT i TEK-BHP) */
+  function tabsnav(active) {
+    const nav = document.getElementById('tabsnav'); if (!nav) return;
+    const list = [{ id: 'home', route: '', title: 'Pulpit', icon: 'home' }].concat(M.visibleModules());
+    nav.innerHTML = `<div class="tabsrow" role="tablist">${list.map(m => `<button role="tab" data-r="${e(m.route)}" class="${(m.route || 'home') === active || m.id === active ? 'on' : ''}" aria-selected="${(m.route || 'home') === active || m.id === active}" title="${e(m.desc || m.title)}">${M.icon[m.icon] || M.icon.grid}<span>${e(m.title)}</span></button>`).join('')}</div>`;
+    nav.querySelectorAll('button').forEach(b => b.onclick = () => M.go(b.dataset.r));
+    const on = nav.querySelector('button.on'); if (on && on.scrollIntoView) { const row = nav.firstElementChild; if (row.scrollWidth > row.clientWidth) row.scrollLeft = Math.max(0, on.offsetLeft - 40); }
   }
   function bottomnav(active) {
     const items = [['home', 'home', 'Pulpit'], ['rzuty', 'plan', 'Rzuty'], ['+', 'plus', 'Uwaga'], ['uwagi', 'list', 'Uwagi'], ['more', 'grid', 'Więcej']];
@@ -65,6 +75,7 @@
     start() { if ('serviceWorker' in navigator && /^https?:/.test(location.protocol)) navigator.serviceWorker.register('sw.js').catch(err => console.warn('SW', err)); M.UPDATE.check(); setInterval(M.UPDATE.check, 15 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) M.UPDATE.check(); }); },
   };
   window.addEventListener('hashchange', render);
+  const vp = document.getElementById('verPill'); if (vp) { vp.textContent = 'TEST / ' + M.APP_BUILD; vp.title = M.APP_VERSION; }
   document.getElementById('brandBtn').onclick = () => M.go('');
   document.getElementById('cloudBtn').onclick = () => M.go('ustawienia/chmura');
   document.getElementById('syncBtn').onclick = () => { if (M.FS.status === 'prompt') return M.FS.resume(); M.go('ustawienia/dane'); };

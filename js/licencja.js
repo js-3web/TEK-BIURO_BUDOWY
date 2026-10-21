@@ -47,8 +47,8 @@
     screen() {
       document.body.classList.add('locked');
       const v = document.getElementById('view');
-      v.innerHTML = `<div class="lic"><div class="card card-pad col"><img src="assets/logo-tek-full.svg" alt="" style="height:54px;align-self:flex-start"><h1 style="font-size:22px">Aktywacja – wersja testowa</h1>
-        <p class="muted" style="margin:0">Wpisz kod licencyjny, który dostałeś od autora aplikacji. Robisz to raz na każdym urządzeniu (komputer, telefon).</p>
+      v.innerHTML = `<div class="lic"><div class="card card-pad col"><img src="assets/logo-tek.svg" alt="" style="height:88px;width:88px;align-self:flex-start"><div class="eyebrow">TEKTORIA · TEK-BIURO BUDOWY · WERSJA TESTOWA</div><h1 style="font-family:var(--display);font-weight:600;font-size:36px;line-height:1.15">Twoja budowa.<br>Twoje biuro.</h1>
+        <p class="muted" style="margin:0"><b style="color:var(--txt)">Aktywacja.</b> Wpisz kod licencyjny, który dostałeś od autora aplikacji. Robisz to raz na każdym urządzeniu (komputer, telefon).</p>
         <label class="f">Kod licencyjny<input type="text" id="lc" placeholder="TEKBB-XXXX-XXXX-XXXX" autocomplete="off" autocapitalize="characters" spellcheck="false" style="font-family:ui-monospace,Consolas,monospace;letter-spacing:1px"></label>
         <label class="f">Imię i nazwisko<input type="text" id="ln" autocomplete="name"></label>
         <div id="lerr" class="banner or hidden">${M.icon.alert}<span></span></div>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#ED471D">
+<meta name="theme-color" content="#0d1830">
 <title>TEK-BIURO BUDOWY</title>
 <link rel="icon" href="assets/logo-tek.svg" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
@@ -14,9 +14,9 @@
 </head>
 <body>
 <header class="topbar">
-  <button class="brand" id="brandBtn" title="Pulpit">
+  <button class="brand" id="brandBtn" title="Pulpit" aria-label="TEK-BIURO BUDOWY – pulpit">
     <img src="assets/logo-tek.svg" alt="">
-    <span class="word"><b>TEK</b>-BIURO <em>BUDOWY</em></span>
+    <span class="brandtext"><span class="brandname">TEK-BIURO <em>BUDOWY</em></span><span class="brandcaption">TEKTORIA · ZARZĄDZANIE BUDOWĄ</span></span>
   </button>
   <span class="testbadge" title="Wersja testowa – uwagi zgłaszaj przyciskiem w pasku">TEST</span>
   <nav class="crumbs" id="crumbs"></nav>
@@ -26,7 +26,9 @@
   <div id="pilotBadge"></div>
   <button class="sync hidden" id="cloudBtn" title="Synchronizacja z chmurą"><span class="dot"></span><span>chmura</span></button>
   <button class="sync" id="syncBtn" title="Zapis danych i kopie"><span class="dot"></span><span id="syncTxt">zapis lokalny</span></button>
+  <span class="verpill" id="verPill"></span>
 </header>
+<nav class="tabsnav" id="tabsnav" aria-label="Moduły"></nav>
 <main class="main" id="view"></main>
 <nav class="bottomnav" id="bottomnav"></nav>
 <div class="toasts" id="toasts"></div>

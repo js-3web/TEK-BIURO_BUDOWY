@@ -3,6 +3,7 @@
 (function (M) {
   'use strict';
   const e = M.esc;
+  const TILE_ACC = ['t-blue', 't-gold', 't-purple', 't-orange']; // akcenty kafli jak w TEK-RAPORT
   M.modules.home = {
     title: 'Pulpit',
     render(v) {
@@ -23,8 +24,9 @@
       const daysToEnd = M.daysLeft(p.end);
       v.innerHTML = `
         <section class="hero">
-          <div><h1>${greet}${me ? ', ' + e(me.name.split(' ')[0]) : ''}!</h1>
-            <p>${e(dateTxt)} · <b style="color:#fff">${e(p.name)}</b>${daysToEnd != null ? ` · do terminu umownego: <b style="color:#fff">${daysToEnd} dni</b>` : ''}</p></div>
+          <img class="hero-mark" src="assets/logo-tek.svg" alt="">
+          <div class="hero-copy"><div class="eyebrow">${e(dateTxt)}</div><h1>${greet}${me ? ', ' + e(me.name.split(' ')[0]) : ''}!</h1>
+            <p><b>${e(p.name)}</b>${daysToEnd != null ? ` · do terminu umownego: <b>${daysToEnd} dni</b>` : ''}</p></div>
           <div class="stats">
             <button class="stat" data-go="uwagi"><b>${open.length}</b><span>otwarte uwagi</span></button>
             <button class="stat" data-go="uwagi/po-terminie"><b class="${late.length ? 'alert' : ''}">${late.length}</b><span>po terminie</span></button>
@@ -39,7 +41,7 @@
             ${items.length ? `<ul>${items.slice(0, 40).map((it, i) => `<li data-i="${i}"><span class="ico ${it.lvl === 'red' ? 'red' : it.lvl === 'yel' ? 'yel' : ''}">${M.icon[it.icon] || M.icon.alert}</span><div class="grow"><div class="t">${e(it.t)}</div><div class="d">${e(it.d || '')}</div></div>${M.icon.arrowR.replace('<svg', '<svg style="width:16px;color:var(--ink-3);flex:none;margin-top:6px"')}</li>`).join('')}</ul>` : M.UI.empty('Nic pilnego. Dobra robota!', 'check')}
           </div>
           <div class="col">
-            <div class="tiles">${mods.map(m => `<button class="tile ${m.core ? 'core' : m.custom ? 'g' : ''}" data-go="${m.route}"><div class="ic">${M.icon[m.icon] || M.icon.grid}</div><h3>${e(m.title)}</h3><p>${e(m.desc || '')}</p>${!M.P.canEdit(m.id) ? `<span class="lock badge">${M.icon.eye.replace('<svg', '<svg style="width:12px;height:12px"')} podgląd</span>` : ''}</button>`).join('')}</div>
+            <div class="tiles">${mods.map((m, i) => `<button class="tile ${m.core ? 'core' : m.custom ? 'g' : TILE_ACC[i % TILE_ACC.length]}" data-go="${m.route}"><div class="ic">${M.icon[m.icon] || M.icon.grid}</div><span class="tnum">${String(i + 1).padStart(2, '0')} · ${m.custom ? 'MODUŁ WŁASNY' : m.core ? 'TRZON' : 'MODUŁ'}</span><h3>${e(m.title)}</h3><p>${e(m.desc || '')}</p>${!M.P.canEdit(m.id) ? `<span class="lock badge">${M.icon.eye.replace('<svg', '<svg style="width:12px;height:12px"')} podgląd</span>` : ''}</button>`).join('')}</div>
           </div>
         </div>`;
       v.querySelectorAll('[data-go]').forEach(b => b.onclick = () => M.go(b.dataset.go));
@@ -48,7 +50,7 @@
     },
     welcome(v) {
       const me = M.S.me();
-      v.innerHTML = `<section class="hero"><div><h1>Dzień dobry${me ? ', ' + e(me.name.split(' ')[0]) : ''}!</h1><p>TEK-BIURO BUDOWY · wersja testowa. Rzuty i uwagi, dziennik budowy i montażu, protokoły, narady, raporty, harmonogram, BREEAM i terminy kontraktowe.</p></div></section>
+      v.innerHTML = `<section class="hero"><img class="hero-mark" src="assets/logo-tek.svg" alt=""><div class="hero-copy"><div class="eyebrow">TEKTORIA · WERSJA TESTOWA</div><h1>Dzień dobry${me ? ', ' + e(me.name.split(' ')[0]) : ''}!</h1><p>TEK-BIURO BUDOWY · wersja testowa. Rzuty i uwagi, dziennik budowy i montażu, protokoły, narady, raporty, harmonogram, BREEAM i terminy kontraktowe.</p></div></section>
         <div class="grid2" style="align-items:start">
           <div class="card card-pad col"><h2>1. Załóż budowę</h2><p class="muted" style="margin:0">Nazwa, adres, inwestor, terminy. Potem dodasz firmy (ręcznie lub z Excela), uczestników procesu budowlanego i rzuty.</p><div><button class="btn primary big" id="own">${M.icon.plus}Utwórz budowę</button></div></div>
           <div class="card card-pad col"><h2>2. Zadbaj o dane</h2>
