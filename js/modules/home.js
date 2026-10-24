@@ -37,7 +37,7 @@
         ${S.settings.demo ? `<div class="banner or" style="margin-bottom:14px">${M.icon.alert}<span class="grow">Pracujesz na <b>danych przykładowych (fikcyjnych)</b>. Wyczyść je w Ustawieniach → Dane, zanim wprowadzisz własną budowę.</span></div>` : ''}
         <div class="home-grid">
           <div class="card today"><div class="card-head"><h2>Wymaga uwagi</h2><span class="badge ${items.filter(i => i.lvl === 'red').length ? 'or' : ''}">${items.length}</span>
-            ${M.P.canEdit('uwagi') ? `<button class="btn primary sm" id="qAdd">${M.icon.pin}Nowa uwaga na rzucie</button>` : ''}</div>
+            <button class="btn sm" id="qIcs" title="Terminy do Outlooka / Google / telefonu (plik .ics)">${M.icon.cal}Do kalendarza</button>${M.P.canEdit('uwagi') ? `<button class="btn primary sm" id="qAdd">${M.icon.pin}Nowa uwaga na rzucie</button>` : ''}</div>
             ${items.length ? `<ul>${items.slice(0, 40).map((it, i) => `<li data-i="${i}"><span class="ico ${it.lvl === 'red' ? 'red' : it.lvl === 'yel' ? 'yel' : ''}">${M.icon[it.icon] || M.icon.alert}</span><div class="grow"><div class="t">${e(it.t)}</div><div class="d">${e(it.d || '')}</div></div>${M.icon.arrowR.replace('<svg', '<svg style="width:16px;color:var(--ink-3);flex:none;margin-top:6px"')}</li>`).join('')}</ul>` : M.UI.empty('Nic pilnego. Dobra robota!', 'check')}
           </div>
           <div class="col">
@@ -47,6 +47,7 @@
       v.querySelectorAll('[data-go]').forEach(b => b.onclick = () => M.go(b.dataset.go));
       v.querySelectorAll('.today li').forEach(li => li.onclick = () => { const it = items[+li.dataset.i]; if (it.go) M.go(it.go); if (it.run) it.run(); });
       const qa = v.querySelector('#qAdd'); if (qa) qa.onclick = () => M.go('rzuty/dodaj');
+      const qi = v.querySelector('#qIcs'); if (qi) qi.onclick = () => M.ICS.dialog();
     },
     welcome(v) {
       const me = M.S.me();

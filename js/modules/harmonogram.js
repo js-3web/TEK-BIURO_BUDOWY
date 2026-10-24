@@ -152,6 +152,8 @@ Zwróć JEDEN blok \`\`\`json – tablicę:
 
   M.modules.harmonogram = {
     title: 'Harmonogram', icon: 'gantt', order: 6,
+    /** kamienie milowe i zadania umowne do pliku .ics (Rewizja 15) */
+    deadlines() { return M.S.all('tasks').filter(t => !t.tbd && t.end && (t.milestone || t.contract) && (Number(t.progress) || 0) < 100).map(t => ({ uid: `tekbb-task-${t.id}`, date: t.end, title: `${t.contract ? 'Termin umowny' : 'Kamień milowy'}: ${t.name}`, desc: `Harmonogram · ${t.code || ''} · start ${M.fmt(t.start)}, koniec ${M.fmt(t.end)}` })); },
     desc: 'Gantt, automatyczne ostrzeżenia (opóźnienia, zamówienia z wyprzedzeniem, kamienie milowe) i ryzyka z AI.',
     today() { return H.rules().filter(r => r.lvl && ['wyprzedzenie', 'kamień milowy', 'opóźnienie', 'brak startu'].includes(r.type)).slice(0, 12).map(r => ({ lvl: r.lvl, icon: r.type === 'wyprzedzenie' ? 'clock' : r.type === 'kamień milowy' ? 'flag' : 'gantt', kind: 'harm', t: `${r.task.name}`, d: r.txt, go: 'harmonogram/ryzyka', sort: M.daysLeft(r.date) || 0 })).concat(M.S.all('risks').filter(r => r.status !== 'zamknięte' && r.due && r.due <= M.addDays(M.todayISO(), 3)).map(r => ({ lvl: r.due < M.todayISO() ? 'red' : 'yel', icon: 'alert', kind: 'harm', t: `Działanie: ${r.action.slice(0, 70)}`, d: `ryzyko: ${r.text.slice(0, 80)} · do ${M.fmt(r.due)}`, go: 'harmonogram/ryzyka' }))); },
     render(v, rest) {

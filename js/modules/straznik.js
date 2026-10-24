@@ -114,6 +114,8 @@
   // =========================================================
   M.modules.straznik = {
     title: 'Strażnik Harmonogramu', icon: 'shield', order: 7,
+    /** czynności przygotowawcze (najpóźniej do) do pliku .ics (Rewizja 15) */
+    deadlines() { return G.calc().items.filter(i => !i.blad && i.koniec && i.g.status !== 'załatwione').map(i => ({ uid: `tekbb-guard-${i.g.id}`, date: i.koniec, title: `Najpóźniej: ${i.g.name || 'czynność'}`, desc: `Strażnik Harmonogramu · ${i.g.cid || ''} · start czynności ${M.fmt(i.start)}, zakończyć do ${M.fmt(i.koniec)}` })); },
     desc: 'Zakres + harmonogram → czynności i terminy z wyprzedzeniem. Alarmy przy otwarciu aplikacji.',
     today() {
       if (!M.S.project) return [];

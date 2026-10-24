@@ -57,6 +57,9 @@ Budowa: {{PROJEKT}}
 Data: {{DATA}} ({{DZIEN}})
 Pogoda: {{POGODA}}
 Obsada / brygady: {{OBSADA}}
+Sprzęt: {{SPRZET}}
+Przeszkody / opóźnienia (opisz je rzeczowo w raporcie i we wpisie do EDB – z przyczyną i stratą czasu):
+{{PRZESZKODY}}
 Notatki kierownika:
 """
 {{NOTATKI}}

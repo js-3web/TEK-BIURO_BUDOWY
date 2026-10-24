@@ -498,3 +498,13 @@ body.locked .bottomnav,body.locked .sync,body.locked #pilotBadge,body.locked .ta
 
 ::selection{background:rgba(224,123,60,.4);color:#fff}
 .crumbs{display:none}
+
+/* ---------- Rewizja 15: montaż na rzucie, kontrakt ---------- */
+.mrz{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:16px;align-items:start}
+@media (max-width:1000px){.mrz{grid-template-columns:1fr}}
+.mrz-main{padding:0;overflow:hidden}
+.mrz-stage{border:0;border-radius:0}
+.mrz-stage #mov svg{pointer-events:none}
+.mrz-rect{position:absolute;border:2px dashed var(--cyan,#22c3e6);background:rgba(34,195,230,.12);pointer-events:none;z-index:4}
+.mrz-rect.hidden{display:none}
+.mrz-sw{display:inline-block;width:14px;height:14px;border-radius:3px;border:2px solid;flex:none}

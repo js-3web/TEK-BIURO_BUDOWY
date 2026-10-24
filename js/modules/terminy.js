@@ -34,16 +34,23 @@
     today() {
       return M.S.all('events').filter(ev => ev.status !== 'zamknięte').map(ev => ({ ev, n: next(ev) })).filter(x => x.n && M.daysLeft(x.n.due) <= 14).map(({ ev, n }) => { const d = M.daysLeft(n.due); return { lvl: d <= 7 ? 'red' : 'yel', icon: 'clock', kind: d <= 7 ? 'termin' : '', t: `${n.label}: ${d < 0 ? 'PO TERMINIE ' + (-d) + ' dni' : d === 0 ? 'DZIŚ' : 'za ' + d + ' dni'} (${M.fmt(n.due)})`, d: ev.title, go: 'terminy/' + ev.id, sort: d - 100 }; });
     },
+    /** terminy do pliku .ics (Rewizja 15) – tylko niezałatwione */
+    deadlines() {
+      const out = [];
+      M.S.all('events').filter(ev => ev.status !== 'zamknięte').forEach(ev => calc(ev).forEach(x => { if (x.due && !x.done) out.push({ uid: `tekbb-ev-${ev.id}-${x.k}`, date: x.due, title: `${x.label}: ${ev.title}`, desc: `Terminy umowne · subklauzula ${ev.clause || '—'} · wiedza od ${M.fmt(ev.awareDate || ev.eventDate)}. Termin liczony w dniach kalendarzowych – sprawdź warunki szczególne umowy.` }); }));
+      return out;
+    },
     render(v, rest) {
       if (!M.S.project) { v.innerHTML = M.UI.noProject(); return; }
       const p = M.S.project; const d = dl(); const edit = M.P.canEdit('terminy');
       const list = M.S.all('events').sort((a, b) => { const na = next(a), nb = next(b); return (na ? na.due : '9') .localeCompare(nb ? nb.due : '9'); });
-      v.innerHTML = M.UI.head('Terminy <span class="acc">umowne</span>', `${e((PRESET[p.contract] || {}).label || p.contract)} · zawiadomienie ${d.notice} dni · roszczenie szczegółowe ${d.detailed} dni${d.engineer ? ` · Inżynier ${d.engineer} dni` : ''} <a href="#/ustawienia/budowa">zmień</a>`, `<button class="btn" id="xls">${M.icon.xlsx}Rejestr Excel</button>${edit ? `<button class="btn primary" id="new">${M.icon.plus}Zdarzenie</button>` : ''}`) + M.UI.readonlyBanner('terminy') +
+      v.innerHTML = M.UI.head('Terminy <span class="acc">umowne</span>', `${e((PRESET[p.contract] || {}).label || p.contract)} · zawiadomienie ${d.notice} dni · roszczenie szczegółowe ${d.detailed} dni${d.engineer ? ` · Inżynier ${d.engineer} dni` : ''} <a href="#/ustawienia/budowa">zmień</a>`, `<button class="btn" id="ics">${M.icon.cal}Do kalendarza</button><button class="btn" id="xls">${M.icon.xlsx}Rejestr Excel</button>${edit ? `<button class="btn primary" id="new">${M.icon.plus}Zdarzenie</button>` : ''}`) + M.UI.readonlyBanner('terminy') +
         `<div class="banner warn" style="margin-bottom:12px">${M.icon.shield}<span class="small">Bieg terminu liczy się od dnia, w którym Wykonawca <b>dowiedział się lub powinien był się dowiedzieć</b> o zdarzeniu – wpisuj tę datę ostrożnie (najwcześniejszą możliwą). Sprawdź warunki szczególne umowy. Narzędzie pomocnicze, nie porada prawna.</span></div>
         <div class="card">${list.length ? `<table class="list"><thead><tr><th></th><th>Zdarzenie</th><th>Wiedza od</th><th>Najbliższy termin</th><th class="hide-m">Zawiadomienie</th><th class="hide-m">Roszcz. szczeg.</th><th>Status</th></tr></thead><tbody>${list.map(ev => { const c = calc(ev); const n = next(ev); const L = n ? light(n) : 'g'; return `<tr class="click" data-id="${ev.id}"><td><span class="light ${L}"></span></td><td><b>${e(ev.title)}</b><div class="xs muted">${e(ev.clause || '')} · ${e(ev.kind || '')}</div></td><td class="nowrap">${M.fmt(ev.awareDate || ev.eventDate)}</td><td class="nowrap">${n ? `<b style="color:${L === 'r' ? 'var(--danger)' : 'inherit'}">${M.fmt(n.due)}</b><div class="xs muted">${e(n.label)} · ${M.daysLeft(n.due) < 0 ? 'po terminie' : M.daysLeft(n.due) + ' dni'}</div>` : '<span class="muted">—</span>'}</td><td class="hide-m small">${c[0] && c[0].done ? '✓ ' + e(c[0].doneTxt || '') : c[0] && c[0].due ? 'do ' + M.fmt(c[0].due) : ''}</td><td class="hide-m small">${c[1] && c[1].done ? '✓ ' + e(c[1].doneTxt || '') : c[1] && c[1].due ? 'do ' + M.fmt(c[1].due) : ''}</td><td><span class="st ${ev.status === 'zamknięte' ? 'done' : 'open'}">${e(ev.status || 'otwarte')}</span></td></tr>`; }).join('')}</tbody></table>` : M.UI.empty('Brak zdarzeń. Każde zdarzenie mogące dać prawo do przedłużenia czasu lub dodatkowej zapłaty wpisz od razu – licznik zacznie działać.', 'clock')}</div>`;
       v.querySelectorAll('tr.click').forEach(tr => tr.onclick = () => this.edit(M.S.get('events', tr.dataset.id)));
       const nb = v.querySelector('#new'); if (nb) nb.onclick = () => this.edit({ title: '', eventDate: M.todayISO(), awareDate: M.todayISO(), clause: '20.2', kind: 'czas i koszt', status: 'otwarte' });
       v.querySelector('#xls').onclick = () => this.excel();
+      v.querySelector('#ics').onclick = () => M.ICS.dialog(['terminy', 'kontrakt']);
       if (rest[0]) { const ev = M.S.get('events', rest[0]); if (ev) this.edit(ev); }
     },
     edit(ev) {

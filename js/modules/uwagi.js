@@ -23,6 +23,8 @@
       return out;
     },
 
+    /** terminy usunięcia aktywnych uwag do pliku .ics (Rewizja 15) */
+    deadlines() { return M.S.all('issues').filter(i => ACTIVE(i) && i.due && M.P.seesRecord(i)).map(i => ({ uid: `tekbb-iss-${i.id}`, date: i.due, title: `${i.nr}: termin usunięcia uwagi – ${M.S.respName(i.respId)}`, desc: (i.desc || '').slice(0, 300), alarm: false })); },
     render(v, rest) {
       if (!M.S.project) { v.innerHTML = M.UI.noProject(); return; }
       if (rest[0] === 'po-terminie') { st.status = 'po_terminie'; }
@@ -73,7 +75,7 @@
 
     // ---------------- formularz uwagi ----------------
     form(issue, { onSaved, onMove } = {}) {
-      const isNew = !issue.id; const t0 = Date.now(); const rec = M.clone(issue); rec.photos = rec.photos || [];
+      const isNew = !issue.id; const t0 = Date.now(); const rec = M.clone(issue); rec.photos = rec.photos || []; rec.photosAfter = rec.photosAfter || [];
       const full = M.P.canEdit('uwagi'); const respond = !full && !isNew && M.P.canRespondIssue(issue); const ro = !full && !respond;
       const plan = M.S.get('plans', rec.planId);
       const quick = [[0, 'dziś'], [3, '+3 dni'], [7, '+7'], [14, '+14']];
@@ -91,6 +93,7 @@
           </div>
           ${full ? `<div class="chips" style="margin-top:-6px">${quick.map(([n, l]) => `<button class="chip" data-due="${n}">${l}</button>`).join('')}</div>` : ''}
           <div><div class="small" style="font-weight:700;color:var(--ink-2);margin-bottom:4px">Kategoria</div><div class="chips" id="cat">${M.UI.ISSUE_CAT.map(c => `<button class="chip ${rec.cat === c ? 'on' : ''}" data-c="${c}">${c}</button>`).join('')}</div></div>
+          ${!isNew ? `<div class="fieldset"><legend>Zdjęcia po usunięciu (dowód zamknięcia)</legend><div class="xs muted" style="margin-bottom:6px">Bez co najmniej jednego zdjęcia „po” uwagi nie da się zamknąć${rec.cat === 'Projektowa' ? ' (uwaga projektowa: zamiast zdjęcia wystarczy odpowiedź w komentarzach)' : ''}.</div><div id="phAfter"></div></div>` : ''}
           <div><div class="small" style="font-weight:700;color:var(--ink-2);margin-bottom:4px">Status</div><div class="seg" id="stat">${Object.entries(M.UI.ISSUE_ST).map(([k, [l]]) => `<button data-s="${k}" class="${rec.status === k ? 'on' : ''}" ${respond && !['otwarta', 'weryfikacja'].includes(k) ? 'disabled style="opacity:.4"' : ''}>${l}</button>`).join('')}</div></div>
           <div class="small muted">${plan ? `${M.icon.plan.replace('<svg', '<svg style="width:14px;height:14px;vertical-align:-2px"')} ${e(plan.name)}` : 'Bez rzutu'}${!isNew && full && plan && onMove ? ` · <a href="#" id="mv">przesuń znacznik</a>` : ''}${!isNew ? ` · utworzył(a): ${e((M.S.person(rec.createdBy) || {}).name || '—')}, ${M.fmtTs(rec.created)}` : ''}</div>
           ${!isNew ? `<div class="fieldset"><legend>Odpowiedzi i komentarze</legend>
@@ -101,6 +104,7 @@
       });
       const body = d.querySelector('.body');
       M.UI.photos(d.querySelector('#phBox'), rec.photos, { editable: full });
+      const pa = d.querySelector('#phAfter'); if (pa) M.UI.photos(pa, rec.photosAfter, { editable: full || respond });
       if (!full) { body.querySelectorAll('[data-f]').forEach(el => el.disabled = true); body.querySelectorAll('#cat .chip').forEach(b => b.disabled = true); }
       if (ro) body.querySelectorAll('#stat button').forEach(b => b.disabled = true);
       body.querySelectorAll('#cat .chip').forEach(b => b.onclick = () => { rec.cat = b.dataset.c; body.querySelectorAll('#cat .chip').forEach(x => x.classList.toggle('on', x === b)); });
@@ -125,13 +129,21 @@
       const ml = d.querySelector('#mail'); if (ml) ml.onclick = () => M.ML.notify([M.S.get('issues', rec.id)], rec.respId);
       const sv = d.querySelector('#save'); if (sv) sv.onclick = () => {
         const f = M.UI.read(body); const old = isNew ? {} : M.S.get('issues', rec.id);
-        const next = full ? { ...rec, ...f } : { ...old, status: rec.status };
+        const next = full ? { ...rec, ...f } : { ...old, status: rec.status, photosAfter: rec.photosAfter };
+        // Rewizja 15: zamknięcie wymaga dowodu – zdjęcia „po” (uwaga projektowa: odpowiedzi w komentarzach)
+        if (next.status === 'zamknieta' && old.status !== 'zamknieta') {
+          if (isNew) return M.toast('Nowej uwagi nie zamyka się od razu – zapisz ją jako otwartą', 'warn');
+          if (next.cat === 'Projektowa' ? !(old.comments || []).length && !(next.photosAfter || []).length : !(next.photosAfter || []).length) return M.toast(next.cat === 'Projektowa' ? 'Zamknięcie uwagi projektowej wymaga odpowiedzi w komentarzach albo zdjęcia „po”' : 'Zamknięcie wymaga zdjęcia „po usunięciu” – dodaj je w sekcji „Zdjęcia po usunięciu”', 'warn');
+          next.closedAt = Date.now(); next.closedBy = M.S.settings.currentUser;
+        }
+        if (next.status !== 'zamknieta') { delete next.closedAt; delete next.closedBy; }
         if (full && !next.desc.trim()) return M.toast('Wpisz opis uwagi', 'warn');
         if (full && !next.respId) return M.toast('Wybierz odpowiedzialnego', 'warn');
         next.history = (old.history || []).slice(); next.comments = old.comments || [];
         const who = M.S.settings.currentUser;
         if (isNew) { next.nr = M.S.nextNr('issues', 'U'); next.history.push({ ts: Date.now(), by: who, txt: 'Utworzono uwagę' }); }
         else Object.keys(LABELS).forEach(k => { if ((old[k] || '') !== (next[k] || '')) next.history.push({ ts: Date.now(), by: who, txt: `${LABELS[k]}: „${k === 'respId' ? M.S.respName(old[k]) : k === 'status' ? (M.UI.ISSUE_ST[old[k]] || [''])[0] : k === 'due' ? M.fmt(old[k]) : (old[k] || '').slice(0, 60)}” → „${k === 'respId' ? M.S.respName(next[k]) : k === 'status' ? (M.UI.ISSUE_ST[next[k]] || [''])[0] : k === 'due' ? M.fmt(next[k]) : (next[k] || '').slice(0, 60)}”` }); });
+        if ((old.photosAfter || []).length !== (next.photosAfter || []).length) next.history.push({ ts: Date.now(), by: who, txt: `Zdjęcia „po”: ${(old.photosAfter || []).length} → ${(next.photosAfter || []).length}` });
         if ((old.photos || []).length !== next.photos.length) next.history.push({ ts: Date.now(), by: who, txt: `Zdjęcia: ${(old.photos || []).length} → ${next.photos.length}` });
         const saved = M.S.upsert('issues', next); d.close(); M.toast(isNew ? `Zapisano uwagę ${saved.nr}` : 'Zapisano zmiany');
         onSaved && onSaved(saved);
@@ -175,7 +187,7 @@
           h += '<h2>Karty uwag</h2>';
           for (const i of g.items) {
             const crop = loc ? await M.PR.locationCrop(i) : '';
-            h += `<div class="iss"><div><div class="hd"><span class="nr">${e(i.nr)}</span><span class="st ${(M.UI.ISSUE_ST[i.status] || [])[1]}">${e((M.UI.ISSUE_ST[i.status] || ['—'])[0])}</span><span class="small muted">${e(i.cat || '')} · termin: ${M.fmt(i.due) || '—'} · zgł. ${M.fmtTs(i.created)}</span></div><div>${e(i.desc)}</div>${(i.comments || []).length ? `<div class="small muted" style="margin-top:1.5mm">Ostatni komentarz: ${e(i.comments[i.comments.length - 1].txt)}</div>` : ''}${photos ? await M.PR.pics(i.photos || []) : ''}</div><div>${crop ? `<img class="loc" src="${crop}">` : ''}<div class="small muted">${e((M.S.get('plans', i.planId) || {}).name || '')}</div></div></div>`;
+            h += `<div class="iss"><div><div class="hd"><span class="nr">${e(i.nr)}</span><span class="st ${(M.UI.ISSUE_ST[i.status] || [])[1]}">${e((M.UI.ISSUE_ST[i.status] || ['—'])[0])}</span><span class="small muted">${e(i.cat || '')} · termin: ${M.fmt(i.due) || '—'} · zgł. ${M.fmtTs(i.created)}${i.closedAt ? ' · zamknięto ' + M.fmtTs(i.closedAt) : ''}</span></div><div>${e(i.desc)}</div>${(i.comments || []).length ? `<div class="small muted" style="margin-top:1.5mm">Ostatni komentarz: ${e(i.comments[i.comments.length - 1].txt)}</div>` : ''}${photos ? await M.PR.pics(i.photos || []) : ''}${photos && (i.photosAfter || []).length ? `<div class="small" style="margin-top:1.5mm;font-weight:700">Po usunięciu:</div>${await M.PR.pics(i.photosAfter)}` : ''}</div><div>${crop ? `<img class="loc" src="${crop}">` : ''}<div class="small muted">${e((M.S.get('plans', i.planId) || {}).name || '')}</div></div></div>`;
           }
         }
         h += '</section>';
@@ -184,10 +196,10 @@
     },
     async excel(list) {
       const wb = new ExcelJS.Workbook(); const ws = wb.addWorksheet('Uwagi', { views: [{ state: 'frozen', ySplit: 1 }] });
-      ws.columns = [{ header: 'Nr', key: 'nr', width: 9 }, { header: 'Opis', key: 'desc', width: 60 }, { header: 'Kategoria', key: 'cat', width: 12 }, { header: 'Odpowiedzialny', key: 'resp', width: 28 }, { header: 'Termin', key: 'due', width: 12 }, { header: 'Status', key: 'st', width: 15 }, { header: 'Rzut', key: 'plan', width: 24 }, { header: 'Zgłoszono', key: 'cr', width: 17 }, { header: 'Zdjęć', key: 'ph', width: 7 }, { header: 'Ostatni komentarz', key: 'cm', width: 40 }];
-      list.forEach(i => ws.addRow({ nr: i.nr, desc: i.desc, cat: i.cat, resp: M.S.respName(i.respId), due: i.due ? M.toDate(i.due) : '', st: (M.UI.ISSUE_ST[i.status] || [''])[0], plan: (M.S.get('plans', i.planId) || {}).name || '', cr: M.fmtTs(i.created), ph: (i.photos || []).length, cm: (i.comments || []).length ? i.comments[i.comments.length - 1].txt : '' }));
+      ws.columns = [{ header: 'Nr', key: 'nr', width: 9 }, { header: 'Opis', key: 'desc', width: 60 }, { header: 'Kategoria', key: 'cat', width: 12 }, { header: 'Odpowiedzialny', key: 'resp', width: 28 }, { header: 'Termin', key: 'due', width: 12 }, { header: 'Status', key: 'st', width: 15 }, { header: 'Rzut', key: 'plan', width: 24 }, { header: 'Zgłoszono', key: 'cr', width: 17 }, { header: 'Zdjęć', key: 'ph', width: 7 }, { header: 'Ostatni komentarz', key: 'cm', width: 40 }, { header: 'Zamknięto', key: 'cl', width: 17 }, { header: 'Zdjęć „po”', key: 'pa', width: 10 }];
+      list.forEach(i => ws.addRow({ nr: i.nr, desc: i.desc, cat: i.cat, resp: M.S.respName(i.respId), due: i.due ? M.toDate(i.due) : '', st: (M.UI.ISSUE_ST[i.status] || [''])[0], plan: (M.S.get('plans', i.planId) || {}).name || '', cr: M.fmtTs(i.created), ph: (i.photos || []).length, cm: (i.comments || []).length ? i.comments[i.comments.length - 1].txt : '', cl: i.closedAt ? M.fmtTs(i.closedAt) : '', pa: (i.photosAfter || []).length }));
       const hr = ws.getRow(1); hr.font = { bold: true, color: { argb: 'FFFFFFFF' } }; hr.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF4C5356' } };
-      ws.getColumn('due').numFmt = 'dd.mm.yyyy'; ws.getColumn('desc').alignment = { wrapText: true, vertical: 'top' }; ws.autoFilter = 'A1:J1';
+      ws.getColumn('due').numFmt = 'dd.mm.yyyy'; ws.getColumn('desc').alignment = { wrapText: true, vertical: 'top' }; ws.autoFilter = 'A1:L1';
       M.download(new Blob([await wb.xlsx.writeBuffer()]), `Uwagi_${M.safeName(M.S.project.short || M.S.project.name)}_${M.todayISO()}.xlsx`);
     },
     mailsDialog() {

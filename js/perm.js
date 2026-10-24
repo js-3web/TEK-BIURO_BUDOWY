@@ -31,6 +31,7 @@
     straznik: { view: STAFF, edit: ['KP', 'KB'] }, // status czynności zmienia każdy z zespołu GW (sprawdza moduł)
     breeam: { view: [...STAFF, 'PROJ', 'PODW'], edit: STAFF },
     terminy: { view: ['KP', 'KB', 'IB'], edit: ['KP', 'KB'] },
+    kontrakt: { view: STAFF, edit: STAFF }, // Rewizja 15: rejestry pism, wniosków materiałowych, zapytań
     asystent: { view: [...STAFF, 'PROJ'], edit: [...STAFF, 'PROJ'] },
     ustawienia: { view: STAFF, edit: ['KP', 'KB'] },
   };

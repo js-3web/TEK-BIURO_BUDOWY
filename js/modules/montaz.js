@@ -118,14 +118,14 @@
       if (!M.S.project) { v.innerHTML = M.UI.noProject(); return; }
       if (!canSee()) { v.innerHTML = `<div class="card card-pad">${M.UI.empty('Dziennik montażu widzi tylko firma wskazana jako wykonawca montażu.', 'lock')}</div>`; return; }
       if (rest[0] === 'wpis' && rest[1]) { const a = M.S.get('assembly', rest[1]); if (a) return this.detail(v, a); }
-      const tab = ['wpisy', 'elementy', 'dane'].includes(rest[0]) ? rest[0] : 'wpisy';
+      const tab = ['wpisy', 'elementy', 'rzut', 'dane'].includes(rest[0]) ? rest[0] : 'wpisy';
       const t = totals(); const c = cfg(); const list = entries();
       const appr = list.filter(a => a.status === 'zatwierdzony'); const last = appr[appr.length - 1];
       v.innerHTML = M.UI.head('Dziennik <span class="acc">montażu</span>', `${e(KIND[c.kind][0])} · prowadzi: ${c.mode === 'podw' ? 'wykonawca montażu, zatwierdza kierownik budowy' : 'generalny wykonawca'}`,
         `${canWrite() ? `<button class="btn primary" id="new">${M.icon.plus}Nowy wpis</button><button class="btn soft" id="aiPlan">${M.icon.spark}AI: ułóż dziennik</button>` : ''}<button class="btn" id="pdf">${M.icon.print}Dziennik PDF</button><button class="btn" id="xls">${M.icon.xlsx}Excel</button>`) +
         (canWrite() ? '' : `<div class="banner info" style="margin-bottom:12px">${M.icon.eye}<span>Tryb podglądu – jako <b>${e(M.P.ROLES[M.P.role()].label)}</b> możesz przeglądać, bez edycji.</span></div>`) +
         `<div class="kpis"><div class="kpi"><b>${t.q}</b><span>elementów do montażu (${t.types} ${M.plural(t.types, 'typ', 'typy', 'typów')})</span></div><div class="kpi"><b class="or">${t.dn}</b><span>zamontowano · ${pct(t.dn, t.q)}%</span></div><div class="kpi"><b>${t.q - t.dn}</b><span>pozostało</span></div><div class="kpi"><b>${appr.length}</b><span>wpisów zatwierdzonych${last ? ' · ostatni ' + M.fmt(last.date) : ''}</span></div></div>
-        <div class="tabs">${[['wpisy', `Wpisy (${list.length})`], ['elementy', `Elementy i postęp (${t.types})`], ['dane', 'Dane dziennika']].map(([k, l]) => `<button data-t="${k}" class="${tab === k ? 'on' : ''}">${l}</button>`).join('')}</div><div id="box"></div>`;
+        <div class="tabs">${[['wpisy', `Wpisy (${list.length})`], ['elementy', `Elementy i postęp (${t.types})`], ['rzut', 'Na rzucie'], ['dane', 'Dane dziennika']].map(([k, l]) => `<button data-t="${k}" class="${tab === k ? 'on' : ''}">${l}</button>`).join('')}</div><div id="box"></div>`;
       v.querySelectorAll('.tabs button').forEach(b => b.onclick = () => M.go('montaz/' + b.dataset.t));
       const nb = v.querySelector('#new'); if (nb) nb.onclick = () => this.newDialog();
       const ap = v.querySelector('#aiPlan'); if (ap) ap.onclick = () => this.aiPlan();
@@ -158,6 +158,9 @@
       const a = M.S.upsert('assembly', Object.assign({ nr: M.S.nextNr('assembly', 'DM'), date: M.todayISO(), status: 'szkic', items: [], crew: prev ? prev.crew : '', crane: prev ? prev.crane : '', hours: prev ? prev.hours : '', weather: null, weatherNote: '', geo: '', geoRef: '', dev: '', devNote: '', joints: '', docs: '', damage: '', remarks: '', photos: [] }, from || {}));
       M.go('montaz/wpis/' + a.id);
     },
+
+    // ---------------- zakładka: na rzucie (Rewizja 15, js/modules/montaz_rzut.js) ----------------
+    tab_rzut(box) { if (!els().length) { box.innerHTML = `<div class="card card-pad">${M.UI.empty('Zacznij od rejestru elementów: zakładka <b>Elementy i postęp</b> → <b>Import z Excela</b>.', 'cube')}</div>`; return; } M.MRZ.render(box); },
 
     // ---------------- zakładka: elementy ----------------
     tab_elementy(box) {
